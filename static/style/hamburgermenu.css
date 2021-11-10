@@ -1,0 +1,69 @@
+.bar1, .bar2, .bar3 {
+	height: 4px;
+	background-color:white;
+	margin: 8px 0;
+	transition: 0.4s;
+	display: block;
+
+  }
+
+.navbarbtn{
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	display: none;
+}
+
+.navbarbtn:hover{
+	cursor: pointer;
+	
+}
+.mobilemenu{
+	display: none;
+	transition: 0.5s;
+	
+}
+.show{
+	display: none;
+}
+
+
+.mobilemenu a{
+	text-align: left;
+    height: 2em;
+    color: white;
+    padding: 12px 1.5em;
+	background-color: rgba(50,49,60,1.00);
+    text-decoration: none;
+    display: block;
+	transition: 0.3s;
+}
+
+.mobilemenu a:hover{
+	background-color: rgba(98,96,111,1.00);
+	cursor: pointer;
+}
+
+@media only screen and (max-width:103.438em){
+	
+	
+}
+@media only screen and (max-width:72.438em){
+	
+	
+}
+@media only screen and (max-width:51.875em){
+	
+	
+}
+@media only screen and (max-width:41.5em){
+	.navbarbtn{
+		margin-top: 1.5em;
+		margin-bottom: 1em;
+		margin-left: 0;
+		display: block;
+}
+	.show{
+		display: block;
+}
+}

@@ -1,0 +1,118 @@
+@keyframes fadeani{
+    from{
+        opacity: 0;
+
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes transitionInlogin{
+    from{
+        height: 25em;
+        
+    }
+    to{
+        height: 15em;
+    }
+}
+
+@keyframes transitionInloginhome{
+    from{
+        height: 10em;
+        
+    }
+    to{
+        height: 4em;
+    }
+}
+
+
+@keyframes transitionInhome{
+    from{
+        height: 15em;
+        
+    }
+    to{
+        height: 25em;
+    }
+}
+
+.header{
+    background-color: #222325;  
+      height: 15em;
+      opacity: .9;
+      margin-bottom: 10px;
+      animation: transitionInlogin 0.75s;
+}
+
+
+@media only screen and (max-width: 62.5em  ) {
+    .header{
+          height: 15em;
+          opacity: .9;
+          margin-bottom: 10px;
+          animation: none;
+          
+    } 
+    
+    @keyframes transitionInhome{
+        from{
+            height: 15em;
+            
+        }
+        to{
+            height: 15em;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 50em  ) {
+    .header{
+          height: 10em;
+          opacity: .9;
+          margin-bottom: 10px;
+          animation: none;
+    }
+   
+    
+    @keyframes transitionInhome{
+        
+        from{
+            height: 10em;
+            
+        }
+        to{
+            height: 10em;
+        }
+    }
+    
+    
+    
+}
+
+@media only screen and (max-width: 31.25em  ) {
+
+    @keyframes transitionInlogin{
+        from{
+            height: 10em;
+            
+        }
+        to{
+            height: 10em;
+        }
+    }
+    
+    @keyframes transitionInhome{
+        from{
+            height: 10em;
+            
+        }
+        to{
+            height: 10em;
+        }
+    }
+    
+}

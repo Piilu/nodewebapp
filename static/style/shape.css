@@ -1,0 +1,23 @@
+.triangle-right {
+	margin-top: 15%;
+	background-image: url("../../assets/logo.png");
+	background-size: contain;
+	height: 65%;
+	width: 100%;
+	background-repeat: no-repeat;
+	
+}
+
+@media only screen and (max-width:41.5em){
+	.triangle-right{
+		display: none;
+	}
+}
+
+
+.signin{
+	margin-left: 40%;
+	margin-top: 0%;
+}
+
+

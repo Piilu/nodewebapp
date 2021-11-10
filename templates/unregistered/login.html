@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Watchparty-Sign-In</title>
+    <link rel="stylesheet" href="/static/style/newstyle.css">
+    <link rel="stylesheet" href="/static/style/shape.css">
+    <link rel="stylesheet" href="/static/style/animation.css">	
+	<link rel="stylesheet" href="/static/style/animationnew.css">
+    <link rel="stylesheet" href="/static/style/signresponsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/javascript/script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+
+
+
+  </head>
+<body style="animation: fadein 1s;">
+<!--#Navbar-->
+<div class="navbar">
+  	<div class="logofont">
+	  <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
+    </div>
+	<div class="navbarspacer"></div>
+  <div style="text-align: right;">
+	  <div class="navbarbuttonsfont">
+		  <a class="tagafont" href="/" >Home</a>
+	  </div>
+		
+	</div>
+	<div>
+		<div class="navbarbuttonsfont" style="width: 95%">
+			<a  class="selected" href="/login/" >Sign in</a>
+		</div>
+  </div>
+
+</div>
+<!--endnavbar-->
+	<div class="flexcontainer2 ">
+		<div style="width: 60%;" class="maincontainer"></div>
+		<div style="margin-top: 0%; width: 100%" class="maincontainer">
+			<h2  class="inputformtitle">Sign in</h2>
+			<p style="color: red;" id="error"></p>
+			
+		</div>
+		<div style="width: 30%;" class="maincontainer"></div>
+	
+	</div>
+	<div style="margin-top: 1%;" class="flexcontainer2">
+	
+		<div style="width: 50%;" class="maincontainer">
+			<div class="triangle-right2 triangle2-placeing"></div>
+
+		</div>
+	<div style="width: 100%; animation: fadein 0.5s" class="maincontainer">
+		
+		<form method="POST" class="signinform" style="color: white">
+			
+			<label for="username">Username</label>
+			<input name="username" id="username" type="text">
+			<label for="password">Password</label>
+			<input name="password" id="password" type="password">
+			<div style="width:50%">
+				<input type="submit" class="signupbtn2" value="Sign in" />
+			</div>
+		</form>
+		<p class="mobilenb">NB: In mobile if login was unsuccessful then refresh page to see what went wrong (SAFARI)</p>
+		
+	</div>
+		
+
+</div>
+	
+<div class="footer" style="height: auto; display: block;" id="notifytest">
+</div>
+
+</body>
+</html>
+<script>
+  var errorlog= localStorage.getItem("errorlog");
+  var errorlogacc = localStorage.getItem("errorlogacc");
+  if(errorlog == "error"){
+    
+    document.getElementById('error').innerHTML = "Something went wrong";
+
+    localStorage.removeItem("errorlog");
+  }
+  else if(errorlogacc == "error"){
+    document.getElementById('error').innerHTML = "This account does not exist";
+    localStorage.removeItem("errorlogacc");
+
+  }
+  else if(errorlog == "succ"){
+    //document.getElementById("succmessage").innerHTML = "Successfully registered. Please log in";
+    fadeIn("Successfully registered. Please log in.");
+    localStorage.removeItem("errorlog");
+
+  }
+</script>

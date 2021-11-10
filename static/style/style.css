@@ -1,0 +1,741 @@
+body ,html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1c1e21;/*#1c1e21*/
+ 
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  margin-top: 4em; 
+  float: right;
+  height: 100; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  position:fixed ;
+  height: 100%;
+  width: 20%;
+  display: block;
+}
+.fontres{
+  display: block;
+  color: gainsboro;
+}
+
+
+
+.right{
+  padding: 0.5em;
+  padding-bottom: 1em;
+  width: 20%;
+  position:fixed;
+  left: 80%;
+  height: 100%;
+  display: block;
+}
+
+
+.middle {
+  width: 60%;
+  margin-right: 20%; 
+  text-align: center;
+  display: block;
+  
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+.mobilenb{
+  color: white;
+
+  display: none;
+}
+.postinput{
+  width: 100%;
+  color: rgb(255, 255, 255);
+  border-bottom: none;
+  background-color: rgba(126, 126, 126, 0.226);
+  border-radius: 0.5em;
+}
+.postcommentssubdiv{
+  padding-bottom: 5%;;
+  border-bottom: rgb(58, 58, 58) solid 1px;
+}
+.postcomments{
+  height: auto; 
+  border-top: solid 1px rgb(133, 133, 133);
+  transition: 0.5s;
+}
+.postcommentssubdiv a{
+  width: auto;
+  text-align: left;
+  color: gainsboro;
+  padding: 12px 0.5em;
+  text-decoration: none;
+  display: block; 
+}
+
+.postcommentssubdiv p{
+  width: 100%;
+  display: inline;
+  word-wrap: break-word;
+
+}
+.postcommentssubdiv a:hover{
+  color: #757575;
+}
+.usercommenttext{
+  padding-left: 5%;;
+}
+.commentinput{
+  font-size:15px;
+  padding:0.625em 0.625em 0.625em ;
+  display:inline;
+  width:100%;
+  border:none;
+  color: rgb(255, 255, 255);
+  border-bottom: none;
+  background-color: rgba(112, 112, 112, 0.171);
+  border-radius: 0.5em;
+  transition: 0.5s;
+}
+.addfriendList{
+  height: 100%;
+  text-align: left;
+  list-style-type: none; 
+  overflow-y: auto;
+}
+
+.addfriendListp{  
+  display: inline;
+  color: rgb(126, 126, 126, 0.575);
+  font-size: 1.8em;
+  height: 2.5em;
+  padding-top: 13px;
+}
+.addfriendList div{  
+  height: 2.5em;
+  background-color: rgba(179, 179, 179, 0.226);
+  border-bottom: rgba(0, 0, 0, 0.336) solid 1px;
+}
+
+
+
+.addfriendList div button{
+  float: right;
+  border: none;
+  height: 2.4em;
+  text-align: center;
+  font-size: 1em;
+  text-decoration: none;
+  color: rgba(80, 79, 79, 0.575);
+}
+
+
+
+
+.peopleList{
+  height: 100%;
+  text-align: left;
+  list-style-type: none; 
+  overflow-y: auto;
+}
+
+.peopleList button{
+  cursor: pointer;
+
+  height: 3em;
+  color: rgba(80, 79, 79, 0.575);
+  background-color: white;
+  padding: 12px 1.5em;
+  text-decoration: none;
+  display: block;
+}
+.peopleList button:hover{
+  background-color: rgb(126, 126, 126, 0.575);
+
+}
+.roomList{
+  height: 100%;
+  text-align: left;
+  list-style-type: none; 
+  overflow-y: auto;
+}
+.roomList a{
+  cursor: pointer;
+
+  height: 3em;
+  color: rgba(80, 79, 79, 0.575);
+  background-color: white;
+  padding: 12px 1.5em;
+  text-decoration: none;
+  display: block;
+}
+.roomList a:hover{
+  background-color: rgb(126, 126, 126, 0.575);
+}
+.footer {
+  position: fixed;
+  left: 1em;
+  bottom: 0.5em;
+  float: right;
+  width: auto;
+  min-width: 25%;
+  text-align: center;
+  display: none;
+
+}
+.limit{
+  word-wrap: break-word;
+}
+.postName{
+  font-size: 1.5em;
+  text-decoration: none;
+  color: gainsboro;
+}
+.postlikes{
+  opacity: 0.2;
+
+}
+.postdiv{
+  padding: 2%;
+  /*border: white solid 1px;*/
+  text-align: left;
+  height: auto;
+  min-height: 15em;
+  margin-top: 5%;
+  position: relative;
+}
+.postfooter{
+  padding: 2%;
+
+  width: auto;
+  float: right;
+ /* border: white solid 1px;*/
+  bottom: 0px;
+  position: absolute;
+}
+.postfootercontent{
+  padding: 0.1em;
+
+  height: 2em;
+  text-align: center;
+  float: left;
+  width: 48%;
+}
+.postfootercontainer{
+  border-top:white solid 1px;
+  width: 96%;
+  max-width: 96%;
+  margin: 0 auto;
+}
+
+.footer2 {
+  position: fixed;
+  bottom: 0.5em;
+  right: 1em;
+  float: right;
+  width: 19%;
+  text-align: center;
+}
+/*
+ * Formatting the header area
+ */
+
+header {
+  background-color: #222325;
+  height: 25em;
+
+
+  margin-bottom: 10px;
+
+}
+.header2 {
+
+  position: fixed;
+  top: 0;
+  background-color: #222325;
+  height: 15em;  
+  margin-bottom: 10px;
+
+}
+.header3{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #222325;
+}
+
+/*UI elements*/
+textarea{
+resize: none;
+font-size:18px;
+padding:0.625em 0.625em 0.625em ;
+display:inline;
+width:18.75em;
+border:none;
+
+color: rgb(255, 255, 255);
+border-bottom: none;
+background-color: rgba(126, 126, 126, 0.226);
+border-radius: 0.5em;
+}
+input {
+font-size:18px;
+padding:0.625em 0.625em 0.625em ;
+display:inline;
+width:18.75em;
+border:none;
+color: rgb(255, 255, 255);
+border-bottom: none;
+background-color: rgba(112, 112, 112, 0.171);
+border-radius: 0.5em;
+transition: 0.5s;
+}
+
+input:focus{
+  outline: none;
+}
+textarea:focus
+{outline: none;
+height: 8em;
+
+}
+
+.addtofriends
+{
+background-color: rgba(103, 252, 135, 0.822);
+border: none;
+color: white;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+transition: 0.2s;
+}
+.addtofriends:hover{
+  background-color: rgba(147, 238, 167, 0.822);
+}
+
+
+
+
+
+
+/*UI elements end*/
+
+.home {
+  color: gainsboro;
+  padding: 2em;
+ 
+  }
+
+.login{
+  color: gainsboro;
+
+  padding: 2em;
+  background-color: rgb(44, 44, 48);
+  opacity: 0.5;
+  border-radius: 1em;
+}
+
+
+/*
+ * Center the body content
+ */
+
+ .container {
+  width: 60em;
+  max-width: 100%;
+  padding: 1.25em;
+  margin: 0 auto;
+}
+
+.logincontainer{
+  border-radius: 1em;
+  text-align: center;
+  width: 40em;
+  height: auto;
+  max-width: 100%;
+  padding: 1.25em;
+  margin: 0 auto;
+
+}
+
+.menu {
+  
+  float: right;
+  margin-top: 0.5em;
+  margin-right: 2em;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu li + li {
+  margin-left: 2.1875em;
+}
+
+.menu li a {
+  font-size: 1.5em;
+  color: gainsboro;
+  text-decoration: none;
+}
+.menu li a:hover {
+  font-size: 1.5em;
+  
+  color: rgba(248, 248, 248, 0.493);
+  text-decoration: none;
+}
+
+
+header h1.logo {
+  margin: 0;
+  font-size: 3.5em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+
+header h1.logo:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.596);
+  text-decoration: none;
+}
+.border{
+  padding: 1em;
+  background-color: rgb(44, 44, 48);;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 1em;
+}
+.border2{
+  background-color: rgb(44, 44, 48);;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 1em;
+}
+
+
+
+
+
+h2 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+}
+
+h3 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #999;
+}
+
+/* When Button is clicked*/
+.dropdown {
+
+
+  
+  float: right;
+  position: relative;
+  display: none;
+  
+}
+
+
+
+.fontstyle{
+  
+  float: right;
+  margin-top: 2em;
+}
+.fontstyle li{
+  display:block;
+}
+.fontstyle li+li{
+margin-top: 0.5em;
+}
+.fontstyle li a {
+  font-size: 1.5em;
+  color: #444;
+  text-decoration: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+.dropdownchange .dropdown-content {
+  
+  display: none;
+}
+
+/* When Button is clicked end*/
+
+
+
+/*Responsive*/
+/*
+* For tablets  
+*/
+@media only screen and (max-width: 62.5em  ) {
+  .footer2 {
+    width: 98%;
+    bottom: 4em;
+
+  }
+  .header3{
+    opacity: 1;
+  }
+  .postdiv{
+    margin-bottom: 4em;
+  }
+  .fontres{
+    font-size: 1.5em;
+
+  }
+  .header2 {
+    height: 15em;
+    margin-bottom: 10px;
+
+  }
+  .footer {
+    position: fixed;
+    left: 1em;
+    bottom: 0.5em;
+    float: right;
+    width: auto;
+    min-width: 25%;
+    text-align: center;
+    display: none;
+ }
+  
+
+  .logincontainer{
+    border-radius: 1em;
+    text-align: center;
+    width: 30em;
+    height: auto;
+    max-width: 100%;
+    padding: 1.25em;
+    margin: 0 auto;
+
+  }
+  
+ 
+  header h1.logo {
+    margin: 0;
+    font-size: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    float: left;
+  }
+  header {
+    height: 15em;
+    opacity: .9;
+    margin-bottom: 10px;
+  }
+
+
+
+    .container {
+      width: 40em;
+      max-width: 100%;
+      padding: 1.25em;
+      margin: 0 auto;
+    }
+    .left{
+      left: 0%;
+      width: 100%;
+      display: none;
+    }
+    .right{
+      left: 0%;
+      width: 100%;
+      display: none;
+    }
+
+  
+
+
+  
+}
+
+@media only screen and (max-width: 50em  ) {
+  .header3{
+    opacity: 1;
+  }
+
+  .middle{
+    width: 100%;
+    margin-right: 0%;
+  }
+  header h1.logo {
+    margin: 0;
+    font-size: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    float: left;
+  }
+  .footer {
+
+    display: none;
+
+ }
+  .header2 {
+    height: 10em;
+    margin-bottom: 10px;
+
+  }
+  header {
+    height: 10em;
+    opacity: .9;
+    margin-bottom: 10px;
+  }
+
+
+
+    .container {
+      width: 30em;
+      max-width: 100%;
+      padding: 1.25em;
+      margin: 0 auto;
+    }
+  
+
+  
+
+
+  
+}
+
+/* For mobile phones: */
+@media only screen and (max-width:31.25em) {
+  .header3{
+    opacity: 1;
+  }
+  .mobilenb{
+    display: block;
+  }
+  .logincontainer{
+    border-radius: 1em;
+    text-align: center;
+    width: 20em;
+    height: auto;
+    max-width: 100%;
+    padding: 1.25em;
+    margin: 0 auto;
+
+  }
+  .footer {
+    position: fixed;
+    left: 0.7em;
+    right: 0.7em;
+    bottom: 0.5em;
+    min-width: 25%;
+    width: auto;
+    text-align: center;
+    display: none;
+
+ }
+ 
+  header {
+    height: 10em;
+    opacity: .9;
+    margin-bottom: 10px;
+  }
+    .container {
+      width: 20em;
+      max-width: 100%;
+      padding: 1.25em;
+      margin: 0 auto;
+    }
+
+    .menu li {
+      display: none;
+    }
+
+
+    header h1.logo {
+      margin: 0;
+      font-size: 1.7em;
+      color: #fff;
+      text-transform: uppercase;
+      float: left;
+    }
+    .dropdown {
+
+
+  
+      float: right;
+      position: relative;
+      display: inline-block;
+      
+    }
+
+    input         {
+      font-size:18px;
+      padding:0.625em 0.625em 0.625em ;
+      display:inline;
+      width:10.75em;
+      border:none;
+      border-bottom:1px solid #757575;
+      transition: 0.5s;
+    }
+
+    .header2 {
+      height: 10em;
+      margin-bottom: 10px;
+  
+    }
+
+    .middle {
+      width: 100%;
+    }
+
+    .column {
+      padding: 0;
+      height: 100%; /* Should be removed. Only for demonstration */
+    }
+
+    .fontres{
+      font-size: 1.5em;
+  
+    }
+    .border{
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .border2{
+      margin-left: 0;
+      margin-right: 0;
+    }
+}
+
+
+/*End responsive*/

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>NodeJS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/style/style.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/style/menuitem.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/style/animations.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/style/inappnavbar.css"/>
+        <link rel="stylesheet" type="text/css"href="/static/style/inappnavside.css"/>
+        <link rel="stylesheet" type="text/css"href="/static/style/fontsize.css"/>
+        <link rel="stylesheet" type="text/css"href="/static/style/modal.css"/>
+        <link rel="stylesheet" type="text/css"href="/static/style/progressbar.css"/>
+        <link rel="stylesheet" type="text/css"href="/static/style/buttons.css"/>
+        <link rel="stylesheet" type="text/css"href="/static/style/customscroll.css"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+
+
+
+  
+  
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/static/javascript/script.js"></script>
+        <script src="/static/javascript/preloader.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+    </head>
+<body>
+
+
+      <!--#region The Modal -->
+<div style="animation: fadeani 0.55s; display: block;" id="createModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content modalfont">
+      <span onclick="closeModalPassword();" class="close">&times;</span>
+      
+      <div style="text-align: left;" id="modalinvalid" class="modalroomcreate">
+        <h1 style="text-align: center;" id="forroom">You are not logged in</h1>
+        <button onclick="gotologin()" class="button button1" href="">Login</button>
+        <button onclick="visitasguest();" style="margin-left: 52%;" class="button button1" href="">Visit as guest</button>
+
+      <p style=" display: none; color: red;" id="errormsg"></p>
+  
+      </div>
+      <div id="visiting" style=" display:none; text-align: left;" id="modalinvalid" class="modalroomcreate">
+        <h1 style="text-align: center;">Name yourself</h1>
+        <form method="POST" style="text-align: center;" >
+            <input style="color: black;" type="text" name="visitguestroom" id="visitguestroomid" value="" readonly>
+            <div style="padding-top: 1em;">
+              <input style="color: black;" type="text" name="visitguestname" id="visitguestid" placeholder="Nickname">
+          </div>
+            <div style="padding-top: 1em;">
+            <input type="submit" value="Join" style="color: black; border-radius: 2em;" class="privatepassBtn">
+        </div>
+        </form>
+      </div>
+    </div>
+  
+  </div>
+  <!--#endregion-->
+  
+</body>
+
+</html>
+
+<script>
+  var room = localStorage.getItem("roomName");
+  document.getElementById("visitguestroomid").value=room;
+
+   function gotologin(){
+       location.replace("/login/");
+   }
+   function visitasguest(){
+    document.getElementById("modalinvalid").style.display="none"
+    document.getElementById("visiting").style.display="block"
+
+
+   }
+
+</script>

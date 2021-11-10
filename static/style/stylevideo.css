@@ -1,0 +1,146 @@
+
+.columnvideo{
+    margin-top: 4em; 
+    float: right;
+    height: 100%;
+}
+.buttonvideotopleftradius{
+    border-top-left-radius:1em;
+}
+.buttonvideotoprighttradius{
+    border-top-right-radius:1em;
+}
+.buttonvideo{
+    
+    width: 100%;
+    height: 3em;
+    background-color: #5c5c5c; 
+    border: none;
+    color: gainsboro;
+    opacity: 0.5;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 1em;
+    cursor: pointer;
+    transition: 0.2s;
+    }
+    .buttonvideo:hover{
+    background-color: #1a1818a8;
+    }
+    
+ 
+    
+.leftvideo {
+    position:fixed ;
+    height: 100%;
+    width: 15%;
+
+}
+
+.controlscontainer{
+    height: 3em;
+    max-width: 100%;
+    
+    margin: 0 auto;
+}
+.controlsnav{
+    float: left;
+    width: 20%;
+}
+    
+.rightvideo{
+    width: 20%;
+    left: 80%;
+    padding: 0.5em;
+    padding-bottom: 1em;
+    position:fixed;
+    height: 100%;
+
+}
+.listofusers{
+    height: 80%;
+     overflow-y: auto;
+     width: 100%;
+}
+
+.middlevideo {
+    width: 65%; 
+    margin-right:20%; 
+    text-align: center;
+        
+}
+.currenthost{
+    text-align: left;
+    font-size: 1.5em;
+    cursor: default;
+}
+
+.currenthost .tooltiptext{
+    visibility: hidden;
+    font-size: 0.8em;
+    width: 20%;
+    background-color: black;
+    opacity: 0.5;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    position: absolute;
+    z-index: 1;
+}
+.currenthost:hover .tooltiptext{
+    visibility: visible;
+}
+
+@media only screen and (max-width: 62.5em  ) {
+    .controlscontainer{
+        margin-bottom: 20%;
+    }
+    .middlevideo {
+        margin-right:0%; 
+        width: 100%;             
+    }
+    .buttonvideotopleftradius{
+        border-top-left-radius:0em;
+    }
+    .buttonvideotoprighttradius{
+        border-top-right-radius:0em;
+    }
+    .controlsnav{
+        width: 25%;
+    }
+    .leftvideo{
+        left: 0%;
+        width: 100%;
+        display: none;
+      }
+    .rightvideo{
+        left: 0%;
+        width: 100%;
+        display: none;
+    }
+
+}
+@media only screen and (max-width: 50em  ) {
+
+    .controlsnav{
+        width: 100%;
+    }
+    .controlscontainer{
+        margin-bottom: 50%;
+    }
+}
+@media only screen and (max-width:31.25em) {
+    .controlscontainer{
+        margin-bottom: 60%;
+    }
+    .columnvideo{
+        margin-top: 4em; 
+
+        height: 100%;
+    }
+    
+}

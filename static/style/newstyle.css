@@ -1,0 +1,352 @@
+html {
+    height: 100%;
+	scroll-behavior: smooth; 
+}
+body{
+	font-family: 'Poppins';
+	background-image:  linear-gradient(to right,#2F2E39, #A7A5B8);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+    margin: 0;
+    background-attachment: fixed;
+	overflow-y: auto;
+}
+input {
+    margin-bottom: 2%;
+	font-size:18px;
+	padding:0.625em 0.625em 0.625em ;
+	display:inline;
+	width:35%;
+	border:none;
+	color: black;
+	background-color: white;
+	border-radius: 0.5em;
+	transition: 0.3s;
+	
+}
+input, label {
+    display:block;
+}
+input:focus{
+	outline: solid 0.1em rgba(255,165,0,0.8);
+	/*border: solid 0.1em rgba(63,62,74,1.00);*/
+	
+}
+h1{
+	color: white;
+	font-size: 5em;
+}
+h2{
+	color: white;
+	font-size: 50px;
+
+}
+.aboutfont{
+	color: white;
+	font-size: 20px;
+	text-align: left;
+}
+.customh2{
+	margin-top: 1%;
+	font-weight: 100;
+	font-size: 65px
+}
+.navbarbuttonsfont{
+	color: white;
+	font-size: 25px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+}
+
+.mainflexviewbc{
+	background-color: #2F2E39;
+}
+.mainflexviewbc2{
+	background-color: #9D9BAD;
+}
+.mainflexview{
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-flow: column;
+}
+
+
+
+
+
+
+/*Main components*/
+.aboutcontainer{
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 1em;
+	padding-bottom:1em; 
+	background: #B0AEBF;
+	border-radius: 2em;
+}
+.maincontainer{
+	/*border:solid 1px red;*/
+}
+
+.flexcontainer{
+	margin-top: 5%;
+	justify-content: space-between;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-flow: row;
+	margin-left: 12%;
+	margin-right: 12%;
+		
+}
+.flexcontainer div{
+	width: 100%;
+
+}
+.selected{
+	color: orange;
+	text-decoration: none;
+	transition: 0.5s;
+}
+
+.tagafont{
+	text-decoration: none;
+	color: white;
+	transition: 0.5s;
+}
+.tagafont:hover{
+	color: orange;
+}
+/*Main components end*/
+
+
+/*navbar*/
+.navbarspacer{
+	display: block;
+}
+.navbar{
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	
+}
+
+
+.logofont{
+	padding-top: 1%;
+	color: white;
+	text-decoration: none;
+	font-size: 40px;
+	transition: 0.5s;
+}
+.logofont:hover{
+	font-size: 41px;
+}
+.navbar div {
+	width: 100%;
+	padding-left: 5%;
+}
+
+.defaultfont{
+	display: inline;
+	text-align: center;
+}
+/*endnavbarr*/
+
+
+
+
+/*firstinfo*/
+
+	
+
+.spaceing{
+	letter-spacing: 10px;
+}
+.pictureframe{
+	background-image: url("bigpic.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	float: left;
+	height: 100%;
+	width: 100%;
+	border-radius: 3em;
+	box-shadow: 7px 18px 12px rgb(0, 0, 0,0.25); 
+	
+}
+
+.pictureframe2{
+	background-image: url("smallpic.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	float: left;
+	height: 80%;
+	border-radius: 3em;
+	margin-top: 60%;
+	margin-left: 35%;
+	box-shadow: 7px 18px 12px rgb(0, 0, 0,0.25); 
+}
+.logocontainer{
+	border: solid 1px #000000;
+	height: 100%;
+}
+
+.spacer2{
+	
+}
+
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+/*endfirstinfo*/
+
+
+
+
+
+
+.buttonview{
+	margin-top: 2%;
+	margin-left: 12%;
+}
+.learnmore{
+	color: white;
+	margin-left: 3%;
+	font-size: 1.1em;
+}
+
+.signupbtn2{
+	background-color:#8F8D9F;
+	border:none;
+	border-radius: 3em;
+	font-size: 1.5em;
+	padding: 15px 32px;
+	font-weight: 600;
+	color: orange;
+	cursor: pointer;
+	transition: 0.5s;
+}
+.signupbtn2:hover{
+	background-color: #7A7888;
+	font-size: 1.6em;
+}
+.signupbtn{
+	background-color: #696775;
+	border:none;
+	border-radius: 3em;
+	font-size: 1.5em;
+	padding: 15px 32px;
+	color: orange;
+	cursor: pointer;
+	transition: 0.5s;
+}
+.signupbtn:hover{
+	background-color: #7A7888;
+	font-size: 1.6em;
+
+}
+.footer {
+  position: fixed;
+  left: 1em;
+  bottom: 0.5em;
+  float: right;
+  width: auto;
+  min-width: 25%;
+  text-align: center;
+  display: none;
+
+}
+
+@media only screen and (max-width: 103.438em){/*72.438em*/
+	h1{
+		font-size: 3.5em;
+	}
+}
+@media only screen and (max-width: 72.438em){
+	h1{
+		font-size: 2.5em;
+	}
+	.flexcontainer{
+		margin-top: 10%;
+	}
+	.signupbtn2{
+		font-size: 1em;
+	}
+	.signupbtn2:hover{
+		font-size: 1.2em;
+	}
+	.signupbtn{
+		font-size: 1em;
+	}
+	.signupbtn:hover{
+		font-size: 1.2em;
+	}
+	.footer {
+		position: fixed;
+		left: 1em;
+		bottom: 0.5em;
+		float: right;
+		width: auto;
+		min-width: 25%;
+		text-align: center;
+		display: none;
+ }
+}
+@media only screen and (max-width:51.875em){
+	h1{
+		font-size: 2em;
+	}
+	.footer {
+
+    	display: none;
+	}
+
+}
+@media only screen and (max-width:41.5em){
+	h1{
+		font-size: 3em;
+	}
+	
+
+
+	.pictureframe{
+		display: none;
+	}	
+	.pictureframe2{
+		display: none;
+	}
+	.flexcontainer{
+		flex-flow: column;
+	}
+	.navbarspacer{
+		display: none;
+	}
+	
+	.aboutfont{
+		font-size: 15px;
+}
+
+	
+}
+	
+	/*.spacer2{
+		display: none;
+	}*/
+
+
+
+
+/*
+<img src="bigpic.png" alt="people" class="responsive">
+
+	<div style=";" class="pictureframe"></div>
+	<div style="" class="pictureframe2"></div>
+*/
+
+
+
+

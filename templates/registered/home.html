@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Watchparty</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="/static/style/style.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/menuitem.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/animations.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/inappnavbar.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/inappnavside.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/fontsize.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/modal.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/progressbar.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/buttons.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/customscroll.css"/>
+      <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+
+
+
+
+
+
+
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="/static/javascript/script.js"></script>
+      <script src="/static/javascript/preloader.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="/static/javascript/socketio.js"></script>
+  </head>
+  <body >
+    
+   
+    <div class="row">
+    <!-- #region leftcolumn -->
+      <div onclick='document.getElementById("settingcontent").style.display="none";'  style="animation: fadeani 0.75s;" id="tools" class="toolsfont column left sidenav">
+        <h1 style="padding-left: 0.3em; color: gainsboro;"><p style="font-size: 0.9em;" class="	fa fa-home"></p> Menu</h1><!--<p style="font-size: em;" class="	fa fa-home">-->
+        <div style="height: 79%; overflow-y: auto;">
+          <a href="" id="user" class="fa fa-address-card-o"></a>
+          <button class=" btn2 	fa fa-folder-open-o " onclick="openModal();"> Create</button>
+          <button class="btn2 fa fa-group" onclick="getallfriends();openListFriends();" > Friends</button>
+          <button class="btn2 fa fa-eye" onclick="getallusers();openListPeopleModal();" > Find people</button>
+          <a class="fa fa-film" href=""> Movies</a>
+    
+            <button onclick="updateRoomlist();openListModal();" class="btn2 	fa fa-window-restore"> Rooms</button>
+          </div>
+        
+      </div>
+      <!-- #endregion -->
+    
+      </div>
+      <!-- #region middlecolumn-->
+      <div onclick='document.getElementById("settingcontent").style.display="none";'  id="home" class="column middle home homefont" >
+        <div  style=" padding: 0.5em;">
+          <div class="border">
+            <textarea onkeydown="postunfocus();" id="postsend" class="postinput" type="text" placeholder="What are you watching ..."></textarea>
+            <div style=" margin-top: 1em;">
+              <button onclick="makepost();" class="postbtn">Post</button>
+          </div>
+          </div> 
+          <h1 id="poststitle" style="color: gainsboro; opacity: 0.2;"> <i>HERE YOU CAN SEE WHAT OTHERS ARE DOING</i> </h1>
+          <div id="posts" style="margin-left: 10%;margin-right: 10%;">
+
+           
+            <div id="loadmorebtnid" style="display: none;">
+            <button onclick="loadmorebtn();" class="button button1 btnrefreshstyle ">
+              <i id="loadmorelogo" class="fa fa-refresh"></i> Load more
+            </button>
+          </div>
+          </div>
+
+
+        <!--  <div class="postdiv border2">
+            <a class="postName" href="#">NAME</a>
+            <div style="padding:  0.5em; margin-bottom: 5%;">
+            <div class="limit" style="line-height: 2;">
+              <p>Siin ma kirjutan midagi lahedat. Vaadake kui lahe ma olen ehhehe onj väga lahe oooojaaaaSiin ma kirjutan midagi lahedat. Vaadake kui lahe ma olen ehhehe onj väga lahe oooojaaaaSiin ma kirjutan midagi lahedat. Vaadake kui lahe ma olen ehhehe onj väga lahe oooojaaaaSiin ma kirjutan midagi lahedat. Vaadake kui lahe ma olen ehhehe onj väga lahe oooojaaaaSiin ma kirjutan midagi lahedat. Vaadake kui lahe ma olen ehhehe onj väga lahe oooojaaaaSiin ma kirjutan midagi lahedat. Vaadake kui lahe ma olen ehhehe onj väga lahe oooojaaaa </p>
+            </div>
+          </div>
+            <div class="postfooter postfootercontainer"  >
+              <div class="postfootercontent">
+                <p style="display: inline;">TEST1</p>
+              </div>
+              <div class="postfootercontent">
+                <p style="display: inline;">TEST2</p>
+              </div>
+            </div>
+          </div>
+        -->
+
+          
+          
+          
+          
+
+
+        </div>
+      </div>
+      
+
+    </div>
+    <!-- #endregion -->
+
+
+    <!-- #region rightcolumn-->
+    <div onclick='document.getElementById("settingcontent").style.display="none";'  style="animation: fadeani 0.1s;" id ="friends" class="friendsfont column right sidenav">
+      <h1 style="color: gainsboro;"><p style="font-size: 0.9em;" class="fa fa-group"></p> Activity</h1>
+    <div id="activitydiv" style="overflow-y: auto; height: 79%; ">
+      <p style="text-align: center; color: gainsboro; opacity: 0.2;">NO ACTIVITY</p>
+
+    </div>
+                
+      
+     
+    </div>
+    <!-- #endregion -->
+    
+
+    
+    <!-- #region topnavbar-->
+    <header style="   margin-bottom: 0; height: 4em;" class="header3">
+      <div class="headercolumn hleft">
+        <a  class="abtn" href=""><p>NAMEANDLOGO </p></a>
+        <a  class="abtnchange" href=""><p>LOGO </p></a>
+        
+      </div>
+      <div onclick='document.getElementById("settingcontent").style.display="none";' class="headercolumn hmiddle">
+        <form action="">
+          <input  type="text" placeholder="Search.." value="" class="search">
+          <!--
+          <div  id ="searchlist" class="searchdrop">
+            
+            <div class="searchtab" >
+              <a href="">test</a>
+            </div>
+            <div class="searchtab" >
+              <a href="">test2</a>
+            </div>
+          </div>
+          -->
+        </form> 
+
+      </div>
+
+
+      <div class="headercolumn hright">
+
+        <div class="settingsdiv">
+          <button onclick="showsettings()" class="settingsbtn  fa fa-bars"></button>
+          <div id="settingcontent" class="settingitems">
+            <button class="btn" style=" color: gainsboro; padding: 12px 16px; text-decoration: none; display: block; border: none; cursor: pointer; width: 100%;" href="" onclick="openFrienRequestModal();">Friend requests</button>
+            <a href="">Link2</a>
+            <button class=" btn fa fa-sign-out" style=" color: gainsboro; padding: 12px 16px; text-decoration: none; display: block; border: none; cursor: pointer; width: 100%;" onclick="logOut();"></button>
+
+          </div>
+        </div>
+       </div>
+    </header>
+    <!-- #endregion -->
+      
+      
+
+
+
+
+
+
+<!--#region The Modal Room create -->
+<div tabindex="0" onkeydown="closeModalEsc();" style="animation: fadeani 0.55s;" id="createModal" class="modal">
+
+  <!-- Modal content -->
+  <div onmouseover="finalcheck();" class="modal-content modalfont">
+    <span onclick="closeModal();" class="close">&times;</span>
+    
+    <div  id="roomcreatdiv" class="modalroomcreate">
+      <h1>Create your room</h1>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <div id="roomCreate">
+        <input onkeyup="checkRoomname()" onkeypress="avoidEnter();" class="modalinputfont" placeholder="Room name" id="roomnameid" name="roomName" type="text"><br>
+       <div style="padding-top:1em;">
+        <input onkeyup="checkMoviename();" onkeypress="avoidEnter();" class="modalinputfont" placeholder="Movie name" id="movienameid" name="movieName" type="text">
+      </div>
+        <div style="padding-top: 2em; margin-right: 2%;">
+        <input onclick="roomPublicfunc()" style="width:auto;" type="radio" name="Mode" name="roomPublic" value="Public">
+        <label  for="roomPublic">Public</label>
+        
+        <input onclick="roomPrivatefunc();" style="width:auto;" type="radio" name="Mode" id="roomPrivate" value="Private">
+        <label  for="roomPrivate">Private</label>
+        <div id="roomPassworddiv"  style="display: none;">
+        <input onkeyup="checkPassword();" onkeypress="avoidEnter();" class="modalinputfont" placeholder="Room password" id="roompasswordid" name="roomPassword" type="password">
+      </div>
+      </div>   
+
+        <br>
+
+        <div style="padding-top: 0.5em;"> 
+        <input accept="video/mp4,video/x-m4v,video/*" style="display:none;" type="file" id="movieFile" name="filename">
+        <label name="test" onmouseout="fileName();" class="uploadBtn" for="movieFile">Upload file</label>
+        <label for="filename"><p id="uploadedName">No file choosen</p></label>
+        <div id="pbid" class="progress-bar">
+          <div id="pbfid" class="progrss-bar-fill">
+            <span id="progresstextid" class="progress-bar-text">0%</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding-top: 1em;"></div>
+      <input id="submitBtn" style="color: black; border-radius: 2em;" class="uploadBtn" type="submit" value="Create">
+    </div>  
+    </form>
+
+    </div>
+  </div>
+
+</div>
+<!--#endregion-->
+
+
+<!--#region The Modal Rooms -->
+
+
+<div tabindex="0" onkeydown="closeListModalEsc();" style="animation: fadeani 0.55s;" id="roomList" class="modal">
+  <div style="height: 80%;"  class="modal-content modalfont">
+    <span onclick="closeListModal();" class="close">&times;</span>
+
+    <h1 style="text-align: center;">MY ROOMS</h1>
+    <div style=" height: 80%;" id="roomcreatdiv" class="modalroomcreate">
+
+   <div id="listofrooms" class="roomList">
+     <p style="text-align: center; opacity: 0.5;">You have not created any rooms</p>
+
+
+   </div>
+    </div>
+  </div>
+</div>
+<!--#endregion-->
+<!--#region The Modal Find People -->
+
+
+<div tabindex="0" onkeydown="closeListPeopleModalEsc();" style="animation: fadeani 0.55s;" id="peopleList" class="modal">
+  <div id="seeallusers" style="height: 80%;"  class="modal-content modalfont">
+    <span onclick="closeListPeopleModal();" class="close">&times;</span>
+
+    <h1 style="text-align: center;">Find people</h1>
+    <div style=" height: 80%;" id="roomcreatdiv" class="modalroomcreate">
+
+   <div id="listofpeople" class="peopleList">
+    <p style="text-align: center; opacity: 0.5;">Here you can find more friends</p>
+   </div>
+    </div>
+  </div>
+
+  <div style="display: none;height: 85%;" id="seethisusersrooms"   class="modal-content modalfont">
+    <span onclick="closeListPeopleModal();" class="close">&times;</span>
+    <span onclick="findpeopleModalBackbtn()" class="Back">&lsaquo;</span>
+
+    <h1 id="seethisuserroomstitle" style="text-align: center;"></h1>
+    
+    <div style=" height: 70%;" id="roomcreatdiv" class="modalroomcreate">
+
+   <div id="listofthisuserrooms" class="roomList">
+    <p id="otheruserrooms" style="text-align: center; opacity: 0.5;"></p>
+
+
+   </div>
+   <div id="addfriendbtndiv">
+    </div>
+    </div>
+  </div>
+
+  
+</div>
+<!--#endregion-->
+
+<!--#region The Modal Friend Request -->
+
+
+<div tabindex="0" onkeydown="closeRequestListModalEsc();location.reload();" style="animation: fadeani 0.55s;" id="requestList" class="modal">
+  <div style="height: 80%;"  class="modal-content modalfont">
+    <span onclick="closeRequestListModal();location.reload();" class="close">&times;</span>
+
+    <h1 style="text-align: center;">ALL REQUESTS</h1>
+    <div style=" height: 80%;" id="roomcreatdiv" class="modalroomcreate">
+
+   <div id="listofrequests" class="addfriendList">
+    
+    <!-- <p style="text-align: center; opacity: 0.5;">You have 0 requests</p>
+     <div>
+       <h1 class="addfriendListp">Testing</h1>
+       <button class="redbtn">Decline</button>
+       <button class="greenbtn">Accept</button>
+     </div>
+     -->
+     
+
+
+   </div>
+    </div>
+  </div>
+</div>
+<!--#endregion-->
+
+
+<!--#region The Modal Friend list -->
+
+
+<div tabindex="0" onkeydown="closeFriendsEsc();" style="animation: fadeani 0.55s;" id="friendList" class="modal">
+  <div id="seeallfriends" style="height: 80%;"  class="modal-content modalfont">
+    <span onclick="closeFriends();" class="close">&times;</span>
+    
+    
+    <h1 style="text-align: center;">Friends</h1>
+    <div style=" height: 80%;" id="roomcreatdiv" class="modalroomcreate">
+      
+      <div id="listoffriends" class="peopleList">
+        <p style="text-align: center; opacity: 0.5;">You have 0 friends</p>
+      </div>
+    </div>
+  </div>
+  
+  <div style="display: none;height: 85%;" id="selectedFriend"   class="modal-content modalfont">
+    <span onclick="closeFriends();" class="close">&times;</span>
+    <span onclick="friendsBackBtn();" class="Back">&lsaquo;</span>
+
+    <h1 id="seethisfriendroomstitle" style="text-align: center;"></h1>
+    
+  <div style=" height: 70%;" id="roomcreatdiv" class="modalroomcreate">
+
+    <div id="listofthisfriendrooms" class="roomList">
+      <p id="otheruserrooms" style="text-align: center; opacity: 0.5;"></p>
+    </div>
+    <div id="addfriendbtndivfriends">
+    </div>
+  </div>
+  </div>
+
+  
+</div>
+<!--#endregion-->
+
+
+<!-- #region PRELOADER-->
+<!--Preloader 
+Source: https://themehunt.com/blog/19-web-tips-and-tricks/159-css-preloader
+-->
+<div class="pre-loader">
+  <div class="sk-fading-circle">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+  </div>
+</div>
+<!-- #endregion -->
+<!--#region mobilebottomnavbar-->
+  <!--ONLY FOR MOBILE-->
+    <div class = 'footer mobilecontainer' style=" left:0; bottom:0;  height: 4em;">
+      <div class="mobilenav">
+        <button onclick="openTools();" style=" width: 100%; height: 4em; border-top-left-radius: 1em;  " class="button button2">Menu</button>
+      </div>
+      <div class="mobilenav">
+        <button onclick="openHome();" style=" width: 100%; height: 4em;  " class="button button2">Home</button>
+      </div>
+      <div class="mobilenav">
+        <button onclick="openFriends();" style=" width: 100%; height: 4em; border-top-right-radius: 1em;  " class="button button2">Friends</button>
+      </div>
+      
+    </div>
+    <!-- #endregion -->
+
+<!--Notifications-->
+<div class="footer" style="height: auto; display: block;" id="notifytest">
+
+</div>
+  </body>
+</html>
+
+
+<script>
+updateFriends();
+localStorage.removeItem("selecteduser");
+var username = localStorage.getItem("Username");
+document.getElementById('user').innerHTML = " "+username;
+
+
+const roomcreatview = document.getElementById("roomcreatdiv");
+const progressbar = document.getElementById("pbid");
+const uploadForm = document.getElementById("uploadForm");
+const inpFile = document.getElementById("movieFile");
+const progressBarFill = document.getElementById("pbfid");
+const progressBarText = document.getElementById("progresstextid");
+
+uploadForm.addEventListener("submit",uploadFile);
+
+function uploadFile(e){
+  pbid.style.display = "block";
+
+  e.preventDefault();
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST","");
+  
+  xhr.upload.addEventListener("progress",e=>{
+
+    const precent = e.lengthComputable ? (e.loaded /e.total) * 100 : 0;
+
+    progressBarFill.style.width = precent.toFixed(2) +"%";
+    progressBarText.innerHTML = precent.toFixed(2) +"%";
+    if(progressBarText.innerHTML == "100.00"+"%"){
+      roomname = document.getElementById("roomnameid").value;
+
+      //createPath();
+      location.replace("/movieroom/"+roomname+"");
+    }
+
+    });
+  //xhr.setRequestHeader("Content-Type", "multipart/form-data");
+
+
+  xhr.send(new FormData(uploadForm));
+
+}
+localStorage.setItem("moviePath","none");
+
+
+
+</script>

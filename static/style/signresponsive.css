@@ -1,0 +1,106 @@
+
+.flexsign{
+	margin-left: 20%;
+}
+.mobilenb{
+  color: white;
+
+  display: none;
+}
+
+/*CONTAINERS*/
+
+
+.flexcontainer2{
+	margin-top: 5%;
+	justify-content: space-between;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-flow: row;
+	margin-left: 12%;
+	margin-right: 12%;
+		
+}
+.flexcontainer2 div{
+	width: 100%;
+
+}
+.inputformtitle{
+	font-weight: 100;
+	margin-bottom: 0em;
+	margin-top: 0em;
+}
+
+.triangle-right2 {
+	margin-top: 1%;
+	background-image: url("../../assets/logo.png");
+	background-size: contain;
+	height: 70%;
+	width: 100%;
+	background-repeat: no-repeat;
+	
+}
+.triangle2-placeing{
+	margin-left: 40%;
+	margin-top: 0%;
+}
+.triangle-right2-signup{
+	margin-top: 5%;
+	background-image: url("../../assets/logo.png");
+	background-size: contain;
+	height: 60%;
+	width: 100%;
+	background-repeat: no-repeat;
+}
+
+
+/*All responsive changes*/
+@media only screen and (max-width: 103.438em){
+	.signinform input {
+		width:45%;
+	}
+}
+@media only screen and (max-width: 72.438em){
+
+	.flexcontainer2{
+		margin-right: 12%
+	}
+	.triangle2-placeing{
+		margin-left: 1%;
+		margin-top: 0%;
+	}
+	.signinform input {
+		width:70%;
+
+	}
+
+	
+}
+@media only screen and (max-width:51.875em){
+
+}
+@media only screen and (max-width:41.5em){
+	.spacer{
+		display: none;
+	}
+
+	.flexcontainer2{
+		margin-left: 5%
+	}
+	.triangle-right2 {
+		margin-top: 5%;
+
+	
+	}
+	.triangle-right2-signup{
+		margin-top: 20%;
+
+	}
+	.signinform input {
+		width:80%;
+	}
+	.mobilenb{
+		display: block;
+	}
+
+}

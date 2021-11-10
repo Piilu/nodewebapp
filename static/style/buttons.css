@@ -1,0 +1,101 @@
+.btnrefreshstyle{
+    /*margin-top: 2em;*/
+    border-radius: 1em;
+}
+
+.button{
+    background-color: #3b3b3b; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: 0.2s;
+    }
+
+    .button:hover{
+    background-color: #1a1818a8;
+    }
+    
+    .button1{padding: 1em;
+    width: 8em;}
+    .button2{
+      background-color: rgb(169, 193, 202);
+    }
+
+.postbtn{
+  background-color: rgba(126, 126, 126, 0.226); 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  padding: 1em;
+  width: 50%;
+  
+}
+.postbtn:hover{
+  background-color: rgba(126, 126, 126, 0.575); 
+  }
+
+
+  .uploadBtn{
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: rgba(126, 126, 126, 0.226); 
+  } 
+.uploadBtn:hover{
+  background-color: rgba(126, 126, 126, 0.575);
+}
+
+.privatepassBtn{
+  cursor: pointer;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: rgba(91, 209, 91, 0.685); 
+} 
+.privatepassBtn:hover{
+background-color: rgba(152, 211, 145, 0.575);
+}
+
+.greenbtn{
+  background-color: rgba(103, 252, 135, 0.822);
+}
+.redbtn{
+  background-color:hsla(0, 100%, 50%, 0.822);
+}
+.greenbtn:hover{
+    cursor: pointer;
+    background-color:rgba(103, 252, 135, 0.548) ;
+  }
+.redbtn:hover{
+    cursor: pointer;
+    background-color:hsla(0, 100%, 50%, 0.548) ;
+  }
+
+  .btnposts{
+    width:100%;
+    border-radius: 0.5em;
+    background-color: transparent; 
+    height: 2.2em;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .btnposts:hover{
+  background-color: #1a1818a8;
+  }
+
+

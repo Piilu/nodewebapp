@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>NodeJS</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="/static/style/style.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/menuitem.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/animations.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/buttons.css"/>
+      <link rel="stylesheet" type="text/css"href="/static/style/customscroll.css"/>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="/static/javascript/script.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+
+  </head>
+  <body>
+    
+    <header class ="header" >
+      <div class="container">
+       
+        <div id="test2"class="dropdown">
+          <div class="menucontainer" onclick="menuTab(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+          <ul id='showitmes' class="dropdown-content fontstyle menuvisible">
+            <li><a style=" color: gainsboro;" href="/">Home</a></li>
+            <li><a style=" color: gainsboro;" href="/login/">Login</a></li>
+          </ul>
+        </div>
+        <a href="/"><h1 style="animation: fadeani 0.85s;" class="logo">NodeJS</h1></a>
+        <strong>
+          
+          <nav>
+          
+          <ul id="test" class="menu">
+           
+            
+            <li><a href="/">Home</a></li>
+            <li><a href="/login/">Login</a></li>
+          </ul>
+        </nav>
+      </strong>
+      </div>
+    </header>
+
+   
+    <div style="animation: fadeani 0.75s;" class="logincontainer">
+     <div class="login">
+       <h1 style=" color: gainsboro;">LOGIN</h1>
+       <p class="mobilenb">NB: In mobile if login was unsuccessful then refresh page to see what went wrong</p>
+         <p style="color: red;" id="error"></p>
+         <form method="POST">
+           <input name = "username" type="text" placeholder="Username"><br>
+           <div style="padding-top: 1.3em;">
+            <input name = "password" type="password" placeholder="Password"><br>
+          </div>
+           <div style="padding-top:  1em;">
+             <input  class="button button1"type="submit" value="SIGN IN">
+          </div>
+         </form>
+         <p>Do not have an account?<a style="color:rgb(247, 182, 130);text-decoration: none;" href="/signup/"> sign up now</a></p>
+    
+    </div>
+
+     <!--Notifications-->
+<div class="footer" style="height: auto; display: block;" id="notifytest">
+
+</div>
+</body>
+</html>
+<script>
+  var errorlog= localStorage.getItem("errorlog");
+  var errorlogacc = localStorage.getItem("errorlogacc");
+  if(errorlog == "error"){
+    
+    document.getElementById('error').innerHTML = "Something went wrong";
+
+    localStorage.removeItem("errorlog");
+  }
+  else if(errorlogacc == "error"){
+    document.getElementById('error').innerHTML = "This account does not exist";
+    localStorage.removeItem("errorlogacc");
+
+  }
+  else if(errorlog == "succ"){
+    //document.getElementById("succmessage").innerHTML = "Successfully registered. Please log in";
+    fadeIn("Successfully registered. Please log in.");
+    localStorage.removeItem("errorlog");
+
+  }
+</script>
+

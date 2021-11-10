@@ -1,0 +1,32 @@
+.sidenav{
+    padding-left: 0.2em ;
+    padding-top: 0.1em;
+    float: left;
+
+
+}
+.sidenav a{
+    text-align: left;
+    height: 3em;
+    color: gainsboro;
+    padding: 12px 1.5em;
+    text-decoration: none;
+    display: block;
+
+}
+
+.sidenav a:hover{
+    background-color: rgb(44, 44, 48);
+}
+.watchingstatus{
+    display: inline;
+    color: rgb(137, 224, 137);
+    font-size: 0.8em;
+}
+.statusitem{
+    padding-top: 00.5em;
+}
+
+.statusitem a{
+    color: gainsboro;
+}
