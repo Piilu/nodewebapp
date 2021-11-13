@@ -78,22 +78,22 @@
 ```
 <strong> User post template example (new style)</strong>
 ```
-					<div class="postborder maincontainer">
-					<a class="postName maincontainer" href="#">Name</a>
-					<div class="maincontainer" style=" margin-bottom: 5%;">
-                  			<div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
-                  		</div>
-					</div>
-						<div style="width: 90%;" class="postline maincontainer"><p>0 likes</p></div>
-						<div  class="postfooter"> 
-							<div>
-								<button onclick="likebtn(this);" class="btnposts fa fa-thumbs-o-up"> LIKE</button>
-							</div>
-							<div>
-								<button onclick="likebtn(this);" class="btnposts fa fa-thumbs-o-up"> COMMENT</button>
-							</div>
-						</div>
-				</div>
+<div class="postborder maincontainer">
+<a class="postName maincontainer" href="#">Name</a>
+<div class="maincontainer" style=" margin-bottom: 5%;">
+              <div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
+            </div>
+</div>
+  <div style="width: 90%;" class="postline maincontainer"><p>0 likes</p></div>
+  <div  class="postfooter"> 
+    <div>
+      <button onclick="likebtn(this);" class="btnposts fa fa-thumbs-o-up"> LIKE</button>
+    </div>
+    <div>
+      <button onclick="likebtn(this);" class="btnposts fa fa-thumbs-o-up"> COMMENT</button>
+    </div>
+  </div>
+</div>
 ```
 <strong>Post for Javascript loading (old style): </strong>
 ```
