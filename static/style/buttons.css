@@ -27,25 +27,31 @@
     }
 
 .postbtn{
-  background-color: rgba(126, 126, 126, 0.226); 
+  float: right;
+  background-color: orange; 
   border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1em;
+  font-size:1em;
   cursor: pointer;
-  border-radius: 0.5em;
-  padding: 1em;
-  width: 50%;
+  border-radius: 1em;
+  padding: 0.5em;
+  width: 20%;
+  margin-bottom: 1%;
   
 }
 .postbtn:hover{
-  background-color: rgba(126, 126, 126, 0.575); 
+  background-color: #FDBD85; 
   }
 
 
   .uploadBtn{
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     cursor: pointer;
     padding: 0.5em;
     border-radius: 0.5em;
@@ -99,3 +105,19 @@ background-color: rgba(152, 211, 145, 0.575);
   }
 
 
+  .addtofriends
+  {
+  background-color: rgba(103, 252, 135, 0.822);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: 0.2s;
+  }
+  .addtofriends:hover{
+    background-color: rgba(147, 238, 167, 0.822);
+  }

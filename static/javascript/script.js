@@ -71,8 +71,30 @@ function openFriends(){
     tools = document.getElementById("tools").style.display="none";
     friends = document.getElementById("friends").style.display="block";
 }
-
+function switchmode(){
+    mode = document.getElementById("mybody").classList;
+    if(mode == "dark-theme"){
+        document.getElementById("settingcontent").style.display ="none";
+        mode.toggle("light-theme")
+        mode.remove("dark-theme")
+        
+    }
+    else if(mode == "light-theme"){
+        document.getElementById("settingcontent").style.display ="none";
+        mode.toggle("dark-theme")
+        mode.remove("light-theme")
+        
+        
+    }
+}
 function showsettings(){
+    if(document.getElementById("mybody").classList=="dark-theme"){
+        document.getElementById("modeswitch").innerHTML = "Change to light theme"
+    }
+    else if(document.getElementById("mybody").classList=="light-theme"){
+        document.getElementById("modeswitch").innerHTML = "Change to dark theme"
+        
+    }
     var x = document.getElementById("settingcontent");
     if(x.style.display == "none"){
         x.style.display = "block";

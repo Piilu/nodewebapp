@@ -76,13 +76,40 @@
                 </div>
             </div>
 ```
-<strong>Post for Javascript loading: </strong>
+<strong> User post template example (new style)</strong>
+```
+					<div class="postborder maincontainer">
+					<a class="postName maincontainer" href="#">Name</a>
+					<div class="maincontainer" style=" margin-bottom: 5%;">
+                  			<div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
+                  		</div>
+					</div>
+						<div style="width: 90%;" class="postline maincontainer"><p>0 likes</p></div>
+						<div  class="postfooter"> 
+							<div>
+								<button onclick="likebtn(this);" class="btnposts fa fa-thumbs-o-up"> LIKE</button>
+							</div>
+							<div>
+								<button onclick="likebtn(this);" class="btnposts fa fa-thumbs-o-up"> COMMENT</button>
+							</div>
+						</div>
+				</div>
+```
+<strong>Post for Javascript loading (old style): </strong>
 ```
 <div class="postdiv border2"><a class="postName" href="#">'+data[i]+'</a><div style="padding:  0.5em; margin-bottom: 5%;"><div class="limit" style="line-height: 2;"><p>'+allposts[i]+'</p></div></div><div id="'+allpostsids[i]+"likenr"+'" class="postfooter postlikes" style=" bottom: 4em;">'+alllikes[i]+' likes</div><div class="postfooter postfootercontainer"><div class="postfootercontent"><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div class="postfootercontent"><button id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o" onclick="commentbtn(this);"> COMMENT</button></div></div></div> <div class="postcomments" id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><div style="padding-top: 5%; text-align: center;"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>
 ```
-<strong>Post for Javascript (When post is made)</strong>
+<strong>Post for Javascript loading (new style): </strong>
+```
+<div class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data[i]+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up">COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>
+```
+<strong>Post for Javascript (When post is made old)</strong>
 ```
 <div class="postdiv border2"><a class="postName" href="#">'+data.username+'</a><div style="padding:  0.5em; margin-bottom: 5%;"><div class="limit" style="line-height: 2;"><p>'+data.message+'</p></div></div><div id="'+thispostid+"likenr"+'" class="postfooter postlikes"   style=" bottom: 4em; ">0 likes</div><div class="postfooter postfootercontainer"><div class="postfootercontent"><button  onclick="likebtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div class="postfootercontent"><button id="'+thispostid+'" class="btnposts fa fa-comment-o" onclick="commentbtn(this);"> COMMENT</button></div></div></div><div class="postcomments" id="'+thispostid+"postcommentssec"+'" style="display: none"><div style="padding-top: 5%; text-align: center;"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>
+```
+<strong>Post for Javascript (When post is made new)</strong>
+```
+<div class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id="'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>
 ```
 <strong>Javascript snippet</strong>
 ---

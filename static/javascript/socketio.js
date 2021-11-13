@@ -172,7 +172,7 @@ socket.on("get_this_user_rooms_send",function(data){
         thisuserroommode.reverse();
     }
     else{
-        document.getElementById("listofthisuserrooms").innerHTML='<p id="otheruserrooms" style="text-align: center; opacity: 0.5;">This user has 0 rooms</p>';
+       document.getElementById("listofthisuserrooms").innerHTML='<p id="otheruserrooms" style="text-align: center; opacity: 0.5;">This user has 0 rooms</p>';
     }
     for (let i = 0; i < thisuserroomslenght; i++) {
         var node = document.createElement("a");
@@ -329,7 +329,7 @@ socket.on("make_post_send",function(data){
     node = document.createElement("div");
     node.className ="postdiv border2";
     node.style="animation: fadeani 0.5s;"
-    node.innerHTML ='<div class="postdiv border2"><a class="postName" href="#">'+data.username+'</a><div style="padding:  0.5em; margin-bottom: 5%;"><div class="limit" style="line-height: 2;"><p>'+data.message+'</p></div></div><div id="'+thispostid+"likenr"+'" class="postfooter postlikes"   style=" bottom: 4em; ">0 likes</div><div class="postfooter postfootercontainer"><div class="postfootercontent"><button  onclick="likebtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div class="postfootercontent"><button id="'+thispostid+'" class="btnposts fa fa-comment-o" onclick="commentbtn(this);"> COMMENT</button></div></div></div><div class="postcomments" id="'+thispostid+"postcommentssec"+'" style="display: none"><div style="padding-top: 5%; text-align: center;"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>  '
+    node.innerHTML ='<div class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p "'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
     document.getElementById("posts").insertBefore(node,post.firstChild);
 })
 
@@ -361,7 +361,7 @@ socket.on("load_posts_send",function(data){
         node = document.createElement("div");
         node.className ="postdiv border2";
         node.style="animation: fadeani 0.75s;"
-        node.innerHTML ='<div class="postdiv border2"><a class="postName" href="#">'+data[i]+'</a><div style="padding:  0.5em; margin-bottom: 5%;"><div class="limit" style="line-height: 2;"><p>'+allposts[i]+'</p></div></div><div id="'+allpostsids[i]+"likenr"+'" class="postfooter postlikes" style=" bottom: 4em;">'+alllikes[i]+' likes</div><div class="postfooter postfootercontainer"><div class="postfootercontent"><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div class="postfootercontent"><button id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o" onclick="commentbtn(this);"> COMMENT</button></div></div></div> <div class="postcomments" id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><div style="padding-top: 5%; text-align: center;"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
+        node.innerHTML ='<div class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data[i]+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
 
 
         document.getElementById("posts").insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order
@@ -413,7 +413,7 @@ socket.on("load_friends_to_activity_send",function(data){
         node = document.createElement("div");
         node.className = "statusitem";
         node.id=data[i]+"activity";
-        node.innerHTML ='<a href="">'+data[i]+'<br><p class="watchingstatus">Watching <i id="'+data[i]+"activitystatus"+'">Movie name</i></p></a>'
+        node.innerHTML ='<a style="transition:0.5s ;" href="">'+data[i]+'<br><p class="watchingstatus">Watching <i id="'+data[i]+"activitystatus"+'">Movie name</i></p></a>'
         document.getElementById("activitydiv").append(node);
     }
 })

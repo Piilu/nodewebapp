@@ -500,6 +500,10 @@ router.get("/unregistered/",function(req,res){
 
 });
 
+router.get("/testhtml/",function(req,res){
+    res.sendFile("./templates/unregistered/loggedinhome.html",{root:__dirname});
+})
+
 //logout//
 
 router.get("/logout/",function(req,res){
