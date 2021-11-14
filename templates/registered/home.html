@@ -74,7 +74,7 @@
          <div style="text-align: center;" class="maincontainer middle">
            <div  class="makepostborder maincontainer">
              <div>
-               <textarea rows="3"  onkeydown="postunfocus();"  id="postsend" class="postinput maincontainer"  type="text" placeholder="What's on your mind?"></textarea>
+               <textarea rows="5"  onkeydown="postunfocus();"  id="postsend" class="postinput maincontainer"  type="text" placeholder="What's on your mind?"></textarea>
                <div style="width: 70%;" class="postline maincontainer"></div>
                <div class="maincontainer" style=" width: 98%; margin-left: 1%;margin-bottom: 2%">
                  <button onclick="makepost();" class="maincontainer postbtn">Post</button>
@@ -82,8 +82,10 @@
              </div>
            </div>
            <div id="posts" style="animation: fadein 0.5s;"  class="maincontainer postfeed">
+             
              <h2 id="poststitle" style="color: gainsboro; opacity: 0.2;"> <i>HERE YOU CAN SEE WHAT OTHERS ARE DOING</i> </h2>
-           </div>
+            </div>
+            <p style=" display: none;" id="loadingmore" >Loading</p>
    
            
    
@@ -94,7 +96,7 @@
          </div>
          <div style="width: 20%" class="maincontainer right">
            <h2 style="text-align: center;" class="customh2log">Activity</h2>
-           <div id="activitydiv" style="animation: fadein 1s; overflow-y: auto; margin-bottom:40%" class="maincontainer">
+           <div id="activitydiv" style="animation: fadein 1s; overflow-y: auto; margin-bottom:40%; float: right;" class="maincontainer">
    
              <p style="text-align: center; color: gainsboro; opacity: 0.2;">NO ACTIVITY</p>
              
@@ -110,7 +112,7 @@
    <!--All modal windows-->
    <!--#region The Modal Room create -->
    <div tabindex="0" onkeydown="closeModalEsc();" style="animation: fadeani 0.55s;" id="createModal" class="modal">
-     <div onmouseover="finalcheck();" class="modal-content modalfont">
+     <div style="height: 60%;" onmouseover="finalcheck();" class="modal-content modalfont">
        <span onclick="closeModal();" class="close">&times;</span>
        
        <div  id="roomcreatdiv" class="modalroomcreate">

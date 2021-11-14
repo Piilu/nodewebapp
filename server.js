@@ -629,7 +629,7 @@ io.sockets.on('connection', function(socket){
           })
 
           socket.on("load_posts",function(data){
-            $query = 'SELECT * FROM likedposts WHERE Username ='+"'"+data.username+"'";;
+            $query = 'SELECT * FROM likedposts WHERE Username ='+"'"+data.username+"'";
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -662,7 +662,8 @@ io.sockets.on('connection', function(socket){
                   row2 = rows[key];
                   friends.push(row2.Friends);
                 });        
-                $query = 'SELECT * FROM posts';
+
+                $query = 'SELECT * FROM posts order by nr DESC LIMIT 10 OFFSET '+data.offset;
                 connection.query($query, function(err, rows, fields) {
                     if(err){
                         console.log(err);

@@ -19,8 +19,26 @@ var addlike;
 var alllikes =[];
 var alllikedposts=[];
 var updatelikes;
+var scrollLock = false;
 
 
+//loading.display.style = "none";
+window.onscroll= function(){
+    if(scrollLock) return;
+    if(this.innerHeight + this.pageYOffset >= document.body.scrollHeight){
+        scrollLock = true;
+        let postLength= document.querySelectorAll(".postborder").length;
+        console.log(postLength);
+        document.getElementById("loadingmore").style.display="block";
+        console.log("loading");
+        setTimeout(function(){
+            
+            loadposts(postLength);
+          
+        },1500);
+
+    }
+}
 ///ALL SOCKETIO LISTENERS 
 socket.emit("join",{
     username:name,
@@ -329,30 +347,31 @@ socket.on("make_post_send",function(data){
     node = document.createElement("div");
     node.className ="postdiv border2";
     node.style="animation: fadeani 0.5s;"
-    node.innerHTML ='<div class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p "'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
+    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p "'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
     document.getElementById("posts").insertBefore(node,post.firstChild);
 })
 
 //GETTING POSTS IN DATABASE
 socket.on("load_posts_send",function(data){
     //if strting to make loadmorebtn so posts will be rendered in correct order.
-    //allposts.reverse();
-    //data.reverse();
-    //allpostsids.reverse();
-    //alllikes.reverse();
+  //  allposts.reverse();
+   // data.reverse();
+   // allpostsids.reverse();
+   // alllikes.reverse();
     //////////////////////
-    if(allpostsids.length >=10){
-        document.getElementById("loadmorebtnid").style.display="none";
-    }
+    //if(allpostsids.length >=10){
+      //  document.getElementById("loadmorebtnid").style.display="none";
+    //}
+
     if(data.length !=0){
         document.getElementById("poststitle").style.display="none"
     }
     else if(data.length>=10){
         document.getElementById("loadmorebtnid").style.display="block"   
     }
-    else if(data.length<=10){
-        document.getElementById("loadmorebtnid").style.display="none"   
-    }
+    //else if(data.length<=10){
+     //   document.getElementById("loadmorebtnid").style.display="none"   
+    //}
     else{
         document.getElementById("poststitle").style.display="block"
     }
@@ -361,10 +380,12 @@ socket.on("load_posts_send",function(data){
         node = document.createElement("div");
         node.className ="postdiv border2";
         node.style="animation: fadeani 0.75s;"
-        node.innerHTML ='<div class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data[i]+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
+        
 
+        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data[i]+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
+        
 
-        document.getElementById("posts").insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order
+        document.getElementById("posts").append(node);//insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order
         for(let a = 0;a<alllikedposts.length;a++){
             if(alllikedposts[a]==allpostsids[i]){
                 document.getElementById(alllikedposts[a]).style.backgroundColor ="rgb(154, 250, 129)";
@@ -372,6 +393,18 @@ socket.on("load_posts_send",function(data){
             }
           
     }
+
+    }
+    if(data.length != 0){
+        document.getElementById("loadingmore").style.display="none";
+
+        scrollLock = false;
+    }
+    else{
+        scrollLock = true;
+        document.getElementById("poststitle").style.display="none"
+
+        document.getElementById("loadingmore").style.display="none";
 
     }
 
@@ -412,8 +445,9 @@ socket.on("load_friends_to_activity_send",function(data){
     for(let i = 0;i<data.length;i++){
         node = document.createElement("div");
         node.className = "statusitem";
+        node.style = 'transition:0.3s; animation: fadein 0.5s';
         node.id=data[i]+"activity";
-        node.innerHTML ='<a style="transition:0.5s ;" href="">'+data[i]+'<br><p class="watchingstatus">Watching <i id="'+data[i]+"activitystatus"+'">Movie name</i></p></a>'
+        node.innerHTML ='<a  href="">'+data[i]+'<br><p class="watchingstatus">Watching <i id="'+data[i]+"activitystatus"+'">Movie name</i></p></a>'
         document.getElementById("activitydiv").append(node);
     }
 })
@@ -533,11 +567,15 @@ function postunfocus(){
     });
 }
 
-function loadposts(){
+function loadposts(loadmorepost){
     allposts = [];
     allpostsids = [];
+    if(!loadmorepost){
+        loadmorepost=0;
+    }
     socket.emit("load_posts",{
         username:name,
+        offset:loadmorepost,
     })
 }
 function fadeIn(message){  

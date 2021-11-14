@@ -15,10 +15,13 @@ body{
 .dark-theme{
 	background-image:  linear-gradient(#716D6D, #0D0C0C);
 	color: white;
+
 }
 .light-theme{
 	background-image:  linear-gradient(#858585, #DEDEDE);
 	color: black;
+
+
 }
 input {
     margin-bottom: 2%;
@@ -358,6 +361,8 @@ h2{
 }
 .limit{
   word-wrap: break-word;
+  padding-left: 0em;
+  padding-right: 2em;
 }
 .light-theme .limit{
 	color:  white;
@@ -376,6 +381,7 @@ textarea::placeholder {
 	  text-align: center;
 	  margin-left: auto;
 	  margin-right: auto;
+	  transition: 0.5s;;
 	/*border: solid 1px yellow;*/
 }
 .postName{
@@ -384,6 +390,7 @@ textarea::placeholder {
   color: white;
 }
 .commentinput{
+	margin-top: 5%;
   font-size:15px;
   padding:0.625em 0.625em 0.625em ;
   display:inline;

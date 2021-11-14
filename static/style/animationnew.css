@@ -26,3 +26,13 @@
 		height: 11%;
 	}
 }
+
+@keyframes slide{
+	from{
+		width: 40%;
+	}
+	to{
+		width: 100%;
+
+	}
+}
