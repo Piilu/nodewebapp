@@ -5,8 +5,10 @@ const passwordHash = require('password-hash');
 const multer = require('multer');
 const fs = require("fs")
 const path = require('path');
-const databasehost = "192.168.1.139"//192.168.1.139
-const datauser = "data"//data
+const databasehost = "192.168.137.1"//192.168.1.139
+const datauser = "root"//data
+const dotenv = require('dotenv');
+dotenv.config();
 
 var session;
 var moviefile;
@@ -47,10 +49,10 @@ var moveFile = (file, dir2)=>{
 
 //CONNECT TO DATABASE//
 var connection = mysql.createConnection({
-    host     : databasehost,
-    user     : datauser,
-    password : 'teretere',
-    database : 'webs'
+  host     : process.env.DB_HOST,
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASSWORD,
+  database : process.env.DB_DATABASE,
 });
 
 connection.connect(function(err) {
@@ -179,7 +181,43 @@ router.post("/signup/",(req,res)=>{
                         res.send("<script> localStorage.setItem('errorlog','succ'); location.replace('/login/'); </script>");
 
                     });
+                    $query ='CREATE TABLE '+regUsername+'__'+'posts'+' (PostID VARCHAR(255), Username VARCHAR(255), Likes VARCHAR(255), Post VARCHAR(255))';
+                    connection.query($query, function(err, rows, fields) {
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                        console.log("NEW Register POSTS find query succesfully executed");
+                       
+                    });
+                    $query ='CREATE TABLE '+regUsername+'__'+'friends'+' (Username VARCHAR(255))';
+                    connection.query($query, function(err, rows, fields) {
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                        console.log("NEW Register FRIENDS find query succesfully executed");
+                       
+                    });
+                    $query ='CREATE TABLE '+regUsername+'__'+'likedposts'+' (Username VARCHAR(255), PostID VARCHAR(255))';
+                    connection.query($query, function(err, rows, fields) {
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                        console.log("NEW Register LIKEDPOSTS find query succesfully executed");
+                       
+                    });
 
+                    $query ='CREATE TABLE '+regUsername+'__'+'rooms'+' (Roomowner VARCHAR(255), Roomname VARCHAR(255), Moviename VARCHAR(255), Mode VARCHAR(255), Roompassword VARCHAR(255), Filename VARCHAR(255), Path VARCHAR(255) )';
+                    connection.query($query, function(err, rows, fields) {
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                        console.log("NEW Register ROOM find query succesfully executed");
+                       
+                    });
             }
             else{
                 res.send("<script> localStorage.setItem('errorreg','erroremail' ); window.history.back(); </script>");
@@ -203,11 +241,12 @@ router.post("/signup/",(req,res)=>{
 router.post("/privateroom/",function(req,res){
     session = req.session
     roomid = req.body.roomid;
+    roomusername = req.body.ownerid;
     joinroompassword = req.body.joinpassword;
     session.roompassword = joinroompassword;
     //var test = "testpriv";
     
-    $query = 'SELECT * FROM Rooms WHERE Roomname = ' +"'"+roomid+"'";
+    $query = 'SELECT * FROM '+roomusername+'__'+'Rooms'+' WHERE Roomname = ' +"'"+roomid+"'";
     connection.query($query, function(err, rows, fields) {
         if(err){
             console.log("An error ocurred performing the query (privateroom find).");
@@ -222,7 +261,7 @@ router.post("/privateroom/",function(req,res){
         });
         
         if(row.Roompassword == joinroompassword){
-             res.send("<script>location.replace('/movieroom/"+row.Roomname+"')</script>");
+             res.send("<script>location.replace('/"+""+roomusername+""+"/movieroom/"+row.Roomname+"')</script>");
             //location.replace('/movieroom/"+"'"+row.Moviename+"'"+")
         }
         else{
@@ -245,8 +284,8 @@ router.post("/",upload.single('filename'),(req,res) =>{
     const oldpathpublic = "./uploads/"+session.userid+"/"+"Public"+"/"+moviename+"";
     const oldpathprivate = "./uploads/"+session.userid+"/"+"Private"+"/"+moviename+"";
     const filename = "./sort/"+moviefile+"";
-    const finaldestpublic  = "http://192.168.1.141:3000/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
-    const finaldestprivate  = "http://192.168.1.141:3000/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
+    const finaldestpublic  = "http://192.168.137.1:3000/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
+    const finaldestprivate  = "http://192.168.137.1:3000/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
 
     if(mode == "Private"){
         fs.mkdir(oldpathprivate, function(err) {
@@ -286,10 +325,10 @@ router.post("/",upload.single('filename'),(req,res) =>{
     if(session.userid){
         if(mode =="Private"){
 
-            $query = 'INSERT INTO Rooms (Roomowner, Roomname, Moviename, Mode, Roompassword, Filename, Path) VALUES '+ '('+'"'+session.userid+'"'+","+'"'+roomname+'"'+"," +'"'+moviename+'"'+","+'"'+mode+'"'+","+'"'+roomPassword+'"'+","+'"'+moviefile+'"'+","+'"'+finaldestprivate+'"'+')';
+            $query = 'INSERT INTO '+session.userid+'__'+'rooms'+' (Roomowner, Roomname, Moviename, Mode, Roompassword, Filename, Path) VALUES '+ '('+'"'+session.userid+'"'+","+'"'+roomname+'"'+"," +'"'+moviename+'"'+","+'"'+mode+'"'+","+'"'+roomPassword+'"'+","+'"'+moviefile+'"'+","+'"'+finaldestprivate+'"'+')';
         }
         else if(mode == "Public"){
-            $query = 'INSERT INTO Rooms (Roomowner, Roomname, Moviename, Mode, Roompassword, Filename, Path) VALUES '+ '('+'"'+session.userid+'"'+","+'"'+roomname+'"'+"," +'"'+moviename+'"'+","+'"'+mode+'"'+","+'"'+roomPassword+'"'+","+'"'+moviefile+'"'+","+'"'+finaldestpublic+'"'+')';
+            $query = 'INSERT INTO '+session.userid+'__'+'rooms'+' (Roomowner, Roomname, Moviename, Mode, Roompassword, Filename, Path) VALUES '+ '('+'"'+session.userid+'"'+","+'"'+roomname+'"'+"," +'"'+moviename+'"'+","+'"'+mode+'"'+","+'"'+roomPassword+'"'+","+'"'+moviefile+'"'+","+'"'+finaldestpublic+'"'+')';
 
         }
         connection.query($query, function(err, rows, fields) {
@@ -302,6 +341,8 @@ router.post("/",upload.single('filename'),(req,res) =>{
             res.send("<script>location.replace('/'); </script>");
         // localStorage.setItem('RoomPassword',"+"'"+roomPassword+"'"+" ); localStorage.setItem('Movieid',"+"'"+moviename+"'"+" ); localStorage.setItem('Roomid',"+"'"+roomname+"'"+" ); 
         });
+
+        
 
 
     }
@@ -382,16 +423,17 @@ router.get("/signup/",function(req,res){
     }
 });
 
-router.get("/movieroom/:room" ,function(req,res){
+router.get("/:roomusername/movieroom/:room" ,function(req,res){
     room = req.params.room;
+    roomusername = req.params.roomusername;
     session=req.session;
     if(session.userid||session.guestname){
 
-        $query = 'SELECT * FROM Rooms WHERE Roomname = '+'"'+room+'"' ;
+        $query = 'SELECT * FROM '+roomusername+'__'+'rooms'+' WHERE Roomname = '+'"'+room+'"' ;
         connection.query($query, function(err, rows, fields) {
         if(err){
             console.log("An error ocurred performing the query (movie find).");
-            console.log(err);
+            res.send("This room does not exist");
             return;
         }
         console.log("movieroom find query succesfully executed");
@@ -405,7 +447,7 @@ router.get("/movieroom/:room" ,function(req,res){
         }
         else if(row.Mode == "Public" ){ 
             session = req.session;
-
+            console.log(session.path);
             if(session.path == 1){
                 session.path = 0;
                 res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
@@ -413,12 +455,12 @@ router.get("/movieroom/:room" ,function(req,res){
             else{ 
                 session.path = 1;
                 //localStorage.setItem('host'+room+'',msg[0]);
-                res.send("<script> localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" );localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/movieroom/"+""+row.Roomname+"'"+");</script>");
+                res.send("<script> localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" );localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+")</script>");
             }
             //res.send("<script>window.open('templates/registered/videoplayer.html');</script>")
         }
         else if (row.Mode == "Private"){
-            if(session.userid ==row.Roomowner){
+            if(session.userid == row.Roomowner){
                 session = req.session;
 
                 if(session.path == 1){ 
@@ -429,7 +471,7 @@ router.get("/movieroom/:room" ,function(req,res){
                 }
                 else{
                     session.path = 1;
-                    res.send("<script>localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" );localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/movieroom/"+""+row.Roomname+"'"+");</script>");
+                    res.send("<script>localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" );localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+");</script>");
                 }
             }
             else if (session.roompassword == row.Roompassword) 

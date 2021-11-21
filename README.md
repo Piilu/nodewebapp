@@ -1,6 +1,7 @@
 <h1>Watchparty notes</h1>
 
 <strong>To Do:</strong>
+1. Change Database, make every uset it own table.
 1. Possibility to make rooms with Youtube links ("movie name is not required")
 1. maybe delete privateroom password from memory when disconnected??
 1. some settings in videoplayer page for changeing the video (only for the room owner).
@@ -12,6 +13,7 @@
 - if refresh too fast it doubles user (videoplayer html) but it fixes itself
 - Server throws error when username folder already exist
 - When accpeting friend request it doubles some posts friends posts. (Fixed by refreshing the page) (Temporary fixed by forceing browser to refresh) 
+- dynamical scroll is broken when data is less then 10 it sometimes dobles the posts, also sometimes it does not load all data.
 
     
 

@@ -155,6 +155,7 @@
     var video = document.getElementById('video');
     var source = document.getElementById('source');
     path = localStorage.getItem("moviePath");
+    console.log(path);
     source.setAttribute('src', path);
     video.load();
 

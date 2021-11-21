@@ -71,10 +71,11 @@
              <a id ="user" href="">Username</a>
            </div>
          </div>
-         <div style="text-align: center;" class="maincontainer middle">
+  
+    <div style="text-align: center; " class="maincontainer middle">
            <div  class="makepostborder maincontainer">
              <div>
-               <textarea rows="5"  onkeydown="postunfocus();"  id="postsend" class="postinput maincontainer"  type="text" placeholder="What's on your mind?"></textarea>
+               <textarea  onkeydown="postunfocus();"  id="postsend" class="postinput maincontainer"  type="text" placeholder="What's on your mind?"></textarea>
                <div style="width: 70%;" class="postline maincontainer"></div>
                <div class="maincontainer" style=" width: 98%; margin-left: 1%;margin-bottom: 2%">
                  <button onclick="makepost();" class="maincontainer postbtn">Post</button>
@@ -87,7 +88,7 @@
            <!---->  
             </div>
             <div style="padding: 1em;">
-              <p id="loadingmore" >Loading</p>
+              <p style="display: none;" id="loadingmore" >Loading</p>
             </div>
            
    
@@ -95,12 +96,12 @@
            
              
          
-         </div>
+    </div>
          <div style="width: 20%" class="maincontainer right">
            <h2 style="text-align: center;" class="customh2log">Activity</h2>
-           <div id="activitydiv" style="animation: fadein 1s; overflow-y: auto; margin-bottom:40%; float: right;" class="maincontainer">
+           <div id="activitydiv" style="animation: fadein 1s; overflow-y: auto; margin-bottom:40%; float: left;" class="maincontainer">
    
-             <p style="text-align: center; color: gainsboro; opacity: 0.2;">NO ACTIVITY</p>
+             <p style=" text-align: center; color: gainsboro; opacity: 0.2;">NO ACTIVITY</p>
              
 
             
@@ -114,7 +115,7 @@
    <!--All modal windows-->
    <!--#region The Modal Room create -->
    <div tabindex="0" onkeydown="closeModalEsc();" style="animation: fadeani 0.55s;" id="createModal" class="modal">
-     <div style="height: 60%;" onmouseover="finalcheck();" class="modal-content modalfont">
+     <div  onmouseover="finalcheck();" class="modal-content modalfont">
        <span onclick="closeModal();" class="close">&times;</span>
        
        <div  id="roomcreatdiv" class="modalroomcreate">
@@ -324,7 +325,7 @@ function uploadFile(e){
       roomname = document.getElementById("roomnameid").value;
 
       //createPath();
-      location.replace("/movieroom/"+roomname+"");
+      location.replace("/"+username+"/movieroom/"+roomname+"");
     }
 
     });
