@@ -246,7 +246,7 @@ router.post("/privateroom/",function(req,res){
     session.roompassword = joinroompassword;
     //var test = "testpriv";
     
-    $query = 'SELECT * FROM '+roomusername+'__'+'Rooms'+' WHERE Roomname = ' +"'"+roomid+"'";
+    $query = 'SELECT * FROM '+roomusername+'__'+'rooms'+' WHERE Roomname = ' +"'"+roomid+"'";
     connection.query($query, function(err, rows, fields) {
         if(err){
             console.log("An error ocurred performing the query (privateroom find).");
@@ -284,8 +284,8 @@ router.post("/",upload.single('filename'),(req,res) =>{
     const oldpathpublic = "./uploads/"+session.userid+"/"+"Public"+"/"+moviename+"";
     const oldpathprivate = "./uploads/"+session.userid+"/"+"Private"+"/"+moviename+"";
     const filename = "./sort/"+moviefile+"";
-    const finaldestpublic  = "http://192.168.137.1:3000/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
-    const finaldestprivate  = "http://192.168.137.1:3000/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
+    const finaldestpublic  = "http://192.168.1.141:3000/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
+    const finaldestprivate  = "http://192.168.1.141:3000/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
 
     if(mode == "Private"){
         fs.mkdir(oldpathprivate, function(err) {
@@ -355,9 +355,10 @@ router.post("/",upload.single('filename'),(req,res) =>{
 router.post("/unregistered/",function(req,res){
     nickname = req.body.visitguestname;
     roomname = req.body.visitguestroom;
+    roomcreator = req.body.roomcreator;
     session = req.session;
     session.guestname = nickname+" (guest)";
-    res.send("<script>localStorage.setItem('Username',"+"'"+session.guestname+"'"+" ); location.replace('/movieroom/"+""+roomname+"'"+");</script>");
+    res.send("<script>localStorage.setItem('Username',"+"'"+session.guestname+"'"+" ); location.replace('/"+""+roomcreator+""+"/movieroom/"+""+roomname+"'"+");</script>");
    // res.send("Nickname: "+ nickname +""+"</br>"+" Roomname: "+roomname)
 });
 
@@ -494,14 +495,14 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
        
     });
  
+}
+else{
+
+   // res.redirect("/unregistered/");
+    res.send("<script> localStorage.setItem('roomOwner',"+"'"+roomusername+"'"+" ); localStorage.setItem('roomName',"+"'"+room+"'"+" ); location.replace('/unregistered/');</script>");
+
+}
         
-    }
-    else{
-
-       // res.redirect("/unregistered/");
-        res.send("<script> localStorage.setItem('roomName',"+"'"+room+"'"+" ); location.replace('/unregistered/');</script>");
-
-    }
 });
 
 router.get("/publicroom/",function(req,res){

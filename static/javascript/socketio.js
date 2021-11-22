@@ -9,10 +9,9 @@ var thisfriendroomslenght;
 var thisuserroommode =[];
 var thisfriendroommode =[];
 var allfriends;
-var requestlenght;
+var requestlength;
 var allposts = [];
 var allpostsusernames = [];
-var postslenght;
 var allpostsids=[];
 var thispostid;
 var addlike;
@@ -20,6 +19,7 @@ var alllikes =[];
 var alllikedposts=[];
 var updatelikes;
 var scrollLock = false;
+var lastload = 0;
 
 
 //loading.display.style = "none";
@@ -67,7 +67,7 @@ socket.on("get_this_friend_roommode",function(data){
     thisfriendroommode=data;
 })
 socket.on("get_requests_lenght",function(data){
-    requestlenght = data;
+    requestlength = data;
 })
 
 socket.on("load_posts_send_posts",function(data){
@@ -111,7 +111,7 @@ socket.on("update_roomlist_send",function(data){
             node.innerHTML = data[i]+"<br> <p style='color:red' class='watchingstatus'>"+roommode[i]+"</p>";
         }
 
-        node.href ="/movieroom/"+data[i]+"";
+        node.href ="/"+name+"/movieroom/"+data[i]+"";
         document.getElementById("listofrooms").append(node);
     }
 })
@@ -131,13 +131,13 @@ socket.on("addfriend_send",function(data){
 })
 //RENDERS ALL REQUESTS IN REQUEST TAB SO USER CAN ACCEPT OR DECLINE IT 
 socket.on("addfriend_send_update",function(data){
-    if(requestlenght!=0){
+    if(requestlength!=0){
         document.getElementById("listofrequests").innerHTML ="";
     }
     else{
         document.getElementById("listofrequests").innerHTML='<p style="text-align: center; opacity: 0.5;">You have 0 requests</p>';
     }
-    for (let i = 0; i <requestlenght ; i++) {
+    for (let i = 0; i <requestlength ; i++) {
         node = document.createElement("div");
         node.id ="friendrequest"+data[i];    
         node.innerHTML = ' <h1 class="addfriendListp">'+data[i]+'</h1><button onclick ="friendrequestDecline(\'' + data[i] + '\')" class="redbtn">Decline</button><button  onclick="friendrequestAccept(\'' + data[i] + '\')" class="greenbtn">Accept</button>'
@@ -201,7 +201,7 @@ socket.on("get_this_user_rooms_send",function(data){
             node.innerHTML = data[i]+"<br> <p style='color:red' class='watchingstatus'>"+thisuserroommode[i]+"</p>";
         }
 
-        node.href ="/movieroom/"+data[i]+"";
+        node.href ="/"+thisusername+"/movieroom/"+data[i]+"";
         document.getElementById("listofthisuserrooms").append(node);
     }
 });
@@ -347,7 +347,7 @@ socket.on("make_post_send",function(data){
     node = document.createElement("div");
     node.className ="postdiv border2";
     node.style="animation: fadeani 0.5s;"
-    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id = "'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
+    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+thispostid+"username"+'" class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id = "'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
     document.getElementById("posts").insertBefore(node,post.firstChild);
 })
 
@@ -363,12 +363,12 @@ socket.on("load_posts_send",function(data){
       //  document.getElementById("loadmorebtnid").style.display="none";
     //}
 
-    if(data.length !=0){
+    if(data.length !=0  ||  lastload == 1){
         document.getElementById("poststitle").style.display="none"
     }
-    else if(data.length>=10){
-        document.getElementById("loadmorebtnid").style.display="block"   
-    }
+   // else if(data.length>=10){
+      //  document.getElementById("loadmorebtnid").style.display="block"   
+    //}
     //else if(data.length<=10){
      //   document.getElementById("loadmorebtnid").style.display="none"   
     //}
@@ -382,7 +382,7 @@ socket.on("load_posts_send",function(data){
         node.style="animation: fadeani 0.75s;"
         
 
-        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a class="postName maincontainer" href="#">'+data[i]+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
+        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+allpostsids[i]+"username"+'" class="postName maincontainer" href="#">'+data[i]+'</a><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
         
 
         document.getElementById("posts").append(node);//insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order
@@ -396,13 +396,14 @@ socket.on("load_posts_send",function(data){
 
     }
     if(data.length != 0){
-        document.getElementById("loadingmore").style.display="none";
-
+        //document.getElementById("loadingmore").style.display="none";
+        lastload = 1;
         scrollLock = false;
     }
     else{
         scrollLock = true;
-        document.getElementById("poststitle").style.display="none"
+        lastload = 0;
+      //  document.getElementById("poststitle").style.display="none"
 
         document.getElementById("loadingmore").style.display="none";
 
@@ -568,6 +569,7 @@ function postunfocus(){
 }
 
 function loadposts(loadmorepost){
+
     allposts = [];
     allpostsids = [];
     if(!loadmorepost){
@@ -594,17 +596,20 @@ function fadeIn(message){
  
  }
  function likebtn(data){
+    var postcreator = document.getElementById(data.id+"username").innerHTML; 
     if(data.style.backgroundColor!="rgb(154, 250, 129)"){
 
         socket.emit("like",{
             username:name,
             button:data.id,
+            postmaker: postcreator,
         })
     }
     else{
         socket.emit("remove_like",{
             username:name,
             button:data.id,
+            postmaker: postcreator,
         });
     }
         

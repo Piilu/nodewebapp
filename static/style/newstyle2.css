@@ -243,14 +243,14 @@ textarea::placeholder {
 .middle {
 
   height: auto;
-  flex-wrap: wrap;
   max-width: 60%;
   margin-right: 20%; 
   margin-left: 20%;;
   text-align: center;
-  flex-flow: column;
-	
+  
   display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
   padding: 1%;
   
 }

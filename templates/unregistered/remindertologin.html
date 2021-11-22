@@ -52,6 +52,9 @@
         <form method="POST" style="text-align: center;" >
             <input style="color: black;" type="text" name="visitguestroom" id="visitguestroomid" value="" readonly>
             <div style="padding-top: 1em;">
+              <input style="color: black;" type="text" name="roomcreator" id="roomcreator" readonly placeholder="Who's room">
+          </div>
+            <div style="padding-top: 1em;">
               <input style="color: black;" type="text" name="visitguestname" id="visitguestid" placeholder="Nickname">
           </div>
             <div style="padding-top: 1em;">
@@ -70,6 +73,8 @@
 
 <script>
   var room = localStorage.getItem("roomName");
+  var roomowner =  localStorage.getItem('roomOwner');
+  document.getElementById("roomcreator").value=roomowner;
   document.getElementById("visitguestroomid").value=room;
 
    function gotologin(){

@@ -275,7 +275,7 @@ h2{
 .makepostborder{
 	padding: 1em;
 	background-color: #514E4E;
-  max-width: 65%;
+  max-width: 50%;
 	margin-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
@@ -289,13 +289,10 @@ h2{
 
 .postborder{
 	background-color: rgba(74,71,71,0.40);
-  max-width: 90%;
-  padding: 1.5em;
-  padding-left: 2em;
-  text-align: left;
+	padding: 1em;
+  max-width: 80%;
   margin-left: auto;
-  margin-right: auto;
-	margin-bottom: 10%;
+  margin-right: 10%;
   /*border: solid 0.1em gray;*/
   border-radius: 0.5em;
   transition: 0.5;
@@ -361,8 +358,7 @@ h2{
 }
 .limit{
   word-wrap: break-word;
-  padding-left: 0em;
-  padding-right: 2em;
+  
 }
 .light-theme .limit{
 	color:  white;
@@ -376,8 +372,6 @@ textarea::placeholder {
 	outline: none;
 }
 .postfeed{
-	 max-width: 80%;
-	  padding: 0.5em;
 	  text-align: center;
 	  margin-left: auto;
 	  margin-right: auto;
@@ -427,6 +421,7 @@ textarea::placeholder {
 .left{
   position: fixed;
   height: 100%;
+  max-width: 20%;
   flex-flow: column;
   display: flex;
 }
@@ -460,16 +455,14 @@ textarea::placeholder {
 
 .middle {
 
-  height: auto;
+  min-width: 60%;
   flex-wrap: wrap;
-  max-width: 60%;
   margin-right: 20%; 
   margin-left: 20%;;
   text-align: center;
   flex-flow: column;
-	
   display: flex;
-  padding: 1%;
+  
   
 }
 
@@ -526,7 +519,7 @@ textarea::placeholder {
 	border-radius: 2em;
 }
 .maincontainer{
-	/* border:solid 1px red;*/
+	/*border:solid 1px red;*/
 }
 
 .flexcontainer{
@@ -749,22 +742,22 @@ textarea::placeholder {
 	h1{
 		font-size: 3.5em;
 	}
-	.left{
-
-      display: none;
-    }
-    .right{
-
-      display: none;
-    }
-		 .middle{
-		max-width: 96%;
-		margin-right: 0%;
-		margin-left: 0%;
-  }
 	
 }
 @media only screen and (max-width: 72.438em){
+	.middle{
+		max-width: 100%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+	.left{
+	
+	  display: none;
+	}
+	.right{
+	
+	  display: none;
+	}
 	h1{
 		font-size: 2.5em;
 	}
@@ -812,6 +805,10 @@ textarea::placeholder {
 	.makepostborder{
 		max-width: 90%;
 		
+	}
+
+	.postborder{
+		max-width: 90;
 	}
 	
 	

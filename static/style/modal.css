@@ -12,6 +12,7 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
   }
+
   
   /* Modal Content */
   .modal-content {
@@ -20,7 +21,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
-    height: 50%;
+    
     border-radius: 1em;
     color: #000;
   }
@@ -41,7 +42,8 @@
   }
 
   .modalroomcreate{
-    text-align: center; 
+    text-align: center;
+
   }
 
   @media only screen and (max-width: 62.5em  ){
