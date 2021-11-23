@@ -480,6 +480,7 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
 
                 res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
                 
+                
             }
             else{
 
