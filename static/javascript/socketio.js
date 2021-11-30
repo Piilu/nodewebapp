@@ -26,15 +26,13 @@ var lastload = 0;
 window.onscroll= function(){
     if(scrollLock) return;
     if(this.innerHeight + this.pageYOffset >= document.body.scrollHeight){
-        scrollLock = true;
-        let postLength= document.querySelectorAll(".postborder").length;
-        console.log(postLength);
         document.getElementById("loadingmore").style.display="block";
-        console.log("loading");
         setTimeout(function(){
-            
+            scrollLock = true;
+            let postLength= document.querySelectorAll(".postborder").length;
+            console.log(postLength);
+            console.log("loading");
             loadposts(postLength);
-          
         },1500);
 
     }
