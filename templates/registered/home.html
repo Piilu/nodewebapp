@@ -56,7 +56,7 @@
              </div>
    <div class="maincontainer flexcontainerlog" >
    
-         <div style="width: 20%" class="maincontainer left">
+         <div id="tools" style="width: 20%" class="maincontainer menuview left">
            <h2 class="customh2log">Home</h2>
            <div  class="maincontainer">
            <button class=" btn2" onclick="openModal();"> Create</button>
@@ -72,7 +72,7 @@
            </div>
          </div>
   
-    <div style="text-align: center; " class="maincontainer middle">
+    <div id="home" style="text-align: center; " class="maincontainer middle ">
            <div  class="makepostborder maincontainer">
              <div>
                <textarea  onkeydown="postunfocus();"  id="postsend" class="postinput maincontainer"  type="text" placeholder="What's on your mind?"></textarea>
@@ -97,7 +97,7 @@
              
          
     </div>
-         <div style="width: 20%" class="maincontainer right">
+         <div id="friends" style="width: 20%" class="maincontainer right">
            <h2 style="text-align: center;" class="customh2log">Activity</h2>
            <div id="activitydiv" style="animation: fadein 1s; overflow-y: auto; margin-bottom:40%; float: left;" class="maincontainer">
    
@@ -286,6 +286,22 @@
    <div class="footer" style="height: auto; display: block;" id="notifytest">
    </div>
    <!-- #endregion -->
+
+   <!--#region mobilebottomnavbar-->
+  <!--ONLY FOR MOBILE-->
+  <div class = 'footer mobilecontainer' style=" width: 100%; left:0; bottom:0;  height: 4em;">
+    <div class="mobilenav">
+      <button onclick="openTools();" style=" width: 100%; height: 4em; border-top-left-radius: 1em;  " class="button button2">Menu</button>
+    </div>
+    <div class="mobilenav">
+      <button onclick="location.reload()" style=" width: 100%; height: 4em;  " class="button button2">Home</button>
+    </div>
+    <div class="mobilenav">
+      <button onclick="openFriends();" style=" width: 100%; height: 4em; border-top-right-radius: 1em;  " class="button button2">Friends</button>
+    </div>
+    
+  </div>
+  <!-- #endregion -->
    </body>
 </html>
 

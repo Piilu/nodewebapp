@@ -9,8 +9,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const mysql = require('mysql');
-const databasehost = "192.168.137.1"//192.168.1.139
-const datauser = "root"//data
+//const databasehost = "192.168.137.1"//192.168.1.139
+//const datauser = "root"//data
 const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.PORT || process.env.SERVER_PORT;
@@ -280,7 +280,7 @@ io.sockets.on('connection', function(socket){
         })
 
         socket.on("get_this_friend_rooms",function(data){
-          $query = 'SELECT * FROM Rooms WHERE Roomowner = ' +"'"+data.username+"'";
+          $query = 'SELECT * FROM '+data.username+'__'+'rooms'+' WHERE Roomowner = ' +"'"+data.username+"'";
           connection.query($query, function(err, rows, fields) {
               if(err){
                   console.log("An error ocurred performing the query (Register find).");
@@ -556,6 +556,7 @@ io.sockets.on('connection', function(socket){
           })
 
           socket.on("make_post",function(data){
+            var makepostdata = []
             var goon ="False";
             $query = 'SELECT * FROM '+data.username+'__'+'friends'+'';
             connection.query($query, function(err, rows, fields) {
@@ -582,7 +583,7 @@ io.sockets.on('connection', function(socket){
                       row3 = rows[key];
                       allpostids.push(row3.PostID);
                     });
-                    console.log(allpostids);
+                    //console.log(allpostids);
                     var postid = data.username+'#'+(Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
                     for(let i = 0;i<allpostids.length;i++){
                       if(allpostids[i]==postid){
@@ -609,16 +610,17 @@ io.sockets.on('connection', function(socket){
                             console.log(err);
                             return;
                           }
-                        
+                        makepostdata.push({Postid:postid, Username:data.username,Message:data.message})
+                        console.log(makepostdata)
                         console.log("Posts query succesfully executed");
-                        io.to(socket.id).emit("all_posts_ids",allpostids);
-                        io.to(socket.id).emit("this_post_id",postid);
-                        io.to(socket.id).emit("make_post_send",data);
+                      //  io.to(socket.id).emit("all_posts_ids",allpostids);
+                      //  io.to(socket.id).emit("this_post_id",postid);
+                        io.to(socket.id).emit("make_post_send",makepostdata);
                         for(let i =0;i<friends.length;i++){
                           if(allusernames[friends[i]]){
-                            io.to(socket.id).emit("all_posts_ids",allpostids);
-                            io.to(allusernames[friends[i]]).emit("this_post_id",postid);
-                            io.to(allusernames[friends[i]]).emit("make_post_send",data);
+                            //io.to(socket.id).emit("all_posts_ids",allpostids);
+                            //io.to(allusernames[friends[i]]).emit("this_post_id",postid);
+                            io.to(allusernames[friends[i]]).emit("make_post_send",makepostdata);
 
                             // io.to(socket.id).emit("make_post_send",data);
                           }
@@ -651,9 +653,10 @@ io.sockets.on('connection', function(socket){
                   else{
                     nolikedposts = "True";
                   }
-                });       
+                });   
+                //console.log(alllikedposts)    
                 io.to(socket.id).emit("all_liked_posts_send",alllikedposts);
-                console.log(alllikedposts)
+                //console.log(alllikedposts)
               });
             $query = 'SELECT * FROM '+data.username+'__'+'friends'+'';
             connection.query($query, function(err, rows, fields) {
@@ -669,13 +672,14 @@ io.sockets.on('connection', function(socket){
                 });        
                 console.log("Friends: "+friends);
 
-                $query = 'SELECT * FROM posts order by PostID DESC LIMIT 10 OFFSET '+data.offset;  //'SELECT * FROM posts order by nr DESC LIMIT 10 OFFSET '+data.offset;
+                $query = 'SELECT * FROM posts';//order by PostID DESC LIMIT 10 OFFSET '+data.offset;  //'SELECT * FROM posts order by nr DESC LIMIT 10 OFFSET '+data.offset;
                 connection.query($query, function(err, rows, fields) {
                     if(err){
                         console.log(err);
                         return;
                     }
                     var row;
+                    var postdata =[];
                     var allposts = [];
                     var allpostusernames = [];
                     var allpostids = [];
@@ -683,6 +687,7 @@ io.sockets.on('connection', function(socket){
                     Object.keys(rows).forEach(function(key) {
                       row = rows[key];
                       if(row.Username==data.username){
+                        postdata.push({Postid: row.PostID, Likes:row.Likes, Username:row.Username,Post:row.Post});
                         alllikes.push(row.Likes)
                         allpostids.push(row.PostID);
                         allposts.push(row.Post);
@@ -695,7 +700,7 @@ io.sockets.on('connection', function(socket){
                             allpostids.push(row.PostID);
                             allposts.push(row.Post);
                             allpostusernames.push(row.Username);
-  
+                            postdata.push({Postid: row.PostID, Likes:row.Likes, Username:row.Username,Post:row.Post});
                           }
                         }
                       
@@ -703,11 +708,11 @@ io.sockets.on('connection', function(socket){
                     
                                  
                     console.log("Posts2 query succesfully executed");
-                    io.to(socket.id).emit("load_likes_send",alllikes);
-                    io.to(socket.id).emit("all_posts_ids",allpostids);
-                    io.to(socket.id).emit("load_posts_send_posts",allposts);
-                    io.to(socket.id).emit("load_posts_send",allpostusernames);
-    
+                    //io.to(socket.id).emit("load_likes_send",alllikes);
+                    //io.to(socket.id).emit("all_posts_ids",allpostids);
+                   // io.to(socket.id).emit("load_posts_send_posts",allposts);
+                    io.to(socket.id).emit("load_posts_send",postdata);
+                  //  console.log(postdata);
                 });      
 
 
@@ -717,7 +722,7 @@ io.sockets.on('connection', function(socket){
 
           socket.on("like",function(data){
             var friends = [];
-            $query = 'SELECT * FROM friends WHERE Username ='+"'"+data.username+"'";
+            $query = 'SELECT * FROM '+data.username+'__'+'friends'+'';
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -726,7 +731,7 @@ io.sockets.on('connection', function(socket){
                 var row2;
                 Object.keys(rows).forEach(function(key) {
                   row2 = rows[key];
-                  friends.push(row2.Friends);
+                  friends.push(row2.Username);
                 });
               });
             $query = 'INSERT INTO likedposts (Username, PostID) VALUES '+ '('+'"'+data.username+'"'+","+'"'+data.button+'"'+')';//'INSERT INTO '+data.postmaker+'__'+'likedposts'+' (Username, PostID) VALUES '+ '('+'"'+data.username+'"'+","+'"'+data.button+'"'+')';
@@ -758,12 +763,11 @@ io.sockets.on('connection', function(socket){
                 console.log("likes2 find query succesfully executed");
                 io.to(socket.id).emit("addlike_send",likes.toString());
                 io.to(socket.id).emit("like_send",data.button);
-
+                
                 for(let i =0;i<friends.length;i++){
                   if(allusernames[friends[i]]){
                     io.to(allusernames[friends[i]]).emit("update_likes",likes.toString());
                     io.to(allusernames[friends[i]]).emit("update_likes_send",data.button);
-
                   }
                 }
 
@@ -778,7 +782,7 @@ io.sockets.on('connection', function(socket){
 
           socket.on("remove_like",function(data){
             var friends = [];
-            $query = 'SELECT * FROM friends WHERE Username ='+"'"+data.username+"'";
+            $query = 'SELECT * FROM '+data.username+'__friends'+'';
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -787,10 +791,10 @@ io.sockets.on('connection', function(socket){
                 var row2;
                 Object.keys(rows).forEach(function(key) {
                   row2 = rows[key];
-                  friends.push(row2.Friends);
+                  friends.push(row2.Username);
                 });
               });
-            $query = 'DELETE FROM '+data.postmaker+'__'+'likedposts'+' WHERE Username = ' +"'"+data.username+"'"+' AND PostID =' +"'"+data.button+"'"+'' ;
+            $query = 'DELETE FROM likedposts WHERE Username = ' +"'"+data.username+"'"+' AND PostID =' +"'"+data.button+"'"+'' ;
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -798,7 +802,7 @@ io.sockets.on('connection', function(socket){
                 }
                 console.log("remove from liked posts find query succesfully executed");  
               });
-            $query = 'SELECT * FROM '+data.postmaker+'__'+'posts'+' WHERE PostID ='+"'"+data.button+"'";;
+            $query = 'SELECT * FROM posts WHERE PostID ='+"'"+data.button+"'";;
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -810,7 +814,7 @@ io.sockets.on('connection', function(socket){
                   row = rows[key];
                 });       
                 var likes = parseInt(row.Likes)-1;                
-            $query = 'UPDATE '+data.postmaker+'__'+'posts'+' SET Likes = '+"'"+likes.toString()+"'"+' WHERE PostID='+"'"+data.button+"'";
+            $query = 'UPDATE posts SET Likes = '+"'"+likes.toString()+"'"+' WHERE PostID='+"'"+data.button+"'";
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -834,7 +838,7 @@ io.sockets.on('connection', function(socket){
           });
             //  Refreshes when main page is load maybe needs a fix but it is okay for now 
           socket.on("load_friends_to_activity",function(data){
-            $query = 'SELECT * FROM friends WHERE Username ='+"'"+data.username+"'";
+            $query = 'SELECT * FROM '+data.username+"__friends"+''// WHERE Username ='+"'"+data.username+"'";
             connection.query($query, function(err, rows, fields) {
                 if(err){
                     console.log(err);
@@ -845,8 +849,9 @@ io.sockets.on('connection', function(socket){
                 var friends = [];
                 Object.keys(rows).forEach(function(key) {
                   row = rows[key];
-                  friends.push(row.Friends); 
-                });       
+                  friends.push(row.Username); 
+                  
+                });     
                 $query = 'SELECT * FROM friendsonline';
                 connection.query($query, function(err, rows, fields) {
                 if(err){
@@ -862,6 +867,7 @@ io.sockets.on('connection', function(socket){
 
                     if(friends[i]==row.Username){
                       friendsonline.push(row.Username);
+                      
                     }
                   }
                 });

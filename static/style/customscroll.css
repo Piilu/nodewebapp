@@ -5,12 +5,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #A4A2B4; 
+  background: #6E6A6A; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #747282; 
+  background: #474747; 
   border-radius: 1em;
 }
 
@@ -18,4 +18,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-

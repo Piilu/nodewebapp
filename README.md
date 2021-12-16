@@ -1,7 +1,7 @@
 <h1>Watchparty notes</h1>
 
 <strong>To Do:</strong>
-1. Change Database, make every uset it own table.
+1. Change Database, make every uset it own table (done i think).
 1. Possibility to make rooms with Youtube links ("movie name is not required")
 1. maybe delete privateroom password from memory when disconnected??
 1. some settings in videoplayer page for changeing the video (only for the room owner).

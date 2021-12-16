@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Watchparty-room</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/static/style/style.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/style/menuitem.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/style/animations.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/style/inappnavbar.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/inappnavside.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/fontsize.css"/>
+        <title>Watchparty</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/style/animation.css">
+        <link rel="stylesheet" href="/static/style/customscroll.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <link rel="stylesheet" href="/static/style/loggedstyle.css">
+        <link rel="stylesheet" href="/static/style/newstyle.css">
         <link rel="stylesheet" type="text/css"href="/static/style/modal.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/progressbar.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/stylevideo.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/buttons.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/customscroll.css"/>
-        <link rel="stylesheet" type="text/css"href="/static/style/customvideoplayer.css"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
 
+      
 
 
 
@@ -34,87 +27,75 @@
 
 
     </head>
-<body>
-    <!-- #region topnavbar-->
-    <header style=" animation: fadeani 0.75s;  margin-bottom: 0; height: 4em;" class="header3">
-        <div class="headercolumn hleft">
-          <a  class="abtn" href="/"><p>NAMEANDLOGO </p></a>
-          <a  class="abtnchange" href="/"><p>LOGO </p></a>
-          
-        </div>
-        <div class="headercolumn hmiddle">
-            
-        </div>
-  
-  
-        <div class="headercolumn hright">
-  
-       
-          </div>
-         </div>
-      </header>
-      <!-- #endregion -->
-
-<!-- #region leftcolumn -->
-
-<div style="animation: fadeani 0.75s;" id="tools" class="toolsfont columnvideo leftvideo sidenav">
-  <h1 style=" font-size: 1.5em; padding-left: 0.2em; color: gainsboro;">Users</h1>
-  <div class="listofusers" id="tools2">
-   
-</div>
-</div>
-
-<!-- #endregion -->
-
-<!-- #region rightcolumn-->
-<div   id ="friends" class="friendsfont columnvideo rightvideo">
-    <h1 style="color: gainsboro;"><p style="font-size: 00.9em;" class="fa fa-wechat"></p> Chat</h1>
-    <div id="chat"  style="height: 70%; color: gainsboro; word-wrap: break-word; padding: 1em; overflow-y: auto;" >
+    <body id="mybody" class="dark-theme" style="overflow-y: auto">
+      <header  class="header3">
+           <div style="width:  90%">
+             <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
+             
+             
+           </div>
+         
         
-    </div>
-    <div class="footer2">
-        <input id="sendChat" onkeydown="chatEnter();" class="postinput" type="text" placeholder="Type here..." >
-        
-    </div>
-  </div>
-  <!-- #endregion -->
-
-    <!-- #region middlecolumn-->
-    <div  id="home" class="columnvideo middlevideo home homefont" >
-      <p id="currenthost" class="currenthost">CURRENT HOST: 
-        <span class="tooltiptext">User who can use normal video controls in sync with other</span>
-      </p>
-        <video onkeyup="fullscreenvideo();" onplay="playnative();"onpause="pausenative();" onseeked="seeknative(this);" id="video" width="100%" height="100%" controls>
-            <source id="source" src="" type="video/mp4">
-          </video>
-          <div id="allvideocontrols" class="controlscontainer">
-            <div class="controlsnav">
-              <p id="owner" style="  color: gainsboro; opacity: 0.5; text-align: left;">Room created by</p>
-              
-            </div>
-            <div class="controlsnav">
-              <button onclick="playpause();" class="buttonvideotopleftradius buttonvideo"> PLAY/PAUSE</button>
-            </div>
-            <div class="controlsnav">
-              <button onclick="syncUp();" class="buttonvideo">SYNC</button>
-              
-            </div>
-            <div class="controlsnav">
-              <button id="makehostbtn" onclick="makehost();" class="buttonvideotoprighttradius buttonvideo">BE HOST</button>
-              
-            </div>
-            
-              
-
-        </div>
      
+     
+     
+           <div class="navsettings" style="  width: 100%">
+           <div class="settingsdiv">
+               <!--<button onclick="showsettings()" class="postbtn  fa fa-bars"></button>-->
+               
+             </div>
+           
+        </div>
+         </header>
+     <div id="settingcontent" class="settingitems">
+                 <button class="btn"  onclick="openFrienRequestModal();">Friend requests</button>
+                 <button class="btn" id="modeswitch"  onclick="switchmode()"></button>
+                 <button class="btn"  onclick="logOut();">Logout</button>
+     
+               </div>
+     <div class="maincontainer flexcontainerlog" >
+     
+           <div style="width: 20%" class="maincontainer left">
+             <h2 class="customh2log">Users</h2>
+             <div id="tools2">
 
+             </div>
+           </div>
+           <div style="text-align: center;" class="maincontainer middle">
 
-    </div>
-    <!-- #endregion -->
-
-    <!--SETTINGS MODAL-->
-    <div tabindex="0" onkeydown="closevideoSettingsModalEsc();" style="animation: fadeani 0.55s;" id="settingsModal" class="modal">
+              <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>
+             <video onkeyup="fullscreenvideo();" onplay="playnative();"onpause="pausenative();" onseeked="seeknative(this);" id="video" width="100%"  controls>
+                 <source id="source" src="" type="video/mp4">
+               </video>
+             <div id="allvideocontrols">
+                   <p id="owner" style="  color: gainsboro; opacity: 0.5; text-align: left;">Room created by</p>
+                   
+                 
+                
+                   <button onclick="playpause();" class="buttonvideotopleftradius buttonvideo"> PLAY/PAUSE</button>
+               
+               
+                   <button onclick="syncUp();" class="buttonvideo">SYNC</button>
+                   
+                
+                   <button id="makehostbtn" onclick="makehost();" class="buttonvideotoprighttradius buttonvideo">BE HOST</button>
+                   </div>
+     </div>
+     
+              
+           <div  style=" width: 18%" class="maincontainer right">
+             <h2 style="text-align: center;" class="customh2log ">Chat</h2>
+             <div id="chat"  style="height: 70%; color: gainsboro; word-wrap: break-word; padding: 1em; overflow-y: auto;" >
+             
+                 </div>
+         <div class="footer2">
+             <input id="sendChat" onkeydown="chatEnter();" class="chatinput" type="text" placeholder="Type here..." >
+             
+         </div>
+           </div>
+     </div>
+     <!--SETTINGS MODAL-->
+    <div tabindex="0" onkeydown="closevideoSettingsModalEsc();" style=" animation: fadeani 0.55s;" id="settingsModal" class="modal">
       <div style="height: 80%;"  class="modal-content modalfont">
         <span onclick="closevideoSettingsModal();" class="close">&times;</span>
     
@@ -124,28 +105,7 @@
       </div>
     </div>
     <!--#endregion-->
-
-    <!--#region mobilebottomnavbar-->
-  <!--ONLY FOR MOBILE-->
-  <div class = 'footer mobilecontainer' style=" left:0; bottom:0;  height: 4em;">
-    <div class="mobilenav">
-      <button onclick="openTools();" style=" width: 100%; height: 4em;  border-top-left-radius: 1em;" class="button button2"> Users</button>
-    </div>
-    <div class="mobilenav">
-      <button onclick="openHome();" style=" width: 100%; height: 4em;  " class="button button2">Video</button>
-    </div>
-    <div class="mobilenav">
-      <button onclick="openFriends();" style=" width: 100%; height: 4em;  border-top-right-radius: 1em; " class="button button2">Chat</button>
-    </div>
-    
-  </div>
-  <!-- #endregion -->
-
-  <!--Notifications-->
-<div class="footer" style="height: auto; display: block;" id="notifytest">
-
-</div>
-</body>
+     </body>
 </html>
 <script>
     localStorage.removeItem("selecteduser");
@@ -162,6 +122,7 @@
    //console.log(path);
 
     roomowner = localStorage.getItem("roomOwner");
+    document.title = "Watchparty | "+roomowner+"'s room"
     document.getElementById("owner").innerHTML = "Room created by "+roomowner;
     
 

@@ -10,12 +10,12 @@ var thisuserroommode =[];
 var thisfriendroommode =[];
 var allfriends;
 var requestlength;
-var allposts = [];
+//var allposts = [];
 var allpostsusernames = [];
-var allpostsids=[];
-var thispostid;
+//var allpostsids=[];
+//var thispostid;
 var addlike;
-var alllikes =[];
+//var alllikes =[];
 var alllikedposts=[];
 var updatelikes;
 var scrollLock = false;
@@ -23,20 +23,20 @@ var lastload = 0;
 
 
 //loading.display.style = "none";
-window.onscroll= function(){
-    if(scrollLock) return;
-    if(this.innerHeight + this.pageYOffset >= document.body.scrollHeight){
-        document.getElementById("loadingmore").style.display="block";
-        setTimeout(function(){
-            scrollLock = true;
-            let postLength= document.querySelectorAll(".postborder").length;
-            console.log(postLength);
-            console.log("loading");
-            loadposts(postLength);
-        },1500);
+//window.onscroll= function(){
+    //if(scrollLock) return;
+    //if(this.innerHeight + this.pageYOffset >= document.body.scrollHeight){
+        //document.getElementById("loadingmore").style.display="block";
+        //setTimeout(function(){
+            //scrollLock = true;
+            //let postLength= document.querySelectorAll(".postborder").length;
+           // console.log(postLength);
+            //console.log("loading");
+            //loadposts(postLength);
+       // },1500);
 
-    }
-}
+   // }
+//}
 ///ALL SOCKETIO LISTENERS 
 socket.emit("join",{
     username:name,
@@ -68,21 +68,21 @@ socket.on("get_requests_lenght",function(data){
     requestlength = data;
 })
 
-socket.on("load_posts_send_posts",function(data){
-    allposts = data;
-})
-socket.on("all_posts_ids",function(data){
-    allpostsids = data;
-})
-socket.on("this_post_id",function(data){
-    thispostid =data;
-})
+//socket.on("load_posts_send_posts",function(data){
+//    allposts = data;
+//})
+//socket.on("all_posts_ids",function(data){
+ //   allpostsids = data;
+//})
+//socket.on("this_post_id",function(data){
+//    thispostid =data;
+//})
 socket.on("addlike_send",function(data){
     addlike = data;
 })
-socket.on("load_likes_send",function(data){
-    alllikes = data;
-})
+//socket.on("load_likes_send",function(data){
+//    alllikes = data;
+//})
 socket.on("all_liked_posts_send",function(data){
     alllikedposts=data;
 })
@@ -224,8 +224,8 @@ socket.on("get_this_friend_rooms_send",function(data){
         else if (thisfriendroommode[i]=="Private"){
             node.innerHTML = data[i]+"<br> <p style='color:red' class='watchingstatus'>"+thisfriendroommode[i]+"</p>";
         }
-
-        node.href ="/movieroom/"+data[i]+"";
+        thisusername=localStorage.getItem("selecteduser");
+        node.href = "/"+thisusername+"/movieroom/"+data[i]+"";
         document.getElementById("listofthisfriendrooms").append(node);
     }
 });
@@ -333,9 +333,9 @@ socket.on("get_all_friends_send",function(data){
 
 //HANDELS ALL POSTS IN HOME PAGE
 socket.on("make_post_send",function(data){
-    if(allpostsids.length+1 ==10){
-        document.getElementById("loadmorebtnid").style.display="block";
-    }
+   // if(allpostsids.length+1 ==10){
+  //      document.getElementById("loadmorebtnid").style.display="block";
+  //  }
 
     var title =document.getElementById("poststitle");
     if(title.style.display!="none"){
@@ -345,7 +345,7 @@ socket.on("make_post_send",function(data){
     node = document.createElement("div");
     node.className ="postdiv border2";
     node.style="animation: fadeani 0.5s;"
-    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+thispostid+"username"+'" class="postName maincontainer" href="#">'+data.username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data.message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id = "'+thispostid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+thispostid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
+    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[0].Postid+"username"+'" class="postName maincontainer" href="#">'+data[0].Username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data[0].Message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id = "'+data[0].Postid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[0].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[0].Postid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div id="'+data[0].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div></div>'
     document.getElementById("posts").insertBefore(node,post.firstChild);
 })
 
@@ -353,15 +353,14 @@ socket.on("make_post_send",function(data){
 socket.on("load_posts_send",function(data){
     //if strting to make loadmorebtn so posts will be rendered in correct order.
   //  allposts.reverse();
-   // data.reverse();
+    data.reverse();
    // allpostsids.reverse();
    // alllikes.reverse();
     //////////////////////
     //if(allpostsids.length >=10){
       //  document.getElementById("loadmorebtnid").style.display="none";
     //}
-
-    if(data.length !=0  ||  lastload == 1){
+    if(data.length !=0 ){
         document.getElementById("poststitle").style.display="none"
     }
    // else if(data.length>=10){
@@ -380,12 +379,12 @@ socket.on("load_posts_send",function(data){
         node.style="animation: fadeani 0.75s;"
         
 
-        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+allpostsids[i]+"username"+'" class="postName maincontainer" href="#">'+data[i]+'</a><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+allposts[i]+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+allpostsids[i]+"likenr"+'">'+alllikes[i]+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+allpostsids[i]+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+allpostsids[i]+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+allpostsids[i]+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
+        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer" href="#">'+data[i].Username+'</a><div class="limit maincontainer" style="line-height: 2;"><p class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+"likenr"+'">'+data[i].Likes+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+data[i].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Comment ..."></div> </div>'
         
 
         document.getElementById("posts").append(node);//insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order
         for(let a = 0;a<alllikedposts.length;a++){
-            if(alllikedposts[a]==allpostsids[i]){
+            if(alllikedposts[a]==data[i].Postid){
                 document.getElementById(alllikedposts[a]).style.backgroundColor ="rgb(154, 250, 129)";
                 document.getElementById(alllikedposts[a]).style.color ="black";
             }
@@ -393,20 +392,7 @@ socket.on("load_posts_send",function(data){
     }
 
     }
-    if(data.length != 0){
-        //document.getElementById("loadingmore").style.display="none";
-        lastload = 1;
-        scrollLock = false;
-    }
-    else{
-        scrollLock = true;
-        lastload = 0;
-      //  document.getElementById("poststitle").style.display="none"
-
-        document.getElementById("loadingmore").style.display="none";
-
-    }
-
+   
 })
 
 
@@ -566,16 +552,16 @@ function postunfocus(){
     });
 }
 
-function loadposts(loadmorepost){
+function loadposts(){
 
-    allposts = [];
-    allpostsids = [];
-    if(!loadmorepost){
-        loadmorepost=0;
-    }
+    //allposts = [];
+    //allpostsids = [];
+   // if(!loadmorepost){
+   //     loadmorepost=0;
+   // }
     socket.emit("load_posts",{
         username:name,
-        offset:loadmorepost,
+       // offset:loadmorepost,
     })
 }
 function fadeIn(message){  
