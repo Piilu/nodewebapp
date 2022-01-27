@@ -353,6 +353,34 @@ function uploadFile(e){
 }
 localStorage.setItem("moviePath","none");
 
+window.onclick = function(event) {
+    var createmodal = document.getElementById("createModal");
+    var listmodal = document.getElementById('roomList');
+    var listpeoplemodal = document.getElementById('peopleList');
+    var friendsmodal = document.getElementById('friendList');
+    var RequestListModal =  document.getElementById('requestList');
+
+    if (event.target == createmodal) {
+      closeModal();
+      
+    }
+    else if(event.target == listmodal){
+      closeListModal()
+
+    }
+    else if(event.target == listpeoplemodal){
+      closeListPeopleModal()
+
+    }
+    else if(event.target ==friendsmodal){
+      closeFriends()
+    }
+
+    else if (event.target == RequestListModal){
+      closeRequestListModal()
+
+    }
+  }
 
 
 </script>
