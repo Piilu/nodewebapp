@@ -728,7 +728,13 @@ textarea::placeholder {
 /*endfirstinfo*/
 
 
-
+.chatbox{
+	height: 70%;
+	 color: gainsboro; 
+	 word-wrap: break-word;
+	  padding: 1em; 
+	  overflow-y: auto;
+}
 
 
 
@@ -835,11 +841,15 @@ textarea::placeholder {
 	  .mobilenav{
 		display: block;
 	  }
+	  .chatbox{
+		  height: 55%;
+	  }
 	.middle{
 		max-width: 100%;
 		margin-right: 5%;
 		margin-left: 5%;
 	}
+
 	.left{
 
 		min-width: 100%;

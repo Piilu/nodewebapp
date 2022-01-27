@@ -73,6 +73,7 @@ app.use("/",router);
 //All Socketio//
 var usernames ={};
 var allusernames = {};
+var hosts = []
 
 io.sockets.on('connection', function(socket){
   socket.on("join",function(data){
@@ -140,8 +141,12 @@ io.sockets.on('connection', function(socket){
          //console.log("Username: "+usernames[usersid[i]])
          users.push(usernames[userids[i]]);
         }
-        if(count>=1){
+        if(count == 1){
           var host = users[0];
+          hosts.push({room:data.room,name:data.username}) 
+        }
+        else{
+          console.log("HETKEL ON HOST",hosts)
         }
         console.log(host);
       // console.log(users);
@@ -315,6 +320,7 @@ io.sockets.on('connection', function(socket){
         })
   
         socket.on("makehost",function(data){
+          hosts.push({room:data.room,name:data.username})
           io.to(data.room).emit("makehost_send",data);
         });
 

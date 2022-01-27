@@ -8,6 +8,7 @@ const path = require('path');
 const databasehost = "192.168.137.1"//192.168.1.139
 const datauser = "root"//data
 const dotenv = require('dotenv');
+const port = process.env.PORT || process.env.SERVER_PORT;
 dotenv.config();
 
 var session;
@@ -284,8 +285,8 @@ router.post("/",upload.single('filename'),(req,res) =>{
     const oldpathpublic = "./uploads/"+session.userid+"/"+"Public"+"/"+moviename+"";
     const oldpathprivate = "./uploads/"+session.userid+"/"+"Private"+"/"+moviename+"";
     const filename = "./sort/"+moviefile+"";
-    const finaldestpublic  = "http://192.168.1.141:3000/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
-    const finaldestprivate  = "http://192.168.1.141:3000/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
+    const finaldestpublic  = "http://"+process.env.SERVER_IP+":"+process.env.SERVER_PORT+"/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
+    const finaldestprivate  = "http://"+process.env.SERVER_IP+":"+process.env.SERVER_PORT+"/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
 
     if(mode == "Private"){
         fs.mkdir(oldpathprivate, function(err) {

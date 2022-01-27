@@ -1,4 +1,3 @@
-
 var socket = io();
 var name = localStorage.getItem("Username");
 var room = localStorage.getItem("roomName");

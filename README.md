@@ -1,7 +1,7 @@
 <h1>Watchparty notes</h1>
 
 <strong>To Do:</strong>
-1. Change Database, make every uset it own table (done i think).
+1. Change Database, make every user it own table (done i think).
 1. Possibility to make rooms with Youtube links ("movie name is not required")
 1. maybe delete privateroom password from memory when disconnected??
 1. some settings in videoplayer page for changeing the video (only for the room owner).
@@ -9,6 +9,7 @@
 1. When updating user friends in database maybe check in flask if this username actually exists.
     
 <strong>Bugs:</strong>
+- If there are two different rooms named same than is a big big problem (have to make room id's)
 - Does not make difference if you put upper case letters in your name (has to be hashed)
 - if refresh too fast it doubles user (videoplayer html) but it fixes itself
 - Server throws error when username folder already exist
