@@ -33,7 +33,8 @@ var connection;
 //CONNECT TO DATABASE//
 function connectDb(){
 
-  connection = mysql.createConnection({
+  connection = mysql.createPool({
+    connectionLimit: 10,
     host     : process.env.DB_HOST,
     user     : process.env.DB_USER,
     password : process.env.DB_PASSWORD,
@@ -43,13 +44,10 @@ function connectDb(){
 connectDb();
 
 
-connection.connect(function(err) {
+connection.on('error',function(err){
   // in case of error
-  if(err){
       console.log(err.code);
       console.log(err.fatal);
-      connectDb();
-  }
 });
 
 ////////////
@@ -64,15 +62,6 @@ app.use(cookieParser());
 
 app.use('/static',express.static("static"));
 app.use("/",router);
-
-
-
-
-
-
-
-
-
 
 
 
