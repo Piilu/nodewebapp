@@ -829,6 +829,13 @@ textarea::placeholder {
 		margin-top: 0%;
 
 	}
+	.chatbox{
+		height: 55%;
+		 color: gainsboro; 
+		 word-wrap: break-word;
+		  padding: 1em; 
+		  overflow-y: auto;
+	}
   
 }
 @media only screen and (max-width: 72.438em){

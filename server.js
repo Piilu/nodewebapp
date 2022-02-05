@@ -190,6 +190,8 @@ io.sockets.on('connection', function(socket){
         io.to(data.room).emit('count',count);
         io.to(socket.id).emit('userid',socket.id);
         io.to(data.room).emit('join_room_send',users);
+        io.to(data.room).emit("sync_on_join_send_test",users);
+
         io.to(socket.id).emit('join_room_send_name',data);
        // io.to(data.room).emit('join_room__send_test',"test");
 
@@ -328,7 +330,10 @@ io.sockets.on('connection', function(socket){
         })
 
         socket.on("sync_on_join",function(data){
+
+          
           socket.broadcast.to(data.room).emit("sync_on_join_send",data);
+
         })
 
         socket.on("host_disconnect",function(data){

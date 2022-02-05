@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Watchparty</title>
+         <meta charset="UTF-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/animation.css">
         <link rel="stylesheet" href="/static/style/customscroll.css">
@@ -10,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
         <link rel="stylesheet" href="/static/style/loggedstyle.css">
         <link rel="stylesheet" href="/static/style/newstyle.css">
+        <link rel="stylesheet" href="/static/style/videoplayer.css">
         <link rel="stylesheet" type="text/css"href="/static/style/modal.css"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
 
@@ -38,9 +41,7 @@
              
              
            </div>
-         
-        
-     
+      
      
      
            <div class="navsettings" style="  width: 100%">
@@ -67,15 +68,14 @@
            </div>
            <div id='home' style="text-align: center;" class="maincontainer middle">
 
-              <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>
-             <video onkeyup="fullscreenvideo();" onplay="playnative();"onpause="pausenative();" onseeked="seeknative(this);" id="video" width="100%"  controls>
+             <!-- <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>-->
+             <video onkeyup="fullscreenvideo();" onclick="playpause()" onseeked="seeknative(this);" id="video" width="100%"  controls>
                  <source id="source" src="" type="video/mp4">
                </video>
+               
              <div id="allvideocontrols">
                    <p id="owner" style="  color: gainsboro; opacity: 0.5; text-align: left;">Room created by</p>
                    
-                 
-                
                    <button onclick="playpause();" class="buttonvideotopleftradius buttonvideo"> PLAY/PAUSE</button>
                
                
@@ -123,6 +123,7 @@
     </div>
      </body>
 </html>
+
 <script>
     localStorage.removeItem("selecteduser");
 

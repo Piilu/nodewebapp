@@ -3,10 +3,14 @@ var name = localStorage.getItem("Username");
 var room = localStorage.getItem("roomName");
 var userid;
 var usersamout;
+var roomusers= []
+var lastseek = null;
 
 
 
- 
+socket.on("sync_on_join_send_test",function(data){
+    roomusers = data;
+});
 
 
 function updateScroll(){
@@ -32,15 +36,14 @@ socket.emit('disconnect', {
 socket.on('join_room_send', function(msg){
     synconjoin();
     //if(msg.length==1){
-    localStorage.setItem("host"+room+"",msg[0]);
        
     //}
     //else{
         
      //   console.log("Do not change the host");
    // }
-    document.getElementById("currenthost").innerHTML ="CURRENT HOST: "+localStorage.getItem("host"+room+"");
-    console.log("Room host is "+localStorage.getItem("host"+room+""));
+    //document.getElementById("currenthost").innerHTML ="CURRENT HOST: "+localStorage.getItem("host"+room+"");
+    //console.log("Room host is "+localStorage.getItem("host"+room+""));
     document.getElementById("tools2").innerHTML="";
     for (let i = 0; i < usersamout; i++) {
         var node = document.createElement("a");
@@ -64,17 +67,10 @@ socket.on("join_room_send_name",function(data){
 
 socket.on("send_disconnect",function(msg){
     if(usersamout ==0){
-        localStorage.removeItem("host"+room+"");
+      
     }    
     document.getElementById("tools2").innerHTML="";
     for (let i = 0; i < usersamout; i++) {
-        if(msg[i]==localStorage.getItem("host"+room+"")){
-            console.log("host on veel alles")
-        }
-        else{
-            localStorage.setItem("host"+room+"",msg[0]);
-            document.getElementById("currenthost").innerHTML ="CURRENT HOST: "+localStorage.getItem("host"+room+"");
-        }
         var node = document.createElement("a");
         node.innerHTML = msg[i];
         document.getElementById("tools2").append(node);
@@ -130,6 +126,7 @@ socket.on("recive_message",function(data){
 
 socket.on("Playbtn_send",function(data){
     video = document.getElementById("video");
+    console.log('Playbtn_send')
     video.play();
 })
 socket.on("Pausebtn_send",function(data){
@@ -140,20 +137,28 @@ socket.on("Pausebtn_send",function(data){
 
 socket.on("syncUp_send",function(data){
     video = document.getElementById("video");
+    console.log('synced:',data.time )
+    lastseek = data.time;
     video.currentTime = data.time;
+
+    
+
+
 
 });
 
 socket.on("makehost_send",function(data){
-    console.log("Host: "+data.username);
-    localStorage.setItem("host"+data.room+"",data.username);
-    document.getElementById("currenthost").innerHTML="CURRENT HOST: "+data.username;
+    alert("HOSTE POLE ENAM")
+  //  console.log("Host: "+data.username);
+   // localStorage.setItem("host"+data.room+"",data.username);
+   // document.getElementById("currenthost").innerHTML="CURRENT HOST: "+data.username;
 
 })
 
 
 socket.on("play_native_send",function(data){
     video = document.getElementById("video");
+    console.log('play_native_send')
     video.play();
 })
 
@@ -161,12 +166,12 @@ socket.on("pause_native_send",function(data){
     video = document.getElementById("video");
     video.pause();
 })
-
 socket.on("sync_on_join_send",function(data){
     video = document.getElementById("video");
-
-    if(data.username==localStorage.getItem("host"+room+"")){
+    
+    if(data.username==roomusers[0]){
         if(data.paused==false){
+            console.log('sync_on_join_send');
             video.play();
         }
         video.currentTime = data.time;
@@ -178,6 +183,7 @@ socket.on("sync_on_join_send",function(data){
 
 function playpause(){
     if(video.paused){
+        console.log('play')
         socket.emit("Playbtn",{
             message:"play video",
             room:room,
@@ -185,6 +191,7 @@ function playpause(){
         })
     }
     else{
+        console.log('pause')
         socket.emit("Pausebtn",{
             message:"pause video",
             room:room,
@@ -195,13 +202,16 @@ function playpause(){
 
 function syncUp(){
     video = document.getElementById("video");
-    timetosync = video.currentTime;
-    socket.emit("syncUp",{
-        message:"sync",
-        room:room,
-        username:name,
-        time:timetosync,
-    })
+    timetosync =  Math.round(video.currentTime);
+    if(timetosync != lastseek){
+
+        socket.emit("syncUp",{
+            message:"sync",
+            room:room,
+            username:name,
+            time:timetosync,
+        })
+    }
 }
 
 function makehost(){
@@ -213,32 +223,26 @@ function makehost(){
 }
 
 function playnative(){
-    if(localStorage.getItem("host"+room+"")==name){
 
         socket.emit("play_native",{
             message:"native pause",
             username:name,
             room:room,
         })
-    }
     
 }
 function pausenative(){
-    if(localStorage.getItem("host"+room+"")==name){
         socket.emit("pause_native",{
             message:"native pause",
             username:name,
             room:room,
         })
-    }
     
 }
 function seeknative(data){
-    if(localStorage.getItem("host"+room+"")==name){
-
-        syncUp();
-    }
     
+        syncUp();
+
 }
 
 function synconjoin(){

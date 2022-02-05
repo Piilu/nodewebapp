@@ -78,7 +78,7 @@
         
     </div>
     <div class="footer2">
-        <input id="sendChat" onkeydown="chatEnter();" class="postinput" type="text" placeholder="Type here..." >
+        <input on id="sendChat" onkeydown="chatEnter();" class="postinput" type="text" placeholder="Type here..." >
         
     </div>
   </div>
@@ -89,7 +89,7 @@
       <p id="currenthost" class="currenthost">CURRENT HOST: 
         <span class="tooltiptext">User who can use normal video controls in sync with other</span>
       </p>
-        <video onkeyup="fullscreenvideo();" onplay="playnative();"onpause="pausenative();" onseeked="seeknative(this);" id="video" width="100%" height="100%" controls>
+        <video onkeyup="fullscreenvideo();" onclick="playpause()"  onseeked="seeknative(this);" id="video" width="100%" height="100%" controls>
             <source id="source" src="" type="video/mp4">
           </video>
           <div id="allvideocontrols" class="controlscontainer">
