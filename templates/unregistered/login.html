@@ -4,11 +4,14 @@
 
     <title>Watchparty | Sign In</title>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/static/style/newstyle.css">
     <link rel="stylesheet" href="/static/style/shape.css">
     <link rel="stylesheet" href="/static/style/animation.css">	
 	<link rel="stylesheet" href="/static/style/animationnew.css">
     <link rel="stylesheet" href="/static/style/signresponsive.css">
+	<link rel="stylesheet" href="/static/style/hamburgermenu.css">
     <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 	<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
@@ -17,6 +20,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/javascript/script.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+	<script src="/static/javascript/hamburgermenu.js"></script>
+
 
 
 
@@ -39,7 +44,19 @@
 		<div class="navbarbuttonsfont" style="width: 95%">
 			<a  class="selected" href="/login/" >Sign in</a>
 		</div>
+		<div onclick="menuopen();"  class="navbarbtn" style="width: 2.5em">
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+			<div class="bar3"></div>
+		</div>
   </div>
+
+</div>
+<div id="menuitems" class="mobilemenu">
+	<a href="/">Home</a>
+	<a style="color: orange;" href="/login/">Sign in</a>
+	<a href="/signup/">Sign up</a>
+
 
 </div>
 <!--endnavbar-->

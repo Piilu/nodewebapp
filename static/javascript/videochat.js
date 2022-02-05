@@ -54,7 +54,7 @@ socket.on('join_room_send', function(msg){
 });
 socket.on("join_room_send_name",function(data){
     if(data.username == localStorage.getItem("roomOwner")){
-        document.getElementById("makehostbtn").className="buttonvideo";
+       // document.getElementById("makehostbtn").className="buttonvideo";
         node = document.createElement("div");
         node.className="controlsnav"
         node.innerHTML='<button onclick="roomsettingsbtn();" id="videosettingsbtn" class="buttonvideotoprighttradius buttonvideo fa fa-cog"></button>';
@@ -116,6 +116,17 @@ function chatEnter(){
 }
 
 socket.on("recive_message",function(data){
+    var notify = new Audio('/static/assets/notify.mp3');
+    notify.play();
+  
+    
+    var node = document.createElement('p');
+    node.innerHTML = "<a style='color: cornsilk;' href ='#'>"+data.username+"</a>"+": "+data.message;
+    document.getElementById("chat").append(node)
+    updateScroll();
+});
+
+socket.on("recive_message_me",function(data){
     var node = document.createElement('p');
     node.innerHTML = "<a style='color: cornsilk;' href ='#'>"+data.username+"</a>"+": "+data.message;
     document.getElementById("chat").append(node)
@@ -123,10 +134,9 @@ socket.on("recive_message",function(data){
 });
 
 
-
 socket.on("Playbtn_send",function(data){
     video = document.getElementById("video");
-    console.log('Playbtn_send')
+   // console.log('Playbtn_send')
     video.play();
 })
 socket.on("Pausebtn_send",function(data){
@@ -137,7 +147,7 @@ socket.on("Pausebtn_send",function(data){
 
 socket.on("syncUp_send",function(data){
     video = document.getElementById("video");
-    console.log('synced:',data.time )
+    //console.log('synced:',data.time )
     lastseek = data.time;
     video.currentTime = data.time;
 
@@ -158,7 +168,7 @@ socket.on("makehost_send",function(data){
 
 socket.on("play_native_send",function(data){
     video = document.getElementById("video");
-    console.log('play_native_send')
+    //console.log('play_native_send')
     video.play();
 })
 
@@ -171,7 +181,7 @@ socket.on("sync_on_join_send",function(data){
     
     if(data.username==roomusers[0]){
         if(data.paused==false){
-            console.log('sync_on_join_send');
+            //console.log('sync_on_join_send');
             video.play();
         }
         video.currentTime = data.time;
@@ -183,7 +193,7 @@ socket.on("sync_on_join_send",function(data){
 
 function playpause(){
     if(video.paused){
-        console.log('play')
+  //      console.log('play')
         socket.emit("Playbtn",{
             message:"play video",
             room:room,
@@ -191,7 +201,7 @@ function playpause(){
         })
     }
     else{
-        console.log('pause')
+   //     console.log('pause')
         socket.emit("Pausebtn",{
             message:"pause video",
             room:room,
@@ -202,7 +212,7 @@ function playpause(){
 
 function syncUp(){
     video = document.getElementById("video");
-    timetosync =  Math.round(video.currentTime);
+    timetosync =  video.currentTime;
     if(timetosync != lastseek){
 
         socket.emit("syncUp",{

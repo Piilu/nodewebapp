@@ -430,7 +430,7 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
     roomusername = req.params.roomusername;
     session=req.session;
     if(session.userid||session.guestname){
-
+        
         $query = 'SELECT * FROM '+roomusername+'__'+'rooms'+' WHERE Roomname = '+'"'+room+'"' ;
         connection.query($query, function(err, rows, fields) {
         if(err){

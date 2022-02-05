@@ -19,14 +19,12 @@ body{
 	display: flex;
 	flex-wrap: nowrap;
 	flex-flow: row;
-	
 	height: 92%;
 	
 		
 }
 .flexcontainerlog div{
 	width: 100%;
-
 }
 
 

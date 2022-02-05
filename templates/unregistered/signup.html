@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-  <title>Watchparty | Sign Up</title>
-  <meta charset="UTF-8">
+	<title>Watchparty | Sign Up</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="/static/style/newstyle.css">
-  <link rel="stylesheet" href="/static/style/shape.css">
-  <link rel="stylesheet" href="/static/style/animation.css">	
-  <link rel="stylesheet" href="/static/style/animationnew.css">
-  <link rel="stylesheet" href="/static/style/signresponsive.css">
-  <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="/static/javascript/script.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="/static/style/newstyle.css">
+	<link rel="stylesheet" href="/static/style/shape.css">
+	<link rel="stylesheet" href="/static/style/animation.css">
+	<link rel="stylesheet" href="/static/style/animationnew.css">
+	<link rel="stylesheet" href="/static/style/signresponsive.css">
+	<link rel="stylesheet" href="/static/style/hamburgermenu.css">
+	<link rel="stylesheet" type="text/css" href="/static/style/notifications.css" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
 
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/static/javascript/script.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/static/javascript/hamburgermenu.js"></script>
 
-  </head>
+
+
+
+</head>
+
 <body style="animation: fadein 1s;">
-<!--#Navbar-->
-<div class="navbar">
-  	<div class="logofont">
-	  <a style="animation: fadein 0.5s;" href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
-    </div>
-	<div class="navbarspacer"></div>
-  <div style="text-align: right;">
-	  <div class="navbarbuttonsfont">
-		  <a style="animation: fadein 0.8s;" class="tagafont" href="/" >Home</a>
-	  </div>
-		
-	</div>
-	<div>
-		<div class="navbarbuttonsfont" style="width: 95%">
-			<a class="tagafont" href="/login/" >Sign in</a>
+	<!--#Navbar-->
+	<div class="navbar">
+		<div class="logofont">
+			<a style="animation: fadein 0.5s;" href="/" class="logofont"><strong>Watch</strong><strong
+					style="color: orange;">party</strong></a>
 		</div>
-  </div>
+		<div class="navbarspacer"></div>
+		<div style="text-align: right;">
+			<div class="navbarbuttonsfont">
+				<a style="animation: fadein 0.8s;" class="tagafont" href="/">Home</a>
+			</div>
 
-</div>
-<!--endnavbar-->
+		</div>
+		<div>
+			<div class="navbarbuttonsfont" style="width: 95%">
+				<a class="tagafont" href="/login/">Sign in</a>
+			</div>
+			<div onclick="menuopen();" class="navbarbtn" style="width: 2.5em">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</div>
+
+	</div>
+	<div id="menuitems" class="mobilemenu">
+		<a href="/">Home</a>
+		<a href="/login/">Sign in</a>
+		<a style="color: orange;" href="/signup/">Sign up</a>
+
+
+	</div>
+	<!--endnavbar-->
 	<div class="flexcontainer2 ">
 		<div style="width: 60%;" class="maincontainer"></div>
 		<div style="margin-top: 0%; width: 100%" class="maincontainer">
@@ -50,64 +69,66 @@
 			<p style="color: red;" id="error"></p>
 		</div>
 		<div style="width: 30%;" class="maincontainer"></div>
-	
+
 	</div>
 	<div style="margin-top: 1%;" class="flexcontainer2">
-	
+
 		<div style="width: 50%;" class="maincontainer">
 			<div class="triangle-right2-signup triangle2-placeing"></div>
 
 		</div>
-	<div style="width: 100%; animation: fadein 0.5s" class="maincontainer">
-		
-		<form method="POST" class="signinform" style="color: white">
-			
-			<label for="email">Email</label>
-			<input name="Email" id="email" type="text">
-			<label for="username">Username</label>
-			<input name="username" id="username" type="text">
-			<label for="password">Password</label>
-			<input name="password" id="password" type="password">
-			<div style="width:50%">
-				<input type="submit" class="signupbtn2" value="Sign up" />
-			</div>
-		
-		</form>
-				<p class="mobilenb">NB: In mobile if login was unsuccessful then refresh page to see what went wrong (SAFARI)</p>
+		<div style="width: 100%; animation: fadein 0.5s" class="maincontainer">
+
+			<form method="POST" class="signinform" style="color: white">
+
+				<label for="email">Email</label>
+				<input name="Email" id="email" type="text">
+				<label for="username">Username</label>
+				<input name="username" id="username" type="text">
+				<label for="password">Password</label>
+				<input name="password" id="password" type="password">
+				<div style="width:50%">
+					<input type="submit" class="signupbtn2" value="Sign up" />
+				</div>
+
+			</form>
+			<p class="mobilenb">NB: In mobile if login was unsuccessful then refresh page to see what went wrong
+				(SAFARI)</p>
+		</div>
+
+
 	</div>
 
+	<div class="footer" style="height: auto; display: block;" id="notifytest">
 
-</div>
-	
-<div class="footer" style="height: auto; display: block;" id="notifytest">
-
-</div>
+	</div>
 </body>
+
 </html>
 
 <script>
-  var errorreg = localStorage.getItem('errorreg');
+	var errorreg = localStorage.getItem('errorreg');
 
-  if(errorreg == "error"){
-    document.getElementById('error').innerHTML = "Account already exist";
-    localStorage.removeItem("errorreg");
-  }
-  else if(errorreg == "erroremail"){
-    document.getElementById('error').innerHTML = "Incorrect email";
-    localStorage.removeItem("errorreg");
+	if (errorreg == "error") {
+		document.getElementById('error').innerHTML = "Account already exist";
+		localStorage.removeItem("errorreg");
+	}
+	else if (errorreg == "erroremail") {
+		document.getElementById('error').innerHTML = "Incorrect email";
+		localStorage.removeItem("errorreg");
 
 
-  }
-  else if (errorreg == "errorusername"){
-    document.getElementById('error').innerHTML = "Username must contain minimum of 3 characters";
-    localStorage.removeItem("errorreg");
+	}
+	else if (errorreg == "errorusername") {
+		document.getElementById('error').innerHTML = "Username must contain minimum of 3 characters";
+		localStorage.removeItem("errorreg");
 
-  }
+	}
 
-  else if (errorreg == "errorpassword"){
-    document.getElementById('error').innerHTML = "Password must contain minimum of 8 characters or symbols";
-    localStorage.removeItem("errorreg");
-  }
+	else if (errorreg == "errorpassword") {
+		document.getElementById('error').innerHTML = "Password must contain minimum of 8 characters or symbols";
+		localStorage.removeItem("errorreg");
+	}
 
 
 </script>

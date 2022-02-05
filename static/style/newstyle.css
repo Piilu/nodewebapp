@@ -23,6 +23,9 @@ body{
 
 
 }
+#video{
+	margin-top: 6em;
+}
 .chatinput{
   
 	font-size:1em;
@@ -35,6 +38,19 @@ body{
 	background-color: #514E4E; /*#696565*/
 	border-radius: 0.5em;
   }
+
+  select{
+    width: 30%;
+    border: none;
+    background-color: whitesmoke;
+    padding: 1em;
+    font-size: medium;
+    border-radius: 00.5em;
+}
+select:focus{
+    outline: none;
+    border: solid rgba(158, 231, 173, 0.651) 2px;
+}
 .mobilecontainer{
     display: none;
     width: 60em;
@@ -514,9 +530,8 @@ textarea::placeholder {
   text-align: center;
   flex-flow: column;
   display: flex;
-  
-  
 }
+
 
 .aboutfont{
 	color: white;
@@ -906,6 +921,8 @@ textarea::placeholder {
 
 }
 @media only screen and (max-width:41.5em){
+	#video{
+	}
 	.makepostborder{
 		max-width: 90%;
 		

@@ -12,9 +12,10 @@
       <!--<link rel="stylesheet" href="../static/style/hamburgermenu.css">-->
       <link rel="stylesheet" href="/static/style/animationnew.css">
       <link rel="stylesheet" href="/static/style/customscroll.css">
+	  <link rel="stylesheet" href="/static/style/hamburgermenu.css">
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
       <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
-
+	  <script src="/static/javascript/hamburgermenu.js"></script>
 
 
   </head>
@@ -37,8 +38,20 @@
 			<div class="navbarbuttonsfont" style="width: 95%">
 				<a style="animation: fadein 1s;" class="tagafont" href="/login/" >Sign in</a>
 			</div>
+			<div onclick="menuopen();"  class="navbarbtn" style="width: 2.5em">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
 	  </div>
 
+	</div>
+	<div id="menuitems" class="mobilemenu">
+		<a style="color: orange;" href="/">Home</a>
+		<a href="/login/">Sign in</a>
+		<a href="/signup/">Sign up</a>
+
+	
 	</div>
 	<!--endnavbar-->
 	<!--First info-->
@@ -86,3 +99,4 @@
 </div>
 </body>
 </html>
+

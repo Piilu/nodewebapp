@@ -3,6 +3,7 @@
     <head>
         <title>Watchparty</title>
          <meta charset="UTF-8">
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/style/animation.css">
@@ -34,7 +35,8 @@
 
 
     </head>
-    <body id="mybody" class="dark-theme" style="overflow-y: auto">
+    <body id="mybody" class="dark-theme" style="height: 90%; overflow-y: auto">
+      
       <header  class="header3">
            <div style="width:  90%">
              <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
@@ -69,13 +71,13 @@
            <div id='home' style="text-align: center;" class="maincontainer middle">
 
              <!-- <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>-->
-             <video onkeyup="fullscreenvideo();" onclick="playpause()" onseeked="seeknative(this);" id="video" width="100%"  controls>
+             <video onvolumechange="getvolume()"  onkeyup="" onclick="playpause()" onseeked="seeknative(this);" id="video" width="100%"  controls>
                  <source id="source" src="" type="video/mp4">
                </video>
                
              <div id="allvideocontrols">
                    <p id="owner" style="  color: gainsboro; opacity: 0.5; text-align: left;">Room created by</p>
-                   
+                   <!--  
                    <button onclick="playpause();" class="buttonvideotopleftradius buttonvideo"> PLAY/PAUSE</button>
                
                
@@ -83,6 +85,7 @@
                    
                 
                    <button id="makehostbtn" onclick="makehost();" class="buttonvideotoprighttradius buttonvideo">BE HOST</button>
+                   -->
                    </div>
      </div>
      
@@ -104,7 +107,17 @@
         <span onclick="closevideoSettingsModal();" class="close">&times;</span>
     
         <h2 style=" color: black; text-align: center;">SETTINGS</h2>
-       
+        <div style="text-align: center;">
+          <select style="margin-bottom:1em" name="" id="">
+            <option value="" disabled selected hidden>Vali film*</option>
+            <option value="">Lorem 1</option>
+            <option value="">Lorem 2</option>
+            <option value="">Lorem 3</option>
+          </select><br/>
+          <input style="width: auto;" type="text" placeholder="Movie URL"/> <br/>
+          <input style= "margin-top: 2em; width: 20%; color: black; border-radius: 1em; text-align: center;" class="uploadBtn" type="text" value="Chanage">
+
+        </div>
         </div>
       </div>
     </div>
@@ -125,11 +138,14 @@
 </html>
 
 <script>
+    if(localStorage.getItem('videovolume')){
+      var video = document.getElementById('video');
+      video.volume = localStorage.getItem('videovolume')
+    }
     localStorage.removeItem("selecteduser");
 
 
     
-    var video = document.getElementById('video');
     var source = document.getElementById('source');
     path = localStorage.getItem("moviePath");
     console.log(path);
@@ -147,4 +163,19 @@
       test = document.getElementById("tools").innerHTML;
       console.log(test);
     }
+    function getvolume(){
+      var video = document.getElementById('video');
+      localStorage.setItem('videovolume',video.volume)
+    }
+
+    window.onclick = function(event) {
+    var settingsmodal = document.getElementById("settingsModal");
+
+
+    if (event.target == settingsmodal) {
+      closevideoSettingsModal();
+      
+    }
+
+  }
 </script>

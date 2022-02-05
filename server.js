@@ -199,7 +199,9 @@ io.sockets.on('connection', function(socket){
         });
 
         socket.on("send_message",function(data){
-          io.to(data.room).emit("recive_message",data);
+          socket.broadcast.to(data.room).emit("recive_message",data);
+          io.to(socket.id).emit("recive_message_me",data);
+
         });
         socket.on("update_roomlist",function(data){
           $query =  'SELECT * FROM '+data.username+'__'+'rooms'+' WHERE Roomowner = ' +"'"+data.username+"'";
