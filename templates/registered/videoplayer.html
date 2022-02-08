@@ -1,83 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Watchparty</title>
-         <meta charset="UTF-8">
-      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/static/style/animation.css">
-        <link rel="stylesheet" href="/static/style/customscroll.css">
-      <link rel="stylesheet" type="text/css"href="/static/style/buttons.css"/>
-
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-        <link rel="stylesheet" href="/static/style/loggedstyle.css">
-        <link rel="stylesheet" href="/static/style/newstyle.css">
-        <link rel="stylesheet" href="/static/style/videoplayer.css">
-        <link rel="stylesheet" type="text/css"href="/static/style/modal.css"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+<head>
+  <title>Watchparty</title>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
 
-      
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style/animation.css">
+  <link rel="stylesheet" href="/static/style/customscroll.css">
+  <link rel="stylesheet" type="text/css" href="/static/style/buttons.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style/loggedstyle.css">
+  <link rel="stylesheet" href="/static/style/newstyle.css">
+  <link rel="stylesheet" href="/static/style/videoplayer.css">
+  <link rel="stylesheet" type="text/css" href="/static/style/modal.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="/static/javascript/script.js"></script>
+  <script src="/static/javascript/preloader.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/javascript/videochat.js"></script>
+
+
+</head>
+
+<body id="mybody" class="dark-theme" style="height: 90%; overflow-y: auto">
+
+  <header class="header3">
+    <div style="width:  90%">
+      <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
+
+
+    </div>
 
 
 
+    <div class="navsettings" style="  width: 100%">
+      <div class="settingsdiv">
+        <!--<button onclick="showsettings()" class="postbtn  fa fa-bars"></button>-->
 
-  
-  
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/static/javascript/script.js"></script>
-        <script src="/static/javascript/preloader.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/static/javascript/videochat.js"></script>
+      </div>
 
+    </div>
+  </header>
+  <div id="settingcontent" class="settingitems">
+    <button class="btn" onclick="openFrienRequestModal();">Friend requests</button>
+    <button class="btn" id="modeswitch" onclick="switchmode()"></button>
+    <button class="btn" onclick="logOut();">Logout</button>
 
-    </head>
-    <body id="mybody" class="dark-theme" style="height: 90%; overflow-y: auto">
-      
-      <header  class="header3">
-           <div style="width:  90%">
-             <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
-             
-             
-           </div>
-      
-     
-     
-           <div class="navsettings" style="  width: 100%">
-           <div class="settingsdiv">
-               <!--<button onclick="showsettings()" class="postbtn  fa fa-bars"></button>-->
-               
-             </div>
-           
+  </div>
+  <div class="maincontainer flexcontainerlog">
+
+    <div id="tools" style="width: 20%" class="maincontainer left">
+      <h2 class="customh2log">Users</h2>
+      <div id="tools2">
+
+      </div>
+    </div>
+    <div id='home' style=" text-align: center;" class="maincontainer middle">
+
+      <!-- <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>-->
+      <div tabindex="0" id="customplayer" class="videocontainer">
+        <video  onvolumechange="getvolume()" onpause="iconplay()" onplay="iconpause()" onkeyup="" onclick="playpause()"
+          onseeked="seeknative(this);" id="video" width="100%" height="100%">
+          <source id="source" src="" type="video/mp4">
+        </video>
+
+        <div id="video-controls" class="videocontrols">
+          <div style="width: 100%;" class="progressbar">
+            <input step="0.05" oninput="videoseek()" id="video-progressbar" class="video-progressbar-fill" type="range">
+          </div>
+          <button onclick="playpause()" id="play-pause" style="margin-left: 1em; font-size: 20px;"
+            class="fa fa-play  controlbtn"></button>
+        
+          <button onclick="mutevolume()" id="volume_mute" class="fas fa-volume-up controlbtn" style="width: 5%; font-size: 20px;"></button>
+          <input id="volume-slider" oninput="volume_change()" class="volume" type="range" />
+          <button onclick="fullscreen()" class="fas fa-expand controlbtn rightside" style="font-size: 20px;"></button>
+
         </div>
-         </header>
-     <div id="settingcontent" class="settingitems">
-                 <button class="btn"  onclick="openFrienRequestModal();">Friend requests</button>
-                 <button class="btn" id="modeswitch"  onclick="switchmode()"></button>
-                 <button class="btn"  onclick="logOut();">Logout</button>
-     
-               </div>
-     <div class="maincontainer flexcontainerlog" >
-     
-           <div id="tools" style="width: 20%" class="maincontainer left">
-             <h2 class="customh2log">Users</h2>
-             <div id="tools2">
+      </div>
 
-             </div>
-           </div>
-           <div id='home' style="text-align: center;" class="maincontainer middle">
-
-             <!-- <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>-->
-             <video onvolumechange="getvolume()"  onkeyup="" onclick="playpause()" onseeked="seeknative(this);" id="video" width="100%"  controls>
-                 <source id="source" src="" type="video/mp4">
-               </video>
-               
-             <div id="allvideocontrols">
-                   <p id="owner" style="  color: gainsboro; opacity: 0.5; text-align: left;">Room created by</p>
-                   <!--  
+      <div id="allvideocontrols">
+        <p id="owner" style="  color: gainsboro; opacity: 0.5; text-align: left;">Room created by</p>
+        <!--  
                    <button onclick="playpause();" class="buttonvideotopleftradius buttonvideo"> PLAY/PAUSE</button>
                
                
@@ -86,95 +100,101 @@
                 
                    <button id="makehostbtn" onclick="makehost();" class="buttonvideotoprighttradius buttonvideo">BE HOST</button>
                    -->
-                   </div>
-     </div>
-     
-              
-           <div id="friends"  style=" width: 18%" class="maincontainer right">
-             <h2 style="text-align: center;" class="customh2log ">Chat</h2>
-             <div class='chatbox' id="chat"   >
-             
-                 </div>
-         <div class="footer2">
-             <input id="sendChat" onkeydown="chatEnter();" class="chatinput" type="text" placeholder="Type here..." >
-             
-         </div>
-           </div>
-     </div>
-     <!--SETTINGS MODAL-->
-    <div tabindex="0" onkeydown="closevideoSettingsModalEsc();" style=" animation: fadeani 0.55s;" id="settingsModal" class="modal">
-      <div style="min-height: 20%;"  class="modal-content modalfont">
-        <span onclick="closevideoSettingsModal();" class="close">&times;</span>
-    
-        <h2 style=" color: black; text-align: center;">SETTINGS</h2>
-        <div style="text-align: center;">
-          <select style="margin-bottom:1em" name="" id="">
-            <option value="" disabled selected hidden>Vali film*</option>
-            <option value="">Lorem 1</option>
-            <option value="">Lorem 2</option>
-            <option value="">Lorem 3</option>
-          </select><br/>
-          <input style="width: auto;" type="text" placeholder="Movie URL"/> <br/>
-          <input style= "margin-top: 2em; width: 20%; color: black; border-radius: 1em; text-align: center;" class="uploadBtn" type="text" value="Chanage">
+      </div>
+    </div>
 
-        </div>
-        </div>
+
+    <div id="friends" style=" width: 18%" class="maincontainer right">
+      <h2 style="text-align: center;" class="customh2log ">Chat</h2>
+      <div class='chatbox' id="chat">
+
+      </div>
+      <div class="footer2">
+        <input id="sendChat" onkeydown="chatEnter();" class="chatinput" type="text" placeholder="Type here...">
+
       </div>
     </div>
-    <!--#endregion-->
-    <div class = 'footer mobilecontainer' style=" width: 100%; left:0; bottom:0;  height: 4em;">
-      <div class="mobilenav">
-        <button onclick="openTools();" style=" width: 100%; height: 4em; border-top-left-radius: 1em;  " class="button button2">Users</button>
+  </div>
+  <!--SETTINGS MODAL-->
+  <div tabindex="0" onkeydown="closevideoSettingsModalEsc();" style=" animation: fadeani 0.55s;" id="settingsModal"
+    class="modal">
+    <div style="min-height: 20%;" class="modal-content modalfont">
+      <span onclick="closevideoSettingsModal();" class="close">&times;</span>
+
+      <h2 style=" color: black; text-align: center;">SETTINGS</h2>
+      <div style="text-align: center;">
+        <select style="margin-bottom:1em" name="" id="">
+          <option value="" disabled selected hidden>Vali film*</option>
+          <option value="">Lorem 1</option>
+          <option value="">Lorem 2</option>
+          <option value="">Lorem 3</option>
+        </select><br />
+        <input style="width: auto;" type="text" placeholder="Movie URL" /> <br />
+        <input style="margin-top: 2em; width: 20%; color: black; border-radius: 1em; text-align: center;"
+          class="uploadBtn" type="text" value="Chanage">
+
       </div>
-      <div class="mobilenav">
-        <button onclick="openHome()" style=" width: 100%; height: 4em;  " class="button button2">Video</button>
-      </div>
-      <div class="mobilenav">
-        <button onclick="openFriends();" style=" width: 100%; height: 4em; border-top-right-radius: 1em;  " class="button button2">Chat</button>
-      </div>
-      
     </div>
-     </body>
+  </div>
+  </div>
+  <!--#endregion-->
+  <div class='footer mobilecontainer' style=" width: 100%; left:0; bottom:0;  height: 4em;">
+    <div class="mobilenav">
+      <button onclick="openTools();" style=" width: 100%; height: 4em; border-top-left-radius: 1em;  "
+        class="button button2">Users</button>
+    </div>
+    <div class="mobilenav">
+      <button onclick="openHome()" style=" width: 100%; height: 4em;  " class="button button2">Video</button>
+    </div>
+    <div class="mobilenav">
+      <button onclick="openFriends();" style=" width: 100%; height: 4em; border-top-right-radius: 1em;  "
+        class="button button2">Chat</button>
+    </div>
+
+  </div>
+</body>
+<script src="/static/javascript/videoplayer.js"></script>
+
 </html>
 
 <script>
-    if(localStorage.getItem('videovolume')){
-      var video = document.getElementById('video');
-      video.volume = localStorage.getItem('videovolume')
-    }
-    localStorage.removeItem("selecteduser");
+  if (localStorage.getItem('videovolume')) {
+    var video = document.getElementById('video');
+    video.volume = localStorage.getItem('videovolume')
+  }
+  localStorage.removeItem("selecteduser");
 
 
-    
-    var source = document.getElementById('source');
-    path = localStorage.getItem("moviePath");
-    console.log(path);
-    source.setAttribute('src', path);
-    video.load();
 
-   //console.log(path);
+  var source = document.getElementById('source');
+  path = localStorage.getItem("moviePath");
+  console.log(path);
+  source.setAttribute('src', path);
+  video.load();
 
-    roomowner = localStorage.getItem("roomOwner");
-    document.title = "Watchparty | "+roomowner+"'s room"
-    document.getElementById("owner").innerHTML = "Room created by "+roomowner;
-    
+  //console.log(path);
 
-    function openTools2(){
-      test = document.getElementById("tools").innerHTML;
-      console.log(test);
-    }
-    function getvolume(){
-      var video = document.getElementById('video');
-      localStorage.setItem('videovolume',video.volume)
-    }
+  roomowner = localStorage.getItem("roomOwner");
+  document.title = "Watchparty | " + roomowner + "'s room"
+  document.getElementById("owner").innerHTML = "Room created by " + roomowner;
 
-    window.onclick = function(event) {
+
+  function openTools2() {
+    test = document.getElementById("tools").innerHTML;
+    console.log(test);
+  }
+  function getvolume() {
+    var video = document.getElementById('video');
+    localStorage.setItem('videovolume', video.volume)
+  }
+
+  window.onclick = function (event) {
     var settingsmodal = document.getElementById("settingsModal");
 
 
     if (event.target == settingsmodal) {
       closevideoSettingsModal();
-      
+
     }
 
   }

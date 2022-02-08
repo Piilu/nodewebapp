@@ -23,9 +23,7 @@ body{
 
 
 }
-#video{
-	margin-top: 6em;
-}
+
 .chatinput{
   
 	font-size:1em;
@@ -921,8 +919,7 @@ textarea::placeholder {
 
 }
 @media only screen and (max-width:41.5em){
-	#video{
-	}
+
 	.makepostborder{
 		max-width: 90%;
 		

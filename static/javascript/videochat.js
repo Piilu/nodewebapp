@@ -146,6 +146,7 @@ socket.on("Pausebtn_send",function(data){
 })
 
 socket.on("syncUp_send",function(data){
+    console.log('ju')
     video = document.getElementById("video");
     //console.log('synced:',data.time )
     lastseek = data.time;
