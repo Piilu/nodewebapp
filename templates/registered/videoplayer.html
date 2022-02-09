@@ -8,7 +8,7 @@
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/style/animation.css">
+  <link rel="stylesheet" href="/static/style/animations.css">
   <link rel="stylesheet" href="/static/style/customscroll.css">
   <link rel="stylesheet" type="text/css" href="/static/style/buttons.css" />
 
@@ -161,19 +161,15 @@
 </html>
 
 <script>
+  var video = document.getElementById('video');
   if (localStorage.getItem('videovolume')) {
-    var video = document.getElementById('video');
     video.volume = localStorage.getItem('videovolume')
   }
   localStorage.removeItem("selecteduser");
 
 
 
-  var source = document.getElementById('source');
-  path = localStorage.getItem("moviePath");
-  console.log(path);
-  source.setAttribute('src', path);
-  video.load();
+
 
   //console.log(path);
 

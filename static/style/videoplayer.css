@@ -3,7 +3,6 @@ video::-webkit-media-controls-play-button {
 }
 
 .videocontainer{
-  margin-top: 6em;
 position: relative;
 transition: 0.5s;
 }

@@ -113,6 +113,7 @@ function mouseleaveplayer(){
 }
 
 window.onload = () => {
+    
     let video = document.getElementById('video');
     let volumeicon = document.getElementById('volume_mute');
     let slider = document.getElementById('volume-slider');
@@ -136,16 +137,30 @@ window.onload = () => {
 
 
     slider.value = video.volume * 100;
-    progress.value = 0;
+
+    var source = document.getElementById('source');
+    path = localStorage.getItem("moviePath");
+    if(path){
+        console.log(path);
+        source.setAttribute('src', path);
+        video.load();
+    }
+    else{
+        alert("No video file found")
+    }
+    
+  
 
 };
 document.getElementById('video').addEventListener("loadeddata", (e) => {
+    let progress = document.getElementById('video-progressbar');
     let video = document.getElementById('video');
     let totalMin = Math.floor(video.duration / 60);
     let totalSec = Math.floor(video.duration % 60);
     // if seconds are less then 10 then add 0 at the begning
     totalSec < 10 ? totalSec = "0" + totalSec : totalSec;
     document.getElementById('totaltime').innerHTML = totalMin+" : "+totalSec
+    progress.value = (100 / video.duration) * video.currentTime;
 })
 
 document.getElementById('video').addEventListener("timeupdate", e => {
@@ -230,3 +245,5 @@ document.addEventListener('keydown', function(e) {
 });
 
 //Player keyboard shortcuts END
+
+

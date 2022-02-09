@@ -55,9 +55,6 @@ select:focus{
 }
 .mobilecontainer{
     display: none;
-    width: 60em;
-    max-width: 100%;
-    
     margin: 0 auto;
 }
 input {
@@ -481,6 +478,7 @@ textarea::placeholder {
     padding: 1em;
     cursor: pointer;
 	margin-top: 2%;
+	margin-bottom: 4em;
     transition: 0.2s;
 
 	
