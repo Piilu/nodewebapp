@@ -26,7 +26,9 @@ app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized:true,
     cookie: { maxAge: long },
-    resave: false
+    resave: false,
+    name: "watchparty",
+
 }));
 
 var connection;
@@ -39,7 +41,6 @@ function connectDb(){
     user     : process.env.DB_USER,
     password : process.env.DB_PASSWORD,
     database : process.env.DB_DATABASE,
-    name: "watchparty",
   });
 }
 connectDb();
