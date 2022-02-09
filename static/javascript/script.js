@@ -239,6 +239,7 @@ function closevideoSettingsModalEsc(){
 }
 
 function roomPrivatefunc(){
+    publicinfoclose()
     x = document.getElementById("roomPassworddiv").style.display="block";
     mode = "Private";
     sumbmitbtn = document.getElementById("submitBtn");
@@ -265,6 +266,7 @@ function roomPrivatefunc(){
 }
 
 function roomPublicfunc(){
+    publicinfo();
     x = document.getElementById("roomPassworddiv").style.display="none";
     mode = "Public";
     sumbmitbtn = document.getElementById("submitBtn");
@@ -486,10 +488,13 @@ function friendsBackBtn(){
 function commentbtn(data){
     comments = document.getElementById(data.id+"postcommentssec");
     if(comments.style.display=="none"){
+        comments.style.animation = 'fadein 0.5s'
         comments.style.display="block";
+
     }
     else{
         comments.style.display="none";
+        
     }
 }
 
@@ -513,3 +518,11 @@ function roomsettingsbtn(){
 
 }
 
+function publicinfo(){
+    document.getElementById('publicinfo').style.display = 'block'
+    document.getElementById('publicinfo').innerHTML = 'NOTE! Your file will be used by others'
+}
+function publicinfoclose(){
+    document.getElementById('publicinfo').style.display = 'none'
+
+}

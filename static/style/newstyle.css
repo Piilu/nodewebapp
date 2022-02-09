@@ -23,7 +23,11 @@ body{
 
 
 }
-
+.infotab{
+	font-size: 15px ;
+    color: rgb(66, 172, 66);
+	text-align: center;
+}
 .chatinput{
   
 	font-size:1em;
@@ -429,11 +433,11 @@ textarea::placeholder {
   color: white;
 }
 .commentinput{
-	margin-top: 5%;
+  margin: 0;
+  margin-top: 5%;
   font-size:15px;
-  padding:0.625em 0.625em 0.625em ;
   display:inline;
-  width:100%;
+  width:97%;
   border:none;
   color: rgb(255, 255, 255);
   border-bottom: none;
@@ -582,6 +586,9 @@ textarea::placeholder {
 	padding-bottom:1em; 
 	background: #B0AEBF;
 	border-radius: 2em;
+	margin-left: auto;
+	 margin-right: auto;
+	 max-width: 50%;
 }
 .maincontainer{
 	/*border:solid 1px red;*/
@@ -909,7 +916,7 @@ textarea::placeholder {
 	.buttonvideo{
 		width: 100%;
 	}
-  
+
 
 
 	 
@@ -948,14 +955,19 @@ textarea::placeholder {
 	}
 	
 	
-	.aboutfont{
-		font-size: 15px;
-}
+
 	.navbarbuttonsfont{
 		display: none;
 		
 	}
-	
+	.aboutfont{
+		font-size: 15px;
+	}
+	.aboutcontainer{
+		max-width: 90%;
+		margin-left :0;
+		margin-right:0;
+	}
 
 
 	

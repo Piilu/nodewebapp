@@ -70,12 +70,12 @@
 
       <!-- <p id="currenthost" style="  color: gainsboro; opacity: 0.5; text-align: left;">CURRENT HOST: </p>-->
       <div tabindex="0" id="customplayer" class="videocontainer">
-        <video  onvolumechange="getvolume()" onpause="iconplay()" onplay="iconpause()" onkeyup="" onclick="playpause()"
+        <video ondblclick="fullscreen()" onmouseleave="mouseleaveplayer()"  onvolumechange="getvolume()" onpause="iconplay()" onplay="iconpause()" onkeyup="" onclick="playpause()"
           onseeked="seeknative(this);" id="video" width="100%" height="100%">
           <source id="source" src="" type="video/mp4">
         </video>
 
-        <div id="video-controls" class="videocontrols">
+        <div  id="video-controls" class="videocontrols">
           <div style="width: 100%;" class="progressbar">
             <input step="0.05" oninput="videoseek()" id="video-progressbar" class="video-progressbar-fill" type="range">
           </div>
@@ -84,6 +84,9 @@
         
           <button onclick="mutevolume()" id="volume_mute" class="fas fa-volume-up controlbtn" style="width: 5%; font-size: 20px;"></button>
           <input id="volume-slider" oninput="volume_change()" class="volume" type="range" />
+          <p id="currenttime" style="margin-left:1em">0:00</p>
+          <p id="timedivide" style="display: inline;">&nbsp/&nbsp</p>
+          <p id="totaltime" style="display: inline;">0:00</p> 
           <button onclick="fullscreen()" class="fas fa-expand controlbtn rightside" style="font-size: 20px;"></button>
 
         </div>

@@ -1,16 +1,19 @@
+var playtimeout;
 function iconpause() {
+    clearTimeout(playtimeout)
     let btn = document.getElementById('play-pause');
-   // let controls = document.getElementById('video-controls')
-   // controls.style.display = 'none';
+    let controls = document.getElementById('video-controls')
     btn.classList.remove('fa-play');
     btn.classList.add('fa-pause');
+    controls.style.display = 'flex';
+    playtimeout = setTimeout(function(){controls.style.display = 'none';video.style.cursor = 'none' }, 3000);
 
 }
 
 function iconplay() {
     let btn = document.getElementById('play-pause');
-    //let controls = document.getElementById('video-controls')
-    //controls.style.display = 'flex';
+    let controls = document.getElementById('video-controls')
+    controls.style.display = 'flex';
     btn.classList.remove('fa-pause');
     btn.classList.add('fa-play');
 }
@@ -98,6 +101,17 @@ function mutevolume() {
 
 }
 
+
+function mouseleaveplayer(){
+    let video = document.getElementById('video');
+    if(video.paused){
+        document.getElementById('video-controls').style.display ='flex'
+    }
+    else{
+        document.getElementById('video-controls').style.display ='none'
+    }
+}
+
 window.onload = () => {
     let video = document.getElementById('video');
     let volumeicon = document.getElementById('volume_mute');
@@ -124,29 +138,44 @@ window.onload = () => {
     slider.value = video.volume * 100;
     progress.value = 0;
 
-
 };
-
+document.getElementById('video').addEventListener("loadeddata", (e) => {
+    let video = document.getElementById('video');
+    let totalMin = Math.floor(video.duration / 60);
+    let totalSec = Math.floor(video.duration % 60);
+    // if seconds are less then 10 then add 0 at the begning
+    totalSec < 10 ? totalSec = "0" + totalSec : totalSec;
+    document.getElementById('totaltime').innerHTML = totalMin+" : "+totalSec
+})
 
 document.getElementById('video').addEventListener("timeupdate", e => {
     let controls = document.getElementById('video-controls')
-
     let video = document.getElementById('video');
     let progress = document.getElementById('video-progressbar');
     let value = (100 / video.duration) * video.currentTime;
     progress.value = value;
+
+    let currentMin = Math.floor(video.currentTime / 60);
+    let currentSec = Math.floor(video.currentTime % 60);
+    // if seconds are less then 10 then add 0 at the begning
+    currentSec < 10 ? currentSec = "0" + currentSec : currentSec;
+    document.getElementById('currenttime').innerHTML =currentMin+" : "+currentSec;
+
 });
 var timeout;
-document.getElementById('video').addEventListener('mousemove', e => {
+document.getElementById('customplayer').addEventListener('mousemove', e => {
     clearTimeout(timeout)
     let controls = document.getElementById('video-controls')
     if(video.paused){
+        video.style.cursor = 'default'
         controls.style.display = 'flex'
     }
     else{
         //console.log('tesasdasdasdt')
+        controls.style.animation = 'fadein 2s'
         controls.style.display = 'flex'
-        timeout = setTimeout(function(){controls.style.display = 'none';}, 3000);
+        video.style.cursor = 'default'
+        timeout = setTimeout(function(){controls.style.display = 'none';video.style.cursor = 'none' }, 3000);
     }
 
 
