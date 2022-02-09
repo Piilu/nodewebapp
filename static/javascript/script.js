@@ -246,7 +246,7 @@ function roomPrivatefunc(){
     roomname = document.getElementById("roomnameid").value;
     moviename = document.getElementById("movienameid").value;
     password = document.getElementById("roompasswordid").value;
-    file = document.getElementById("uploadedName").innerHTML;
+    file = document .getElementById("uploadedName").innerHTML;
 
    
     if(roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file choosen" ){

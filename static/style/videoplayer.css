@@ -34,7 +34,7 @@ cursor: pointer;
 .rightside{
   position: absolute;
   right: 1em;
-  bottom: 1em;
+  bottom: 1.5em;
   transition: 0.5s;
 
 }
@@ -70,7 +70,7 @@ color: orange;
 opacity: 1;
 transition: 0.3s;
 }*/
-.progrssbar{
+.progressbar{
 background-color: transparent;
 height: 10px;
 transition: 0.5s;
