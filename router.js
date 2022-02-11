@@ -8,6 +8,7 @@ const path = require('path');
 const databasehost = "192.168.137.1"//192.168.1.139
 const datauser = "root"//data
 const dotenv = require('dotenv');
+const Handlebars = require("handlebars");
 const port = process.env.PORT || process.env.SERVER_PORT;
 dotenv.config();
 
@@ -97,7 +98,8 @@ router.post("/login/",(req, res) => {
             }
             //localStorage.setItem("Username", session.userid);
             //res.redirect("/");
-            res.send("<script> localStorage.setItem('Username',"+"'"+session.userid+"'"+" ); location.replace('/'); </script>");
+           // res.send("<script> localStorage.setItem('Username',"+"'"+session.userid+"'"+" ); location.replace('/'); </script>"); 
+           res.send("<script>  location.replace('/'); </script>");
             
         }
         else{
@@ -287,7 +289,7 @@ router.post("/",upload.single('filename'),(req,res) =>{
     const filename = "./sort/"+moviefile+"";
     const finaldestpublic  = "http://"+process.env.SERVER_IP+":"+process.env.SERVER_PORT+"/uploads/"+session.userid+"/"+"Public"+"/"+moviename+"/"+moviefile+"";//make that link a varible
     const finaldestprivate  = "http://"+process.env.SERVER_IP+":"+process.env.SERVER_PORT+"/uploads/"+session.userid+"/"+"Private"+"/"+moviename+"/"+moviefile+"";//make that link a varible
-
+/// check if filename exists
     if(mode == "Private"){
         fs.mkdir(oldpathprivate, function(err) {
             if (err) {
@@ -359,7 +361,7 @@ router.post("/unregistered/",function(req,res){
     roomcreator = req.body.roomcreator;
     session = req.session;
     session.guestname = nickname+" (guest)";
-    res.send("<script>localStorage.setItem('Username',"+"'"+session.guestname+"'"+" ); location.replace('/"+""+roomcreator+""+"/movieroom/"+""+roomname+"'"+");</script>");
+    res.send("<script> location.replace('/"+""+roomcreator+""+"/movieroom/"+""+roomname+"'"+");</script>");
    // res.send("Nickname: "+ nickname +""+"</br>"+" Roomname: "+roomname)
 });
 
@@ -401,7 +403,13 @@ router.get("/", function(req,res){
     }
     if(session.userid){
         session.roompassword = 0;
-        res.sendFile('./templates/registered/home.html',{root:__dirname});
+        let HTMLPath = path.join(__dirname, './templates/registered/home.html');
+        var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+        var data = { "name": session.userid,};
+        var result = template(data);
+        res.send(result)
+        
+       // res.sendFile('./templates/registered/home.html',{root:__dirname});
     }
     else{
         res.sendFile('./templates/unregistered/home.html',{root:__dirname});
@@ -452,12 +460,18 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
             console.log(session.path);
             if(session.path == 1){
                 session.path = 0;
-                res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
+                let HTMLPath = path.join(__dirname, './templates/registered/videoplayer.html');
+                var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+                var data = { "guestname":session.guestname,"name": session.userid,"roomName":row.RoomName,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
+                var result = template(data);
+                res.send(result)
             }
             else{ 
                 session.path = 1;
                 //localStorage.setItem('host'+room+'',msg[0]);
-                res.send("<script> localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" );localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+")</script>");
+
+                //res.send("<script> localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" );localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+")</script>");
+                res.send("<script>  location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+")</script>");
             }
             //res.send("<script>window.open('templates/registered/videoplayer.html');</script>")
         }
@@ -468,18 +482,29 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
                 if(session.path == 1){ 
                     session.path = 0;
 
-                    res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
+                    //res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
+                    session.path = 0;
+                    let HTMLPath = path.join(__dirname, './templates/registered/videoplayer.html');
+                    var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+                    var data = {"guestname":session.guestname, "name": session.userid,"roomName":row.RoomName,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
+                    var result = template(data);
+                    res.send(result)
                     
                 }
                 else{
                     session.path = 1;
-                    res.send("<script>localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" );localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+");</script>");
+                    //res.send("<script>localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" );localStorage.setItem('roomName',"+"'"+row.Roomname+"'"+" ); localStorage.setItem('movieName',"+"'"+row.Moviename+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+");</script>");
+                    res.send("<script>location.replace('/"+""+roomusername+""+"/movieroom/"+""+row.Roomname+"'"+");</script>");
                 }
             }
             else if (session.roompassword == row.Roompassword) 
             {
 
-                res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
+                let HTMLPath = path.join(__dirname, './templates/registered/videoplayer.html');
+                var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+                var data = { "guestname":session.guestname,"name": session.userid,"roomName":row.RoomName,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
+                var result = template(data);
+                res.send(result)
                 
                 
             }
@@ -488,7 +513,7 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
                   RoomName = row.Roomname;
                   
                   //res.send("This room is private, you must know the password. Good luck")
-                  res.send("<script>localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" ); localStorage.setItem('roomName',"+"'"+RoomName+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/privateroom/');</script>");
+                  res.send("<script>localStorage.setItem('roomOwner',"+"'"+row.Roomowner+"'"+" ); localStorage.setItem('roomName',"+"'"+RoomName+"'"+" ); localStorage.setItem('moviePath',"+"'"+row.Path+"'"+" ); location.replace('/privateroom/');</script>"); //Tuleks ära muuta
 
               }
 
@@ -507,15 +532,16 @@ else{
         
 });
 
-router.get("/publicroom/",function(req,res){
-    session = req.session;
-    session.path = 1;
-    res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
-});
+//router.get("/publicroom/",function(req,res){
+//    session = req.session;
+//    session.path = 1;
+//    console.log("testing")
+//    res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
+//});
 
-router.get("/privateroomowner/",function(req,res){
-    res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
-});
+//router.get("/privateroomowner/",function(req,res){
+//    res.sendFile("./templates/registered/videoplayer.html",{root:__dirname});
+//});
 
 router.get("/privateroom/",function(req,res){
     session = req.session;
@@ -546,7 +572,7 @@ router.get("/unregistered/",function(req,res){
 });
 
 router.get("/testhtml/",function(req,res){
-    res.sendFile("./templates/unregistered/loggedinhome.html",{root:__dirname});
+    res.send('test')
 })
 
 //logout//

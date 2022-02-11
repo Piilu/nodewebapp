@@ -52,15 +52,7 @@ function logOut() {
 
     }
 }
-// make screen normal
-function handlescreensize() {
 
-    if (window.matchMedia("(min-width: 1160px)").matches) {
-        home = document.getElementById("home").style.display = "";
-        tools = document.getElementById("tools").style.display = "";
-        friends = document.getElementById("friends").style.display = "";
-    } 
-}
 function openTools() {
     home = document.getElementById("home").style.display = "none";
     tools = document.getElementById("tools").style.display = "block";
@@ -282,13 +274,13 @@ function roomPublicfunc() {
     password = document.getElementById("roompasswordid").value;
     file = document.getElementById("uploadedName").innerHTML;
 
-    if (roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file choosen") {
+    if (roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file chosen") {
         sumbmitbtn.style.opacity = null;
         sumbmitbtn.style.backgroundColor = null;
         sumbmitbtn.disabled = false;
 
     }
-    else if (roomname.length > 0 && moviename.length > 0 && mode == "Private" && password.length > 0 && file != "No file choosen") {
+    else if (roomname.length > 0 && moviename.length > 0 && mode == "Private" && password.length > 0 && file != "No file chosen") {
         sumbmitbtn.style.opacity = null;
         sumbmitbtn.style.backgroundColor = null;
         sumbmitbtn.disabled = false;
@@ -319,13 +311,13 @@ function fileName() {
 
     }
 
-    if (roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file choosen") {
+    if (roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file chosen") {
         sumbmitbtn.style.opacity = null;
         sumbmitbtn.style.backgroundColor = null;
         sumbmitbtn.disabled = false;
 
     }
-    else if (roomname.length > 0 && moviename.length > 0 && mode == "Private" && password.length > 0 && file != "No file choosen") {
+    else if (roomname.length > 0 && moviename.length > 0 && mode == "Private" && password.length > 0 && file != "No file chosen") {
         sumbmitbtn.style.opacity = null;
         sumbmitbtn.style.backgroundColor = null;
         sumbmitbtn.disabled = false;
@@ -445,12 +437,12 @@ function finalcheck() {
     moviename = document.getElementById("movienameid").value;
     password = document.getElementById("roompasswordid").value;
     file = document.getElementById("uploadedName").innerHTML;
-    if (roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file choosen") {
+    if (roomname.length > 0 && moviename.length > 0 && mode == "Public" && file != "No file chosen") {
         sumbmitbtn.style.opacity = null;
         sumbmitbtn.style.backgroundColor = null;
         sumbmitbtn.disabled = false;
     }
-    else if (roomname.length > 0 && moviename.length > 0 && mode == "Private" && password.length > 0 && file != "No file choosen") {
+    else if (roomname.length > 0 && moviename.length > 0 && mode == "Private" && password.length > 0 && file != "No file chosen") {
         sumbmitbtn.style.opacity = null;
         sumbmitbtn.style.backgroundColor = null;
         sumbmitbtn.disabled = false;
@@ -533,4 +525,3 @@ function publicinfoclose() {
     document.getElementById('publicinfo').style.display = 'none'
 
 }
-window.onresize = handlescreensize;

@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/static/style/newstyle.css">
   <link rel="stylesheet" href="/static/style/videoplayer.css">
   <link rel="stylesheet" type="text/css" href="/static/style/modal.css" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
 
   <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
@@ -27,7 +28,18 @@
 
   <script src="/static/javascript/script.js"></script>
   <script src="/static/javascript/preloader.js"></script>
+  <script src="/static/javascript/handlescreensize.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var username = "{{name}}"
+    if(!username){
+      var username = "{{guestname}}"
+    }
+    var roomname = "{{roomName}}"
+    var roomowner = "{{roomOwner}}"
+    var moviename = "{{movieName}}"
+    var moviepath = "{{moviePath}}"
+  </script>
   <script src="/static/javascript/videochat.js"></script>
 
 
@@ -161,6 +173,11 @@
 </html>
 
 <script>
+  console.log("{{guestname}}")
+  console.log("{{name}}")
+  console.log("{{roomOwner}}")
+
+  //console.log('{{name}},{{roomOwner}}')
   var video = document.getElementById('video');
   if (localStorage.getItem('videovolume')) {
     video.volume = localStorage.getItem('videovolume')
@@ -173,7 +190,7 @@
 
   //console.log(path);
 
-  roomowner = localStorage.getItem("roomOwner");
+  //roomowner = localStorage.getItem("roomOwner");
   document.title = "Watchparty | " + roomowner + "'s room"
   document.getElementById("owner").innerHTML = "Room created by " + roomowner;
 

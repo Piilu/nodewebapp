@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/static/style/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/static/style/newstyle.css"/>
         <link rel="stylesheet" type="text/css" href="/static/style/menuitem.css"/>
         <link rel="stylesheet" type="text/css" href="/static/style/animations.css"/>
         <link rel="stylesheet" type="text/css" href="/static/style/notifications.css"/>
@@ -42,16 +43,16 @@
       <span onclick="closeModalPassword();" class="close">&times;</span>
       
       <div style="text-align: left;" id="modalinvalid" class="modalroomcreate">
-        <h1 style="text-align: center;" id="forroom">You are not logged in</h1>
+        <h2 style="font-size: 2em; color: black; text-align: center;" id="forroom">You are not logged in</h2>
         <button onclick="gotologin()" class="button button1" href="">Login</button>
-        <button onclick="visitasguest();" style="margin-left: 52%;" class="button button1" href="">Visit as guest</button>
+        <button onclick="visitasguest();" style="float: right;" class="button button1" href="">Visit as guest</button>
 
       <p style=" display: none; color: red;" id="errormsg"></p>
   
       </div>
       <div id="visiting" style=" display:none; text-align: left;" id="modalinvalid" class="modalroomcreate">
-        <h1 style="text-align: center;">Name yourself</h1>
-        <form method="POST" style="text-align: center;" >
+        <h2 style="color: black; text-align: center;">Name yourself</h2>
+         <form method="POST" style="text-align: center;" >
             <input style="color: black;" type="text" name="visitguestroom" id="visitguestroomid" value="" readonly>
             <div style="padding-top: 1em;">
               <input style="color: black;" type="text" name="roomcreator" id="roomcreator" readonly placeholder="Who's room">
@@ -60,7 +61,7 @@
               <input style="color: black;" type="text" name="visitguestname" id="visitguestid" placeholder="Nickname">
           </div>
             <div style="padding-top: 1em;">
-            <input type="submit" value="Join" style="color: black; border-radius: 2em;" class="privatepassBtn">
+            <input type="submit" value="Join" style="background-color: rgba(91, 209, 91, 0.685);color: black; border-radius: 2em;" class="privatepassBtn">
         </div>
         </form>
       </div>

@@ -139,10 +139,10 @@ window.onload = () => {
     slider.value = video.volume * 100;
 
     var source = document.getElementById('source');
-    path = localStorage.getItem("moviePath");
-    if(path){
-        console.log(path);
-        source.setAttribute('src', path);
+    //path = //localStorage.getItem("moviePath");
+    if(moviepath){
+        console.log(moviepath);
+        source.setAttribute('src', moviepath);
         video.load();
     }
     else{

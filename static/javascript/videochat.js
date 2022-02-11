@@ -1,6 +1,7 @@
 var socket = io();
-var name = localStorage.getItem("Username");
-var room = localStorage.getItem("roomName");
+
+var name = username;//localStorage.getItem("Username");
+var room = roomname//localStorage.getItem("roomName");
 var userid;
 var usersamout;
 var roomusers= []

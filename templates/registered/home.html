@@ -26,6 +26,10 @@
   <script src="/static/javascript/script.js"></script>
   <script src="/static/javascript/preloader.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/javascript/handlescreensize.js"></script>
+  <script>
+    var username = "{{name}}"
+  </script>
   <script src="/static/javascript/socketio.js"></script>
 </head>
 
@@ -330,9 +334,11 @@
 
 
 <script>
+ 
+ //console.log(username)
   updateFriends();
   localStorage.removeItem("selecteduser");
-  var username = localStorage.getItem("Username");
+  //var username = localStorage.getItem("Username");
   document.getElementById('user').innerHTML = " " + username;
 
 

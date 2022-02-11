@@ -10,6 +10,7 @@
 1. When updating user friends in database maybe check in flask if this username actually exists.
     
 <strong>Bugs:</strong>
+- Send connection ID not name cookie
 - when pressing space to pause or play it does not send it to all users, also when clicking the play/stop button (Temporary removed native button)
 - If there are two different rooms named same than is a big big problem (have to make room id's)
 - if refresh too fast it doubles user (videoplayer html) but it fixes itself
@@ -20,7 +21,6 @@
     
 
 <strong>Pending work:</strong>
-- New video UI
 - Bug fixes
 
 <strong>Materials</strong>
