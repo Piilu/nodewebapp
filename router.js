@@ -184,7 +184,7 @@ router.post("/signup/",(req,res)=>{
                         res.send("<script> localStorage.setItem('errorlog','succ'); location.replace('/login/'); </script>");
 
                     });
-                    $query ='CREATE TABLE '+regUsername+'__'+'posts'+' (PostID VARCHAR(255), Username VARCHAR(255), Likes VARCHAR(255), Post VARCHAR(255))';
+                    $query ='CREATE TABLE '+regUsername+'__'+'posts'+' (PostID VARCHAR(255), Username VARCHAR(255), Likes VARCHAR(255), Post VARCHAR(255))'; //Tuleb Teha |ID PRIMARY KEY
                     connection.query($query, function(err, rows, fields) {
                         if(err){
                             console.log(err);
@@ -193,7 +193,7 @@ router.post("/signup/",(req,res)=>{
                         console.log("NEW Register POSTS find query succesfully executed");
                        
                     });
-                    $query ='CREATE TABLE '+regUsername+'__'+'friends'+' (Username VARCHAR(255))';
+                    $query ='CREATE TABLE '+regUsername+'__'+'friends'+' (ID INT NOT NULL AUTO_INCREMENT, Username VARCHAR(255), PRIMARY KEY (ID))';
                     connection.query($query, function(err, rows, fields) {
                         if(err){
                             console.log(err);
@@ -202,7 +202,7 @@ router.post("/signup/",(req,res)=>{
                         console.log("NEW Register FRIENDS find query succesfully executed");
                        
                     });
-                    $query ='CREATE TABLE '+regUsername+'__'+'likedposts'+' (Username VARCHAR(255), PostID VARCHAR(255))';
+                    $query ='CREATE TABLE '+regUsername+'__'+'likedposts'+' (ID INT NOT NULL AUTO_INCREMENT, Username VARCHAR(255), PostID VARCHAR(255),PRIMARY KEY (ID))';
                     connection.query($query, function(err, rows, fields) {
                         if(err){
                             console.log(err);
@@ -212,7 +212,7 @@ router.post("/signup/",(req,res)=>{
                        
                     });
 
-                    $query ='CREATE TABLE '+regUsername+'__'+'rooms'+' (Roomowner VARCHAR(255), Roomname VARCHAR(255), Moviename VARCHAR(255), Mode VARCHAR(255), Roompassword VARCHAR(255), Filename VARCHAR(255), Path VARCHAR(255) )';
+                    $query ='CREATE TABLE '+regUsername+'__'+'rooms'+' (ID INT NOT NULL AUTO_INCREMENT, Roomowner VARCHAR(255), Roomname VARCHAR(255), Moviename VARCHAR(255), Mode VARCHAR(255), Roompassword VARCHAR(255), Filename VARCHAR(255), Path VARCHAR(255), PRIMARY KEY (ID) )';
                     connection.query($query, function(err, rows, fields) {
                         if(err){
                             console.log(err);
