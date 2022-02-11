@@ -54,7 +54,7 @@ socket.on('join_room_send', function(msg){
 
 });
 socket.on("join_room_send_name",function(data){
-    if(data.username == localStorage.getItem("roomOwner")){
+    if(data.username == roomowner){
        // document.getElementById("makehostbtn").className="buttonvideo";
         node = document.createElement("div");
         node.className="controlsnav"
