@@ -75,7 +75,7 @@
         <button onclick="updateRoomlist();openListModal();" class="btn2 	"> Rooms</button>
       </div>
       <div class="namefooter">
-        <a id="user" href="">Username</a>
+        <a id="user">Username</a>
       </div>
     </div>
 
@@ -340,6 +340,7 @@
   localStorage.removeItem("selecteduser");
   //var username = localStorage.getItem("Username");
   document.getElementById('user').innerHTML = " " + username;
+  document.getElementById('user').href = "/"+username+"/"+"testprofile/"
 
 
   const roomcreatview = document.getElementById("roomcreatdiv");

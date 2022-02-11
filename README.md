@@ -54,6 +54,15 @@
        <button class="greenbtn">Accept</button>
  </div>
 ```
+<strong>Handlebars</strong>
+´´´
+        let HTMLPath = path.join(__dirname, './templates/registered/profile.html');
+        var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+        var data = { "name": user,};
+        var result = template(data);
+        res.send(result)
+´´´
+
 <strong> User post template example (old style)</strong>
 ```
  <div class="postdiv border2">

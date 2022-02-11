@@ -571,8 +571,49 @@ router.get("/unregistered/",function(req,res){
 
 });
 
-router.get("/testhtml/",function(req,res){
-    res.send('test')
+router.get("/:user/testprofile/",function(req,res){
+    session = req.session
+    name = req.params.user
+    $query = 'SELECT * FROM flask WHERE Username =' +  connection.escape(name);
+    connection.query($query, function(err, rows, fields) {
+        if(err){
+            console.log("An error ocurred performing the query (Profile find).");
+            return;
+        }
+        console.log("Profile find query succesfully executed");
+        if(rows.length != 0){
+            if(session.userid){
+                if(session.userid == name){
+        
+                    let HTMLPath = path.join(__dirname, './templates/registered/profile.html');
+                    var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+                    var data = { "name": name,"dec":"This is my profile"};
+                    var result = template(data);
+                    res.send(result)
+                }
+                else{
+                    let HTMLPath = path.join(__dirname, './templates/registered/profile.html');
+                    var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+                    var data = { "name": name,};
+                    var result = template(data);
+                    res.send(result)
+                }
+            }
+            else{
+                let HTMLPath = path.join(__dirname, './templates/unregistered/limitprofile.html');
+                var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
+                var data = { "name": name,};
+                var result = template(data);
+                res.send(result)
+            }
+        }
+        else{
+            res.send("this profile does not exist")
+        }
+       
+    });
+    
+   
 })
 
 //logout//

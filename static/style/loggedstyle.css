@@ -14,7 +14,8 @@ body{
 }
 
 .flexcontainerlog{
-	margin-top: 5%;
+	
+	margin-top: 10vh;
 	justify-content: space-between;
 	display: flex;
 	flex-wrap: nowrap;
@@ -31,9 +32,7 @@ body{
 
 @media only screen and (max-width: 103.438em){/*72.438em*/
 	
-	.flexcontainerlog{
-		margin-top: 10%
-	}
+
 	
 }
 @media only screen and (max-width: 72.438em){
@@ -49,10 +48,7 @@ body{
 
 @media only screen and (max-width:41.5em){
 	
-	.flexcontainerlog{
-		margin-top: 15%;
-		margin-right: 1%;
-	}
+
 }
 
 

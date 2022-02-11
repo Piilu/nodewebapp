@@ -12,7 +12,7 @@
 
 
 .flexcontainer2{
-	margin-top: 5%;
+	margin-top: 10vh;
 	justify-content: space-between;
 	display: flex;
 	flex-wrap: nowrap;
@@ -62,9 +62,7 @@
 }
 @media only screen and (max-width: 72.438em){
 
-	.flexcontainer2{
-		margin-right: 12%
-	}
+
 	.triangle2-placeing{
 		margin-left: 1%;
 		margin-top: 0%;
