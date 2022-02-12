@@ -141,8 +141,8 @@
             <div style="padding-top: 2em; margin-right: 2%; ">
               <input onclick="roomPublicfunc()" style="width: 20%; width:auto;" type="radio" name="Mode" id="roomPublic"
                 value="Public">
-              <label  style="width: 20%; " for="roomPublic">Public</label>
-              
+              <label style="width: 20%; " for="roomPublic">Public</label>
+
               <input onclick="roomPrivatefunc();" style="width: 20%; width:auto;" type="radio" name="Mode"
                 id="roomPrivate" value="Private">
               <label style="width: 20%; " for="roomPrivate">Private</label>
@@ -250,8 +250,9 @@
 
       <h2 class="modalinputfont modalinputfontsize modalroomcreate ">ALL REQUESTS</h2>
       <div style=" min-height: 50%;" id="roomcreatdiv" class="modalroomcreate">
-
         <div id="listofrequests" class="addfriendList">
+
+
 
           <!-- <p style="text-align: center; opacity: 0.5;">You have 0 requests</p>
         <div>
@@ -334,13 +335,13 @@
 
 
 <script>
- 
- //console.log(username)
+
+  //console.log(username)
   updateFriends();
   localStorage.removeItem("selecteduser");
   //var username = localStorage.getItem("Username");
   document.getElementById('user').innerHTML = " " + username;
-  document.getElementById('user').href = "/"+username+"/"+"testprofile/"
+  document.getElementById('user').href = "/" + username + "/" + "testprofile/"
 
 
   const roomcreatview = document.getElementById("roomcreatdiv");

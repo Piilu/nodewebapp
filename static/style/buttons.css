@@ -72,18 +72,25 @@ background-color: rgba(152, 211, 145, 0.575);
 }
 
 .greenbtn{
-  background-color: rgba(103, 252, 135, 0.822);
+  background-color: rgba(147, 211, 161, 0.8);
+  color: white;
+
+  transition: 0.5s;
+
 }
 .redbtn{
-  background-color:hsla(0, 100%, 50%, 0.822);
+  background-color:hsla(0, 53%, 63%, 0.8);
+  color: white;
+
+  transition: 0.5s;
 }
 .greenbtn:hover{
     cursor: pointer;
-    background-color:rgba(103, 252, 135, 0.548) ;
+    background-color:rgba(103, 252, 135, 0.726) ;
   }
 .redbtn:hover{
     cursor: pointer;
-    background-color:hsla(0, 100%, 50%, 0.548) ;
+    background-color:hsla(0, 100%, 50%, 0.712) ;
   }
 
   .btnposts{

@@ -138,7 +138,7 @@ socket.on("addfriend_send_update",function(data){
     for (let i = 0; i <requestlength ; i++) {
         node = document.createElement("div");
         node.id ="friendrequest"+data[i];    
-        node.innerHTML = ' <h1 class="addfriendListp">'+data[i]+'</h1><button onclick ="friendrequestDecline(\'' + data[i] + '\')" class="redbtn">Decline</button><button  onclick="friendrequestAccept(\'' + data[i] + '\')" class="greenbtn">Accept</button>'
+        node.innerHTML = '<h2 class="addfriendListp">'+data[i]+'</h2><button onclick ="friendrequestDecline(\'' + data[i] + '\')" class="redbtn">Decline</button><button  onclick="friendrequestAccept(\'' + data[i] + '\')" class="greenbtn">Accept</button>'
         document.getElementById("listofrequests").append(node);
 
     }
