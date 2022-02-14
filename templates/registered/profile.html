@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html " lang="en">
+<html " lang=" en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-     <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
     <link rel="stylesheet" href="/static/style//loggedstyle.css">
     <link rel="stylesheet" href="/static/style/newstyle.css">
     <link rel="stylesheet" href="/static/style/customscroll.css">
+    <link rel="stylesheet" href="/static/style/profile.css">
+    <link rel="stylesheet" href="/static/style/animationnew.css">
 
+    <script>
+        var username = "{{name}}"
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="/static/javascript/profile.js"></script>
+    <script src="/static/javascript/activity.js"></script>
+    <script src="/static/javascript/script.js"></script>
+    <script src="/static/javascript/likepost.js"></script>
     <title>Watchparty | {{name}}'s profile</title>
 </head>
 
-<body style="height: 90%;"  class="dark-theme">
+<body style="height: 90%;" class="dark-theme">
     <header class="header3">
         <div style="width:  90%">
             <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
@@ -22,18 +33,74 @@
         <div class="navsettings" style="  width: 100%">
             <div class="settingsdiv">
                 <!--<button onclick="showsettings()" class="postbtn  fa fa-bars"></button>-->
-
             </div>
 
         </div>
     </header>
 
+
     <div class="flexcontainerlog" style="padding: 0; text-align:center;">
-        <div>
-            <h2>{{name}}'s profile</h2>
-            <p id="dec"></p>
+        <div id="tools" style="width: 20%" class="maincontainer menuview left">
+            <h2 class="customh2log">Home</h2>
+            <div class="maincontainer">
+                <button class=" btn2" onclick="openModal();"> Create</button>
+                <div style="margin-bottom: 5%;"></div>
+                <button class="btn2" onclick="getallfriends();openListFriends();"> Friends</button>
+                <div style="margin-bottom: 5%;"></div>
+                <button class="btn2" onclick="getallusers();openListPeopleModal();"> Find people</button>
+                <div style="margin-bottom: 5%;"></div>
+                <button onclick="updateRoomlist();openListModal();" class="btn2 	"> Rooms</button>
+            </div>
+            <div class="namefooter">
+                <a id="user">Username</a>
+            </div>
         </div>
+        <div id="home" style="text-align: center; " class="maincontainer middle ">
+            <div class="profileflex">
+                <div class="profile-item">
+                    <div class="pic"></div>
+                    <div class="profile-info">
+                        <h2>{{name}}</h2>
+                        <p id="dec"></p>
+                    </div>
+                </div>
+                <div class="settings-nav">
+                    <button onclick="showposts()">Posts</button>
+                    <button onclick="showtab()">IDK</button>
+                </div>
+                <div id="profile-posts" style="display: block;animation: fadein 0.5s;"
+                    class="maincontainer profile-posts">
+
+                    <h2 id="profilepoststitle" style="color: gainsboro; opacity: 0.2;"> <i>HERE YOU CAN SEE ALL YOUR
+                            POSTS
+                            DOING</i> </h2>
+
+                </div>
+                <div style="display: none;" id="tab2">
+                    <h2 id="poststitle" style="color: gainsboro; opacity: 0.2;"> <i>IDK SOME TAB</i> </h2>
+                </div>
+            </div>
+        </div>
+
+        <div id="friends" style="width: 20%" class="maincontainer right">
+            <h2 style="text-align: center;" class="customh2log">Activity</h2>
+            <div id="activitydiv"
+                style="text-align: left; animation: fadein 1s; overflow-y: auto; margin-bottom:40%; float: left;"
+                class="maincontainer">
+
+                <p style=" text-align: center; color: gainsboro; opacity: 0.2;">NO ACTIVITY</p>
+
+
+
+
+            </div>
+        </div>
+
     </div>
+    <!--Notifications-->
+    <div class="footer notify" style="animation: fadein 0.5s; height: auto; display: block;" id="notifytest">
+    </div>
+    <!-- #endregion -->
 
 </body>
 <script>

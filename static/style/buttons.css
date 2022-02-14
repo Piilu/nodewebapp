@@ -17,13 +17,13 @@
     }
 
     .button:hover{
-    background-color: #1a1818a8;
+    background-color: rgb(54, 54, 54);
     }
     
     .button1{padding: 1em;
     width: 8em;}
     .button2{
-      background-color: rgb(169, 193, 202);
+      background-color: #716D6D;
     }
 
 .postbtn{

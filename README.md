@@ -1,22 +1,24 @@
 <h1>Watchparty notes</h1>
 
 <strong>To Do:</strong>
-1. make custom video UI
-1. Change Database, make every user its own table (done i think).
+1. handle friend request accept
+1. Make activity separate js file
+1. Add time and date (if time :) )
+1. Update room create system.
 1. Possibility to make rooms with Youtube links ("movie name is not required")
-1. maybe delete privateroom password from memory when disconnected??
 1. some settings in videoplayer page for changeing the video (only for the room owner).
 1. make clickkable links in chat.
 1. When updating user friends in database maybe check in flask if this username actually exists.
+1. think about dynamical scroll AGAIN
     
 <strong>Bugs:</strong>
-- Send connection ID not name cookie
-- when pressing space to pause or play it does not send it to all users, also when clicking the play/stop button (Temporary removed native button)
-- If there are two different rooms named same than is a big big problem (have to make room id's)
+- If user sends a request to other user who is on the user find tab then the "add friend" status does not change. Also both see "Request sent"
+- if connection is lost while user is connected to room, then activity status would not change
+- If there are two different rooms named same by same user than it's a big big problem (have to make room id's)
 - if refresh too fast it doubles user (videoplayer html) but it fixes itself
 - Server throws error when username folder already exist
 - When accpeting friend request it doubles some posts friends posts. (Fixed by refreshing the page) (Temporary fixed by forceing browser to refresh) 
-- dynamical scroll is broken when data is less then 10 it sometimes dobles the posts, also sometimes it does not load all data.
+- dynamical scroll is broken when data is less then 10 it sometimes dobles the posts, also sometimes it does not load all data. (removed)
 
     
 
@@ -90,6 +92,39 @@
                 </div>
             </div>
 ```
+<strong> User profile post template example (new style)</strong>
+
+´´´
+<div style="text-align: left; animation: fadein 1s;" class="postborder maincontainer">
+                    <a id="'+data[i].Postid+" username"+'" class="postName maincontainer"
+                        href="#">'+data[i].Username+'</a>
+                    <div class="limit maincontainer" style="line-height: 2;">
+                        <p style="white-space: pre-wrap;" class="maincontainer">'+data[i].Post+'</p>
+                    </div>
+                    <div style="width: 90%;" class="postline maincontainer">
+                        <p id="'+data[i].Postid+" likenr"+'">'+data[i].Likes+' likes</p>
+                    </div>
+                    <div class="postfooter">
+                        <div>
+                            <button onclick="likebtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up">
+                                LIKE</button>
+                        </div>
+                        <div>
+                            <button onclick="commentbtn(this);" id="'+data[i].Postid+'"
+                                class="btnposts fa fa-comment-o">COMMENT</button>
+                        </div>
+                    </div>
+                    <div id="'+data[i].Postid+" postcommentssec"+'" style="display: none">
+                        <input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled>
+                    </div>
+                </div>
+´´´
+
+<strong> User profile post template example (new style)</strong>
+
+´´´
+<div style="text-align: left; animation: fadein 1s;"class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer"href="#">'+data[i].Username+'</a><div class="limit maincontainer"style="line-height: 2;"><p style="white-space:pre-wrap;" class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+" likenr"+'">'+data[i].Likes+' likes</p></div><div class="postfooter"><div><button onclick="likebtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up">LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'"class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+data[i].Postid+" postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div></div>
+´´´
 <strong> User post template example (new style)</strong>
 ```
 <div class="postborder maincontainer">

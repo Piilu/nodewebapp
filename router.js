@@ -571,7 +571,7 @@ router.get("/unregistered/",function(req,res){
 
 });
 
-router.get("/:user/testprofile/",function(req,res){
+router.get("/:user/profile/",function(req,res){
     session = req.session
     name = req.params.user
     $query = 'SELECT * FROM flask WHERE Username =' +  connection.escape(name);

@@ -14,10 +14,7 @@ var requestlength;
 var allpostsusernames = [];
 //var allpostsids=[];
 //var thispostid;
-var addlike;
-//var alllikes =[];
-var alllikedposts=[];
-var updatelikes;
+var alllikedposts = [];
 var scrollLock = false;
 var lastload = 0;
 
@@ -77,18 +74,11 @@ socket.on("get_requests_lenght",function(data){
 //socket.on("this_post_id",function(data){
 //    thispostid =data;
 //})
-socket.on("addlike_send",function(data){
-    addlike = data;
-})
-//socket.on("load_likes_send",function(data){
-//    alllikes = data;
-//})
+
 socket.on("all_liked_posts_send",function(data){
     alllikedposts=data;
 })
-socket.on("update_likes",function(data){
-    updatelikes = data;
-})
+
 //////////////////////////////////////////////
 
 //GETS ALL LOGGED USER ROOMS
@@ -396,50 +386,12 @@ socket.on("load_posts_send",function(data){
 })
 
 
-socket.on("like_send",function(data){
-    post = document.getElementById(data);
-    likenr = document.getElementById(data+"likenr")
-    if(post.style.backgroundColor!="rgb(154, 250, 129)"){
-        likenr.innerHTML=addlike+" likes";
-        post.style.backgroundColor="rgb(154, 250, 129)";
-        post.style.color="black";
-    }
 
-})
 
-socket.on("remove_like_send",function(data){
-    post = document.getElementById(data);
-    post.style=null;
-    likenr = document.getElementById(data+"likenr")
-    likenr.innerHTML=addlike+" likes";
-});
 
-socket.on("update_likes_send",function(data){
-    likenr = document.getElementById(data+"likenr").innerHTML=+updatelikes+" likes";
-})
 
-//only refreshes when main page is loaded
-socket.on("load_friends_to_activity_send",function(data){
-    if(data.length!=0){
-        document.getElementById("activitydiv").innerHTML="";
-    }
-    else{
-      
-      document.getElementById("activitydiv").innerHTML='<p style="text-align: center; color: gainsboro; opacity: 0.2;">NO ACTIVITY</p>';
-    }
-    for(let i = 0;i<data.length;i++){
-        node = document.createElement("div");
-        node.className = "statusitem";
-        node.style = 'transition:0.3s; animation: fadein 0.5s';
-        node.id=data[i]+"activity";
-        node.innerHTML ='<a  href="">'+data[i]+'<br><p class="watchingstatus">Watching <i id="'+data[i]+"activitystatus"+'">Movie name</i></p></a>'
-        document.getElementById("activitydiv").append(node);
-    }
-})
-//hetkel saadetakse see koikidele kasutajatele kui keegi joinib roomi
-socket.on("change_activity_send",function(data){
-    loadactivity();
-})
+
+
 
 
 
@@ -579,32 +531,9 @@ function fadeIn(message){
  });
  
  }
- function likebtn(data){
-    var postcreator = document.getElementById(data.id+"username").innerHTML; 
-    if(data.style.backgroundColor!="rgb(154, 250, 129)"){
+ 
 
-        socket.emit("like",{
-            username:name,
-            button:data.id,
-            postmaker: postcreator,
-        })
-    }
-    else{
-        socket.emit("remove_like",{
-            username:name,
-            button:data.id,
-            postmaker: postcreator,
-        });
-    }
-        
-    
-}
 
-function loadactivity(){
-    socket.emit("load_friends_to_activity",{
-        username:name,
-    })
-}
 
 
 //needs to be done

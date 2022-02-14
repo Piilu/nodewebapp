@@ -33,7 +33,7 @@
 
 .triangle-right2 {
 	margin-top: 1%;
-	background-image: url("../../assets/logo.png");
+	/*background-image: url("/static/assets/logo.png");*/
 	background-size: contain;
 	height: 70%;
 	width: 100%;
@@ -46,7 +46,7 @@
 }
 .triangle-right2-signup{
 	margin-top: 5%;
-	background-image: url("../../assets/logo.png");
+	/*background-image: url("/static/assets/logo.png");*/
 	background-size: contain;
 	height: 60%;
 	width: 100%;

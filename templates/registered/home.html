@@ -31,6 +31,10 @@
     var username = "{{name}}"
   </script>
   <script src="/static/javascript/socketio.js"></script>
+  <script src="/static/javascript/activity.js"></script>
+
+
+  <script src="/static/javascript/likepost.js"></script>
 </head>
 
 <body id="mybody" class="dark-theme" style="overflow-y: auto">
@@ -308,7 +312,7 @@
   <!--#endregion-->
   <!-- #endregion -->
   <!--Notifications-->
-  <div class="footer" style="height: auto; display: block;" id="notifytest">
+  <div class="footer notify" style="animation: fadein 0.5s; height: auto; display: block;" id="notifytest">
   </div>
   <!-- #endregion -->
 
@@ -341,7 +345,7 @@
   localStorage.removeItem("selecteduser");
   //var username = localStorage.getItem("Username");
   document.getElementById('user').innerHTML = " " + username;
-  document.getElementById('user').href = "/" + username + "/" + "testprofile/"
+  document.getElementById('user').href = "/" + username + "/" + "profile/"
 
 
   const roomcreatview = document.getElementById("roomcreatdiv");

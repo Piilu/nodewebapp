@@ -1,6 +1,6 @@
 .triangle-right {
 	margin-top: 15%;
-	background-image: url("../../assets/logo.png");
+	background-image: url("/static/assets/logo.png");
 	background-size: contain;
 	height: 65%;
 	width: 100%;
