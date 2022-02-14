@@ -95,7 +95,7 @@
 ```
 <strong> User profile post template example (new style)</strong>
 
-´´´
+```
 <div style="text-align: left; animation: fadein 1s;" class="postborder maincontainer">
                     <a id="'+data[i].Postid+" username"+'" class="postName maincontainer"
                         href="#">'+data[i].Username+'</a>
@@ -119,13 +119,13 @@
                         <input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled>
                     </div>
                 </div>
-´´´
+```
 
 <strong> User profile post template example (new style)</strong>
 
-´´´
+```
 <div style="text-align: left; animation: fadein 1s;"class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer"href="#">'+data[i].Username+'</a><div class="limit maincontainer"style="line-height: 2;"><p style="white-space:pre-wrap;" class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+" likenr"+'">'+data[i].Likes+' likes</p></div><div class="postfooter"><div><button onclick="likebtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up">LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'"class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+data[i].Postid+" postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div></div>
-´´´
+```
 <strong> User post template example (new style)</strong>
 ```
 <div class="postborder maincontainer">
