@@ -587,14 +587,14 @@ router.get("/:user/profile/",function(req,res){
         
                     let HTMLPath = path.join(__dirname, './templates/registered/profile.html');
                     var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
-                    var data = { "name": name,"dec":"This is my profile"};
+                    var data = { "name":session.userid,"profilename": name,"dec":"This is my profile"};
                     var result = template(data);
                     res.send(result)
                 }
                 else{
                     let HTMLPath = path.join(__dirname, './templates/registered/profile.html');
                     var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
-                    var data = { "name": name,};
+                    var data = { "name":session.userid,"profilename": name,};
                     var result = template(data);
                     res.send(result)
                 }

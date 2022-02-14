@@ -12,16 +12,26 @@
     <link rel="stylesheet" href="/static/style/customscroll.css">
     <link rel="stylesheet" href="/static/style/profile.css">
     <link rel="stylesheet" href="/static/style/animationnew.css">
+    <link rel="stylesheet" type="text/css" href="/static/style/buttons.css" />
+    <link rel="stylesheet" href="/static/style/notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <script>
         var username = "{{name}}"
+        var profilename = "{{profilename}}"
+
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="/socket.io/socket.io.js"></script>
 
     <script src="/static/javascript/profile.js"></script>
     <script src="/static/javascript/activity.js"></script>
     <script src="/static/javascript/script.js"></script>
     <script src="/static/javascript/likepost.js"></script>
+    <script src="/static/javascript/handlescreensize.js"></script>
+    <script src="/static/javascript/request.js"></script>
     <title>Watchparty | {{name}}'s profile</title>
 </head>
 
@@ -41,26 +51,16 @@
 
     <div class="flexcontainerlog" style="padding: 0; text-align:center;">
         <div id="tools" style="width: 20%" class="maincontainer menuview left">
-            <h2 class="customh2log">Home</h2>
-            <div class="maincontainer">
-                <button class=" btn2" onclick="openModal();"> Create</button>
-                <div style="margin-bottom: 5%;"></div>
-                <button class="btn2" onclick="getallfriends();openListFriends();"> Friends</button>
-                <div style="margin-bottom: 5%;"></div>
-                <button class="btn2" onclick="getallusers();openListPeopleModal();"> Find people</button>
-                <div style="margin-bottom: 5%;"></div>
-                <button onclick="updateRoomlist();openListModal();" class="btn2 	"> Rooms</button>
-            </div>
-            <div class="namefooter">
-                <a id="user">Username</a>
-            </div>
+            <h2 class="customh2log">Settings</h2>
+            <p>IDK SOME SETTINGS MAYBE</p>
+
         </div>
         <div id="home" style="text-align: center; " class="maincontainer middle ">
             <div class="profileflex">
                 <div class="profile-item">
                     <div class="pic"></div>
                     <div class="profile-info">
-                        <h2>{{name}}</h2>
+                        <h2>{{profilename}}</h2>
                         <p id="dec"></p>
                     </div>
                 </div>
@@ -101,13 +101,31 @@
     <div class="footer notify" style="animation: fadein 0.5s; height: auto; display: block;" id="notifytest">
     </div>
     <!-- #endregion -->
+    <!--#region mobilebottomnavbar-->
+    <!--ONLY FOR MOBILE-->
+    <div class='footer mobilecontainer' style=" width: 100%; left:0; bottom:0;  height: 4em;">
+        <div class="mobilenav">
+            <button onclick="openTools();" style=" width: 100%; height: 4em; border-top-left-radius: 1em;  "
+                class="button button2">Menu</button>
+        </div>
+        <div class="mobilenav">
+            <button onclick="location.reload()" style=" width: 100%; height: 4em;  "
+                class="button button2">Home</button>
+        </div>
+        <div class="mobilenav">
+            <button onclick="openFriends();" style=" width: 100%; height: 4em; border-top-right-radius: 1em;  "
+                class="button button2">Friends</button>
+        </div>
 
+    </div>
+    <!-- #endregion -->
 </body>
 <script>
     let dec = "{{dec}}"
     if (dec) {
         document.getElementById('dec').innerHTML = "{{dec}}"
     }
+    console.log("{{name}}")
 </script>
 
 </html>

@@ -96,29 +96,26 @@ io.sockets.on('connection', function (socket) {
       console.log("likes find query succesfully executed");
       var row;
       var alllikedposts = [];
-      var nolikedposts = "False";
       Object.keys(rows).forEach(function (key) {
         row = rows[key];
         if (row.Username == data.username) {
           alllikedposts.push(row.PostID);
         }
-        else {
-          nolikedposts = "True";
-        }
       });
-      //console.log(alllikedposts)    
+     // console.log(alllikedposts)    
       io.to(socket.id).emit("all_liked_posts_send_profile", alllikedposts);
       //console.log(alllikedposts)
+      $query = 'SELECT * from posts WHERE Username =' + connection.escape(data.profilename);
+      connection.query($query, function (err, rows, fields) {
+        if (err) {
+          console.log("An error ocurred performing the query (Profile find).");
+          return;
+        }
+        console.log("Profile find query succesfully executed");
+        io.to(socket.id).emit("send_profile_data", rows)
+      });
     });
-    $query = 'SELECT * from posts flask WHERE Username =' + connection.escape(data.username);
-    connection.query($query, function (err, rows, fields) {
-      if (err) {
-        console.log("An error ocurred performing the query (Profile find).");
-        return;
-      }
-      console.log("Profile find query succesfully executed");
-      io.to(socket.id).emit("send_profile_data", rows)
-    });
+
 
   });
   socket.on('join room', function (data) {

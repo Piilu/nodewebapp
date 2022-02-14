@@ -60,7 +60,7 @@ function openTools() {
 }
 
 function openHome() {
-    home = document.getElementById("home").style.display = "block";
+    home = document.getElementById("home").style.display = "";
     tools = document.getElementById("tools").style.display = "none";
     friends = document.getElementById("friends").style.display = "none";
 }

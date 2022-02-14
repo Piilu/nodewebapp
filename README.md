@@ -19,6 +19,7 @@
 - Server throws error when username folder already exist
 - When accpeting friend request it doubles some posts friends posts. (Fixed by refreshing the page) (Temporary fixed by forceing browser to refresh) 
 - dynamical scroll is broken when data is less then 10 it sometimes dobles the posts, also sometimes it does not load all data. (removed)
+- real time update does not work between users who are not friends (you can leave it for now)
 
     
 

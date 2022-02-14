@@ -13,6 +13,7 @@ var alllikedposts = [];
 socket.on("all_liked_posts_send_profile", function (data) {
     loadactivity();
     alllikedposts = data;
+    console.log("SIIIN",alllikedposts)
    // console.log("Add liked posts", data)
 })
 //socket.on("update_likes", function (data) {
@@ -20,6 +21,7 @@ socket.on("all_liked_posts_send_profile", function (data) {
 //})
 socket.emit('join_profile', {
     username: name,
+    profilename:profilename,
 });
 
 //socket.on("remove_like_send", function (data) {
@@ -47,7 +49,7 @@ socket.on('send_profile_data', function (data) {
             var profilepost = document.createElement("div");
             profilepost.id = data.PostID
             profilepost.className = "postdiv"
-            profilepost.innerHTML = '<div style="text-align: left; animation: fadein 1s;"class="postborder maincontainer"><a id="' + data[i].PostID + "username" + '" class="postName maincontainer"href="#">' + data[i].Username + '</a><div class="limit maincontainer"style="line-height: 2;"><p style="white-space:pre-wrap;" class="maincontainer">' + data[i].Post + '</p></div><div style="width: 90%;" class="postline maincontainer"><p id="' + data[i].PostID + "likenr" + '">' + data[i].Likes + ' likes</p></div><div class="postfooter"><div><button onclick="likebtn(this);" id="' + data[i].PostID + '" class="btnposts fa fa-thumbs-o-up">LIKE</button></div><div><button onclick="commentbtn(this);" id="' + data[i].PostID + '"class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="' + data[i].PostID + "postcommentssec" + '" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div></div>'
+            profilepost.innerHTML = '<div style="text-align: left; animation: fadein 1s;"class="postborder maincontainer"><a id="' + data[i].PostID + "username" + '" class="postName maincontainer"href="#">' + data[i].Username + '</a><div class="limit maincontainer"style="line-height: 2;"><p style="white-space:pre-wrap;" class="maincontainer">' + data[i].Post + '</p></div><div style="width: 90%;" class="postline maincontainer"><p id="' + data[i].PostID + "likenr" + '">' + data[i].Likes + ' likes</p></div><div class="postfooter"><div><button onclick="likebtn(this);" id="' + data[i].PostID + '" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="' + data[i].PostID + '"class="btnposts fa fa-comment-o"> COMMENT</button></div></div><div id="' + data[i].PostID + "postcommentssec" + '" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div></div>'
             document.getElementById("profile-posts").append(profilepost);
             for (let a = 0; a < alllikedposts.length; a++) {
                 if (alllikedposts[a] == data[i].PostID) {

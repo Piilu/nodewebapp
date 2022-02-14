@@ -279,12 +279,15 @@ socket.on("accept_request_send_notify",function(data){
 //DELETES THE REQUEST WHEN USER HAS CLICCKED DECLINE
 socket.on("decline_request_send",function(data){
     document.getElementById("friendrequest"+data.friendname).remove();
+    if(document.getElementById("listofrequests").querySelectorAll('div').length == 0){
+        document.getElementById("listofrequests").innerHTML='<p style="text-align: center; opacity: 0.5;">You have 0 requests</p>';
+    }
     console.log(data.username+" declined "+data.friendname+" request");
     
 });
 //LETS USER KNOW THAT THE OTHER USER DECLINED YOUR FRIEND REQUEST
 socket.on("decline_request_notify",function(data){
-    document.getElementById("addfriendbtndiv").innerHTML='<button id="addtofriendsbtn'+data.friendname+'"  onclick="addfriend();" class="addtofriends">Add to friends</button>';
+    document.getElementById("addfriendbtndiv").innerHTML='<button id="addtofriendsbtn'+data.username+'"  onclick="addfriend();" class="addtofriends">Add to friends</button>';
     fadeIn(data.username+" declined your friend request");
 });
 //GETS THE NUMBER OF USERS
@@ -369,7 +372,7 @@ socket.on("load_posts_send",function(data){
         node.style="animation: fadeani 0.75s;"
         
 
-        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer" href="#">'+data[i].Username+'</a><div class="limit maincontainer" style="line-height: 2;"><p style="white-space: pre-wrap;" class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+"likenr"+'">'+data[i].Likes+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-comment-o">COMMENT</button></div></div><div id="'+data[i].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div> </div>'
+        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer" href="#">'+data[i].Username+'</a><div class="limit maincontainer" style="line-height: 2;"><p style="white-space: pre-wrap;" class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+"likenr"+'">'+data[i].Likes+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-comment-o"> COMMENT</button></div></div><div id="'+data[i].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div> </div>'
         
 
         document.getElementById("posts").append(node);//insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order
