@@ -40,12 +40,35 @@
   padding: 0.5em;
   width: 20%;
   margin-bottom: 1%;
+  transition: 0.5s;
   
 }
 .postbtn:hover{
   background-color: #FDBD85; 
   }
 
+.navbarham{
+  float: right;
+  background-color: transparent; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size:1em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  width: 20%;
+  margin-bottom: 1%;
+  transition: 0.5s;
+  
+  }
+.navbarham:hover{
+  background-color: #716D6D;
+  border-radius:0.5em ;
+
+}
 
   .uploadBtn{
     border: none;

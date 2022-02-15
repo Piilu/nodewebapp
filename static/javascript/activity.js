@@ -22,7 +22,7 @@ socket.on("load_friends_to_activity_send",function(data){
         node.className = "statusitem";
         node.style = 'transition:0.3s; animation: fadein 0.5s';
         node.id=data[i]+"activity";
-        node.innerHTML ='<a  href="">'+data[i]+'<br><p class="watchingstatus">Watching <i id="'+data[i]+"activitystatus"+'">Movie name</i></p></a>'
+        node.innerHTML ='<a  href="">'+data[i].username+'<br><p class="watchingstatus">Vibing in  <strong id="'+data[i].username+"activitystatus"+'">'+data[i].status+" room"+ ' </strong></p></a>'
         document.getElementById("activitydiv").append(node);
     }
 })

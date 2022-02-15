@@ -118,7 +118,7 @@ io.sockets.on('connection', function (socket) {
 
 
   });
-  socket.on('join room', function (data) {
+  socket.on('join room', function(data) {
 
     socket.nickname = data.username;
     socket.join(data.room);
@@ -130,6 +130,7 @@ io.sockets.on('connection', function (socket) {
         return;
       }
       console.log("Friends online find query succesfully executed");
+      console.log(data)
       io.emit("change_activity_send", data);//hetkel saadab koguaeg infot igale inimesele kui keegi ruumi joinib oleks vaja muuta
 
 
@@ -494,7 +495,14 @@ io.sockets.on('connection', function (socket) {
 
       }
       else {
-        io.to(socket.id).emit("check_requests_sent", data);
+        if(data.username == row.Usersent){
+
+          io.to(socket.id).emit("check_requests_sent", data);
+        }
+        else{
+          io.to(socket.id).emit("check_requests_sent_tome", data);
+
+        }
       }
     });
 
@@ -912,7 +920,7 @@ io.sockets.on('connection', function (socket) {
           for (let i = 0; i < friends.length; i++) {
 
             if (friends[i] == row.Username) {
-              friendsonline.push(row.Username);
+              friendsonline.push({username:row.Username, status:row.Status});
 
             }
           }

@@ -109,12 +109,20 @@ socket.on("update_friends_send",function(data){
     loadposts();
     if(data !=0){
         fadeIn("You have "+data+" request(s)")
+        if(document.getElementById("logmenu")){
+            document.getElementById("logmenu").innerHTML = '<span class="notification-indicator"> </span>'
+        }
     }
 })
 //SHOWS WHEN SOMEONE SENDS YOU A FRIEND REQUEST
 socket.on("addfriend_send",function(data){
     updaterequests();
+    checkrequests();
     fadeIn(data.username+" sent you a friend request");
+   
+    if(document.getElementById("logmenu")){
+        document.getElementById("logmenu").innerHTML = '<span class="notification-indicator"> </span>'
+    }
 
 })
 //RENDERS ALL REQUESTS IN REQUEST TAB SO USER CAN ACCEPT OR DECLINE IT 
@@ -155,6 +163,7 @@ socket.on("get_all_users_send",function(data){
             document.getElementById("seeallusers").style.display = "none";
             document.getElementById("seethisusersrooms").style.display = "block";
             document.getElementById("seethisuserroomstitle").innerHTML = this.innerHTML+"'s rooms";
+            document.getElementById("view-user-profile").href = "/profile/"+this.innerHTML+"/";
             thisusername= this.innerHTML;
             localStorage.setItem("selecteduser",thisusername);
             checkrequests();
@@ -222,6 +231,7 @@ socket.on("get_this_friend_rooms_send",function(data){
 
 //RENDERS THE "ADD FRIEND BUTTON"
 socket.on("addfriend_send_show",function(data){
+    console.log("testing")
     btn = document.getElementById("addtofriendsbtn"+data.friendname+"");
     btn.disabled = "true";
     btn.innerHTML="Request sent";
@@ -244,6 +254,15 @@ socket.on("check_requests_sent",function(data){
     btn.style.cursor = "default";
 })
 
+socket.on("check_requests_sent_tome", function(data){
+    document.getElementById("addfriendbtndiv").innerHTML='<button id="addtofriendsbtn'+data.friendname+'"  onclick="addfriend();" class="addtofriends">Add to friends</button>';
+    btn = document.getElementById("addtofriendsbtn"+data.friendname+"");
+    btn.disabled = "true";
+    btn.innerHTML="Has sent you a friend request";
+    btn.style.backgroundColor = "gray";
+    btn.style.cursor = "default";
+});
+
 //RENDERS THE "ADD FRIEND BUTTON"
 socket.on("check_requests_sent_2",function(data){
     document.getElementById("addfriendbtndiv").innerHTML='<button id="addtofriendsbtn'+data.friendname+'"  onclick="addfriend();" class="addtofriends">Add to friends</button>';
@@ -260,7 +279,13 @@ socket.on("check_requests_sent_2",function(data){
 socket.on("accept_request_send",function(data){
     loadactivity();
     //loadposts();
+    
     document.getElementById("friendrequest"+data.friendname).remove();
+    if(document.getElementById("listofrequests").querySelectorAll('div').length == 0){
+        document.getElementById("logmenu").innerHTML = ''
+
+        document.getElementById("listofrequests").innerHTML='<p style="text-align: center; opacity: 0.5;">You have 0 requests</p>';
+    }
     //console.log(data.username + " and "+ data.friendname+" are now friends");
 });
 //RENDERS THE "YOUR FRIEND" DISABLED BUTTON
@@ -280,6 +305,7 @@ socket.on("accept_request_send_notify",function(data){
 socket.on("decline_request_send",function(data){
     document.getElementById("friendrequest"+data.friendname).remove();
     if(document.getElementById("listofrequests").querySelectorAll('div').length == 0){
+        document.getElementById("logmenu").innerHTML = ''
         document.getElementById("listofrequests").innerHTML='<p style="text-align: center; opacity: 0.5;">You have 0 requests</p>';
     }
     console.log(data.username+" declined "+data.friendname+" request");
@@ -310,6 +336,7 @@ socket.on("get_all_friends_send",function(data){
             document.getElementById("seeallfriends").style.display = "none";
             document.getElementById("selectedFriend").style.display = "block";
             document.getElementById("seethisfriendroomstitle").innerHTML = this.innerHTML+"'s rooms";
+            document.getElementById("view-friend-profile").href = "/profile/"+this.innerHTML+"/";
             thisusername= this.innerHTML;
             localStorage.setItem("selecteduser",thisusername);
             getthisfriendrooms();
@@ -338,7 +365,7 @@ socket.on("make_post_send",function(data){
     node = document.createElement("div");
     node.className ="postdiv border2";
     node.style="animation: fadeani 0.5s;"
-    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[0].Postid+"username"+'" class="postName maincontainer" href="#">'+data[0].Username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p style="white-space: pre-wrap;" class="maincontainer">'+data[0].Message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id = "'+data[0].Postid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[0].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[0].Postid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div id="'+data[0].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div></div>'
+    node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[0].Postid+"username"+'" class="postName maincontainer" href="/profile/'+data[0].Username+'">'+data[0].Username+'</a><div class="maincontainer" style=" margin-bottom: 5%;"><div class="limit maincontainer" style="line-height: 2;"><p style="white-space: pre-wrap;" class="maincontainer">'+data[0].Message+'</p></div></div><div style="width: 90%;" class="postline maincontainer"><p id = "'+data[0].Postid+"likenr"+'">0 likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[0].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[0].Postid+'" class="btnposts fa fa-thumbs-o-up"> COMMENT</button></div></div><div id="'+data[0].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div></div>'
     document.getElementById("posts").insertBefore(node,post.firstChild);
 })
 
@@ -372,7 +399,7 @@ socket.on("load_posts_send",function(data){
         node.style="animation: fadeani 0.75s;"
         
 
-        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer" href="#">'+data[i].Username+'</a><div class="limit maincontainer" style="line-height: 2;"><p style="white-space: pre-wrap;" class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+"likenr"+'">'+data[i].Likes+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-comment-o"> COMMENT</button></div></div><div id="'+data[i].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div> </div>'
+        node.innerHTML ='<div style="animation: fadein 1s;" class="postborder maincontainer"><a id="'+data[i].Postid+"username"+'" class="postName maincontainer" href="/profile/'+data[i].Username+'">'+data[i].Username+'</a><div class="limit maincontainer" style="line-height: 2;"><p style="white-space: pre-wrap;" class="maincontainer">'+data[i].Post+'</p></div><div style="width: 90%;" class="postline maincontainer"><p id="'+data[i].Postid+"likenr"+'">'+data[i].Likes+' likes</p></div><div  class="postfooter"> <div><button onclick="likebtn(this);"id="'+data[i].Postid+'" class="btnposts fa fa-thumbs-o-up"> LIKE</button></div><div><button onclick="commentbtn(this);" id="'+data[i].Postid+'" class="btnposts fa fa-comment-o"> COMMENT</button></div></div><div id="'+data[i].Postid+"postcommentssec"+'" style="display: none"><input class="commentinput" type="text" name="" id="" placeholder="Not available" disabled></div> </div>'
         
 
         document.getElementById("posts").append(node);//insertBefore(node,post.firstChild);   //.append(node);<-- is also for loadmore btn so it will be in correct order

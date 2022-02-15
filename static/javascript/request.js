@@ -2,7 +2,9 @@
 socket.on("update_friends_send",function(data){
     if(data !=0){
         fadeIn("You have "+data+" request(s)")
+
     }
+
 })
 
 socket.on("addfriend_send",function(data){

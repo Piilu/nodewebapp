@@ -107,6 +107,10 @@ function showsettings() {
         x.style.display = "none";
     }
 }
+function closehamSettings(){
+    var x = document.getElementById("settingcontent");
+    x.style.display = "none";
+}
 
 
 function openModal() {

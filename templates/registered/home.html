@@ -40,33 +40,31 @@
 <body id="mybody" class="dark-theme" style="overflow-y: auto">
 
   <header class="header3">
-    <div style="width:  90%">
-      <a href="/" class="logofont"><strong>Watch</strong><strong style="color: orange;">party</strong></a>
+    <div style=" text-align: center; width: 35%">
+      <a href="/" class="logofont"><strong>Watch</strong><strong style=" color: orange;">party</strong></a>
 
 
     </div>
 
 
-    <div class="navbarspacer" style="width: 100%;">
+    <div class="navbarspacer" style=" width: 20%;">
       <input style="width: 85%" type="text" placeholder="Search . . ." />
     </div>
 
 
-    <div class="navsettings" style="  width: 100%">
+    <div class="navsettings" style="  width: 40%">
       <div class="settingsdiv">
-        <button style="background-color: transparent;" onclick="showsettings()" class=" postbtn  fa fa-bars"></button>
-
+        <button id="logmenu" style="position: relative; " onclick="showsettings()" class="  fa fa-bars navbarham"></button>
       </div>
 
     </div>
   </header>
-  <div id="settingcontent" class="settingitems">
+  <div style="animation: fadein 0.5s;" id="settingcontent" class="settingitems">
     <button class="btn" onclick="openFrienRequestModal();">Friend requests</button>
     <button class="btn" id="modeswitch" onclick="switchmode()"></button>
     <button class="btn" onclick="logOut();">Logout</button>
-
   </div>
-  <div class="maincontainer flexcontainerlog">
+  <div id="mainpage" class="maincontainer flexcontainerlog">
     <div id="tools" style="width: 20%" class="maincontainer menuview left">
       <h2 class="customh2log">Home</h2>
       <div class="maincontainer">
@@ -225,7 +223,10 @@
       <span onclick="findpeopleModalBackbtn()" class="Back">&lsaquo;</span>
 
       <h2 class="modalinputfont modalinputfontsize modalroomcreate" id="seethisuserroomstitle"
-        style="text-align: center;"></h2>
+        style="margin-bottom: 0.2em;text-align: center;"></h2>
+        <div style="text-align: center;">
+          <a id="view-user-profile" class="tagafontprofile" href="#">View Profile</a>
+        </div>
 
       <div style=" max-height: 50%;" id="roomcreatdiv" class="modalroomcreate">
 
@@ -295,8 +296,10 @@
       <span onclick="friendsBackBtn();" class="Back">&lsaquo;</span>
 
       <h2 class="modalinputfont modalinputfontsize modalroomcreate" id="seethisfriendroomstitle"
-        style="text-align: center;"></h2>
-
+        style="margin-bottom: 0.2em;text-align: center;"></h2>
+      <div style=" text-align: center;">
+        <a id="view-friend-profile" class="tagafontprofile" href="#">View Profile</a>
+      </div>
       <div style=" min-height: 50%;" id="roomcreatdiv" class="modalroomcreate">
 
         <div id="listofthisfriendrooms" class="roomList">
@@ -345,7 +348,7 @@
   localStorage.removeItem("selecteduser");
   //var username = localStorage.getItem("Username");
   document.getElementById('user').innerHTML = " " + username;
-  document.getElementById('user').href = "/" + username + "/" + "profile/"
+  document.getElementById('user').href = "/profile/" + username + "/"
 
 
   const roomcreatview = document.getElementById("roomcreatdiv");
@@ -415,6 +418,7 @@
       closeRequestListModal()
 
     }
+
   }
 
 

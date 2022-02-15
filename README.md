@@ -12,8 +12,7 @@
 1. think about dynamical scroll AGAIN
     
 <strong>Bugs:</strong>
-- If user sends a request to other user who is on the user find tab then the "add friend" status does not change. Also both see "Request sent"
-- if connection is lost while user is connected to room, then activity status would not change
+- if connection is lost while user is connected to room, then activity status would not change.
 - If there are two different rooms named same by same user than it's a big big problem (have to make room id's)
 - if refresh too fast it doubles user (videoplayer html) but it fixes itself
 - Server throws error when username folder already exist
@@ -227,4 +226,10 @@ connection.query($query, function(err, rows, fields) {
     </div>
   </div>
 </div>
+```
+
+<strong>Notification indicator</strong>
+
+```
+<span class="notification-indicator"> </span>
 ```

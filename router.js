@@ -462,7 +462,7 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
                 session.path = 0;
                 let HTMLPath = path.join(__dirname, './templates/registered/videoplayer.html');
                 var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
-                var data = { "guestname":session.guestname,"name": session.userid,"roomName":row.RoomName,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
+                var data = { "guestname":session.guestname,"name": session.userid,"roomName":row.Roomname,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
                 var result = template(data);
                 res.send(result)
             }
@@ -486,7 +486,7 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
                     session.path = 0;
                     let HTMLPath = path.join(__dirname, './templates/registered/videoplayer.html');
                     var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
-                    var data = {"guestname":session.guestname, "name": session.userid,"roomName":row.RoomName,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
+                    var data = {"guestname":session.guestname, "name": session.userid,"roomName":row.Roomname,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
                     var result = template(data);
                     res.send(result)
                     
@@ -502,7 +502,7 @@ router.get("/:roomusername/movieroom/:room" ,function(req,res){
 
                 let HTMLPath = path.join(__dirname, './templates/registered/videoplayer.html');
                 var template = Handlebars.compile(fs.readFileSync(HTMLPath, 'utf8'));
-                var data = { "guestname":session.guestname,"name": session.userid,"roomName":row.RoomName,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
+                var data = { "guestname":session.guestname,"name": session.userid,"roomName":row.Roomname,"roomOwner":row.Roomowner,"movieName":row.Moviename,"moviePath":row.Path};
                 var result = template(data);
                 res.send(result)
                 
@@ -571,7 +571,7 @@ router.get("/unregistered/",function(req,res){
 
 });
 
-router.get("/:user/profile/",function(req,res){
+router.get("/profile/:user/",function(req,res){
     session = req.session
     name = req.params.user
     $query = 'SELECT * FROM flask WHERE Username =' +  connection.escape(name);
