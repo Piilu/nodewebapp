@@ -595,9 +595,10 @@ textarea::placeholder {
 }
 .mainflexviewbc2{
 	background-color: #9D9BAD;
+	
 }
 .mainflexview{
-	height: 100%;
+	min-height: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	flex-flow: column;
@@ -632,6 +633,8 @@ textarea::placeholder {
 	flex-flow: row;
 	margin-left: 12%;
 	margin-right: 12%;
+	min-height: 100%;
+
 		
 }
 .flexcontainer div{
