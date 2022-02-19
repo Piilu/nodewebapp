@@ -5,6 +5,7 @@
 1. Make activity separate js file
 1. Add time and date (if time :) )
 1. Update room create system.
+1. Handle height changes
 1. Possibility to make rooms with Youtube links ("movie name is not required")
 1. some settings in videoplayer page for changeing the video (only for the room owner).
 1. make clickkable links in chat.
@@ -13,7 +14,7 @@
     
 <strong>Bugs:</strong>
 - if connection is lost while user is connected to room, then activity status would not change.
-- If there are two different rooms named same by same user than it's a big big problem (have to make room id's)
+- If there are two different rooms named same by same user than it's a big big problem 
 - if refresh too fast it doubles user (videoplayer html) but it fixes itself
 - Server throws error when username folder already exist
 - When accpeting friend request it doubles some posts friends posts. (Fixed by refreshing the page) (Temporary fixed by forceing browser to refresh) 
